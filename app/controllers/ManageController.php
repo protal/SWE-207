@@ -21,6 +21,7 @@ class ManageController extends \Phalcon\Mvc\Controller
    }
    public function teachersearchAction(){
 
+     
    }
    public function teachereditAction(){
 
