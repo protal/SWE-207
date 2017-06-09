@@ -1,10 +1,30 @@
 <?php use Phalcon\Tag; ?>
 
 <?php $this->flashSession->output() ?>
-
+<?php echo $this->tag->linkTo(["manage/activity", ""]); ?>
+<?= $this->tag->submitButton("Search"); ?>
+<button class="btn btn-primary btn-block">Add new Teacher</button>
 <div class="page-header">
 <h1>รายชื่ออาจารย์</h1>
 </div>
 <div class="row">
+  <table class="table table-bordered">
+  <thead>
+  <tr>
+  <th>Id</th>
+  <th>คำนำหน้า</th>
+  <th>ชื่อ</th>
+  <th>นามสกุล</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <td>1</td>
+    <td>คุณชาย</td>
+    <td>ผู้ดี</td>
+    <td>มั้ง</td>
+  </tr>
 
+  </tbody>
+  </table>
 </div>
