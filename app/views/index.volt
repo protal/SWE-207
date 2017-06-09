@@ -39,6 +39,8 @@
             </div>
           </div>
         </nav>
+        <br>
+        <center><h1>Hello World</h1></center>
       {% elseif router.getControllerName() == "manage" %}
         <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #c3e0f5;">
           <div class="container">
