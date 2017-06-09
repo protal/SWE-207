@@ -20,7 +20,6 @@ class ManageController extends \Phalcon\Mvc\Controller
      $this->view->page = $paginator->getPaginate();
    }
    public function teachersearchAction(){
-
      
    }
    public function teachereditAction(){
