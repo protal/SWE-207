@@ -7,6 +7,8 @@ class ActivityController extends \Phalcon\Mvc\Controller
     {
 
     }
-
+    public function showAction()
+    {
+      
+    }
 }
-

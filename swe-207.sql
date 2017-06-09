@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 31, 2017 at 11:06 PM
+-- Host: localhost
+-- Generation Time: Jun 09, 2017 at 08:00 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -43,6 +45,13 @@ CREATE TABLE `activity` (
   `type_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `activity`
+--
+
+INSERT INTO `activity` (`id`, `name`, `Datail`, `StartDate`, `EndDate`, `YearSTD`, `teacher_id`, `yearofeducation_semester`, `yearofeducation_year`, `location_id`, `type_id`) VALUES
+(2, 'test name', 'test datail', '2017-06-01 22:01:05', '2017-06-01 22:01:05', '3', 1, 3, 2560, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -68,18 +77,12 @@ CREATE TABLE `location` (
   `room` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `teacher`
+-- Dumping data for table `location`
 --
 
-DROP TABLE IF EXISTS `teacher`;
-CREATE TABLE `teacher` (
-  `id` int(11) NOT NULL,
-  `Firstname` text COLLATE utf8_unicode_ci NOT NULL,
-  `Lastname` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+INSERT INTO `location` (`id`, `name`, `room`) VALUES
+(1, 'test name', 'test room');
 
 -- --------------------------------------------------------
 
@@ -93,6 +96,13 @@ CREATE TABLE `type` (
   `name` text COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `type`
+--
+
+INSERT INTO `type` (`id`, `name`) VALUES
+(1, 'type test');
+
 -- --------------------------------------------------------
 
 --
@@ -102,6 +112,10 @@ CREATE TABLE `type` (
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
+  `username` text COLLATE utf8_unicode_ci NOT NULL,
+  `password` text COLLATE utf8_unicode_ci NOT NULL,
+  `isteacher` tinyint(1) NOT NULL DEFAULT '0',
+  `isadmin` tinyint(1) NOT NULL DEFAULT '0',
   `Firstname` text COLLATE utf8_unicode_ci NOT NULL,
   `Lastname` text COLLATE utf8_unicode_ci NOT NULL,
   `Years` int(11) NOT NULL
@@ -120,6 +134,13 @@ CREATE TABLE `yearofeducation` (
   `StartDate` datetime NOT NULL,
   `EndDate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `yearofeducation`
+--
+
+INSERT INTO `yearofeducation` (`semester`, `Year`, `StartDate`, `EndDate`) VALUES
+(3, 2560, '2017-06-01 21:58:23', '2017-06-01 21:58:23');
 
 --
 -- Indexes for dumped tables
@@ -152,12 +173,6 @@ ALTER TABLE `location`
   ADD KEY `id` (`id`);
 
 --
--- Indexes for table `teacher`
---
-ALTER TABLE `teacher`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `type`
 --
 ALTER TABLE `type`
@@ -184,22 +199,17 @@ ALTER TABLE `yearofeducation`
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `teacher`
---
-ALTER TABLE `teacher`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `type`
 --
 ALTER TABLE `type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -214,7 +224,6 @@ ALTER TABLE `users`
 --
 ALTER TABLE `activity`
   ADD CONSTRAINT `activity_ibfk_1` FOREIGN KEY (`yearofeducation_semester`) REFERENCES `yearofeducation` (`semester`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `activity_ibfk_2` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `activity_ibfk_3` FOREIGN KEY (`type_id`) REFERENCES `type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `activity_ibfk_4` FOREIGN KEY (`location_id`) REFERENCES `location` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -224,6 +233,7 @@ ALTER TABLE `activity`
 ALTER TABLE `detailactivity`
   ADD CONSTRAINT `detailactivity_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `detailactivity_ibfk_2` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
