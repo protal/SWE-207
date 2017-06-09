@@ -1,0 +1,22 @@
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>name</th>
+      <th>Datail</th>
+      <th>ACTION</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($page->items as $act): ?>
+      <tr>
+        <th scope="row"><?=$act->id; ?></th>
+        <td><?=$act->name?></td>
+        <td><?=$act->Datail?></td>
+        <td>@mdo</td>
+      </tr>
+
+    <?php endforeach; ?>
+  </tbody>
+</table>

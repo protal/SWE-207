@@ -1,1 +1,1 @@
-test  <?= $this->router->getControllerName() ?>
+<h1>Welcome to  manage <small></small></h1>
