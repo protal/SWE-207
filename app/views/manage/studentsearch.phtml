@@ -1,5 +1,6 @@
 <?php use Phalcon\Tag; ?>
 <?php $this->flashSession->output() ?>
+<<<<<<< HEAD
 
 
 <?= $this->tag->submitButton(["Search","class"=>"btn btn-info"]); ?>
@@ -10,6 +11,15 @@
 
 <table class="table">
   <thead class="thead-default">
+=======
+<div class="page-header">
+<br>
+<h1>รายชื่อนักศึกษา</h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+>>>>>>> 84687bbb2948a607ae0635a04bdc78654fe34fa8
     <tr>
       <th>Id</th>
       <th>ชื่อ</th>
@@ -20,6 +30,7 @@
     </tr>
   </thead>
   <tbody>
+<<<<<<< HEAD
     <tr>
       <th scope="row">1</th>
       <td>Thasawat</td>
@@ -30,5 +41,19 @@
 
     </tr>
 
+=======
+    <?php foreach ($page->items as $act): ?>
+      <tr>
+        <th scope="row"><?=$act->id; ?></th>
+        <td><?=$act->Firstname?></td>
+        <td><?=$act->Lastname?></td>
+        <td><?=$act->Years?></td>
+        <td><button type="button" class="btn btn-info">แก้ไข</button></td>
+        <td><button type="button" class="btn btn-danger">ลบ</button></td>
+
+      </tr>
+
+    <?php endforeach; ?>
+>>>>>>> 84687bbb2948a607ae0635a04bdc78654fe34fa8
   </tbody>
 </table>
