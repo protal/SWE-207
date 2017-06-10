@@ -1,34 +1,35 @@
 <?php use Phalcon\Tag; ?>
 <?php $this->flashSession->output() ?>
 
-
 <?= $this->tag->submitButton(["Search","class"=>"btn btn-info"]); ?>
 
 <div class="page-header">
+  <br>
 <h1>รายชื่ออาจารย์</h1>
 </div>
-
-<table class="table">
-  <thead class="thead-default">
+<table class="table table-striped">
+  <thead>
     <tr>
       <th>Id</th>
-      <th>ชื่อ</th>
-      <th>นามสกุล</th>
+      <th>ผู้ใช้งาน</th>
+      <th>รหัสผ่าน</th>
       <th>ตำแหน่ง</th>
       <th>แก้ไข</th>
       <th>ลบ</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Thasawat</td>
-      <td>Rattanaphan</td>
-      <td>Admin</td>
-      <td><button type="button" class="btn btn-info">แก้ไข</button></td>
-      <td><button type="button" class="btn btn-danger">ลบ</button></td>
+    <?php foreach ($page->items as $act): ?>
+      <tr>
+        <th scope="row"><?=$act->id; ?></th>
+        <td><?=$act->username?></td>
+        <td><?=$act->password?></td>
+        <td><?=$act->isadmin?></td>
+        <td><button type="button" class="btn btn-info">แก้ไข</button></td>
+        <td><button type="button" class="btn btn-danger">ลบ</button></td>
 
-    </tr>
+      </tr>
 
+    <?php endforeach; ?>
   </tbody>
 </table>

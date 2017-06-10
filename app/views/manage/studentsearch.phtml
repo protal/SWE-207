@@ -1,0 +1,33 @@
+<?php use Phalcon\Tag; ?>
+<?php $this->flashSession->output() ?>
+<div class="page-header">
+<br>
+<h1>รายชื่อนักศึกษา</h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>ชื่อ</th>
+      <th>นามสกุล</th>
+      <th>ชั้นปี</th>
+      <th>แก้ไข</th>
+      <th>ลบ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($page->items as $act): ?>
+      <tr>
+        <th scope="row"><?=$act->id; ?></th>
+        <td><?=$act->Firstname?></td>
+        <td><?=$act->Lastname?></td>
+        <td><?=$act->Years?></td>
+        <td><button type="button" class="btn btn-info">แก้ไข</button></td>
+        <td><button type="button" class="btn btn-danger">ลบ</button></td>
+
+      </tr>
+
+    <?php endforeach; ?>
+  </tbody>
+</table>
