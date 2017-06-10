@@ -67,4 +67,8 @@ class ManageController extends \Phalcon\Mvc\Controller
    public function studentdeleteAction(){
 
    }
+   public function registerAction()
+   {
+
+   }
 }
