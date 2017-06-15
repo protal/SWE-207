@@ -15,7 +15,7 @@
 
 <body>
 
-      {% if router.getControllerName() != "manage"%}
+      {% if router.getControllerName() != "manage" and router.getControllerName() != "auth" %}
         <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #c3e0f5;">
           <div class="container">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +39,7 @@
             </div>
           </div>
         </nav>
-      {% elseif router.getControllerName() == "manage" %}
+      {% elseif router.getControllerName() == "manage"  %}
         <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #c3e0f5;">
           <div class="container">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,11 +75,14 @@
     <br>
     <br>
     <br>
-    <nav class="navbar fixed-bottom navbar-light bg-faded">
-      <div class="container text-right">
-        <a class="navbar-brand " href="#"><small>© 2017 - software engineering @ walailak</small></a>
-      </div>
-    </nav>
+
+    {% if router.getControllerName() != "auth" %}
+      <nav class="navbar fixed-bottom navbar-light bg-faded">
+        <div class="container text-right">
+          <a class="navbar-brand " href="#"><small>© 2017 - software engineering @ walailak</small></a>
+        </div>
+      </nav>
+    {% endif %}
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
