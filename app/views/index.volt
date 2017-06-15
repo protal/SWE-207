@@ -71,6 +71,10 @@
     <div class="container">
         {{ content() }}
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
     <nav class="navbar fixed-bottom navbar-light bg-faded">
       <div class="container text-right">
         <a class="navbar-brand " href="#"><small>© 2017 - software engineering @ walailak</small></a>
