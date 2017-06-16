@@ -69,6 +69,7 @@
       <?php } ?>
 
     <div class="container mt-4">
+      <?php $this->flashSession->output() ?>
         <?= $this->getContent() ?>
     </div>
     <br>
