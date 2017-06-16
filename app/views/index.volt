@@ -69,6 +69,7 @@
       {% endif %}
 
     <div class="container mt-4">
+      <?php $this->flashSession->output() ?>
         {{ content() }}
     </div>
     <br>
