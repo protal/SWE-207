@@ -9,6 +9,10 @@ class AuthController extends \Phalcon\Mvc\Controller
     }
     public function loginAction()
     {
-      
+
+    }
+    public function checkLoginAction()
+    {
+      echo "test";
     }
 }
