@@ -68,7 +68,7 @@
         </nav>
       {% endif %}
 
-    <div class="container">
+    <div class="container mt-4">
         {{ content() }}
     </div>
     <br>
