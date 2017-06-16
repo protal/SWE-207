@@ -7,13 +7,13 @@
 </div>
 <div class="page-header">
   <h1>
-      สร้างข้อมูลอาจารย์
+      แก้ไขข้อมูลนักศึกษา
     </h1>
 </div>
 <?php
   echo $this->tag->form(
     [
-      "manage/teacheradd",
+      "manage/studentedit",
       "autocomplete" =>"off",
       "class" => "form-horizontal"
     ]
@@ -25,7 +25,6 @@
 <div class="col-sm-10">
   <?php echo $this->tag->textField(["stdid", "size" => 30, "class" => "form-control", "id" =>"fieldName"]) ?>
 </div>
-</div>
 <div class="form-group">
 <label for="fieldName" class="col-sm-2 control-label">ชื่อ</label>
 <div class="col-sm-10">
@@ -36,20 +35,22 @@
 <div class="col-sm-10">
   <?php echo $this->tag->textField(["name", "size" => 30, "class" => "form-control", "id" =>"fieldName"]) ?>
 </div>
-
 <div class="form-group">
     <div class="col-sm-10">
-    <label for="exampleSelect1">ตำแหน่ง</label>
+    <label for="exampleSelect1">ชั้นปี</label>
     <select class="form-control" id="exampleSelect1">
-      <option>อาจารย์(ผู้ดูแลระบบ)</option>
-      <option>อาจารย์</option>
+      <option>ชั้นปีที่ 1</option>
+        <option>ชั้นปีที่ 2</option>
+          <option>ชั้นปีที่ 3</option>
+            <option>ชั้นปีที่ 4</option>
       </select>
   </div>
 </div>
-
+</div>
+<br>
 <div class="form-group">
 <div class="col-sm-offset-2 col-sm-10">
-<?php echo $this->tag->submitButton(["สร้าง", "class" => "btn btn-default"]) ?>
+<?php echo $this->tag->submitButton(["ตกลง", "class" => "btn btn-success"]) ?>
 </div>
 </div>
 <?php echo $this->tag->endForm(); ?>

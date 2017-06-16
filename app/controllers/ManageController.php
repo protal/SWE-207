@@ -20,7 +20,15 @@ class ManageController extends \Phalcon\Mvc\Controller
      $this->view->page = $paginator->getPaginate();
    }
    public function teachersearchAction(){
-     
+     $numberPage = $this->request->getQuery("page", "int");
+     $parameters["order"] = "id DESC";
+     $users = Users::find($parameters);
+     $paginator = new Paginator([
+       'data' => $users,
+       'limit'=> 10,
+       'page' => $numberPage
+     ]);
+     $this->view->page = $paginator->getPaginate();
    }
    public function teachereditAction(){
 
@@ -35,8 +43,18 @@ class ManageController extends \Phalcon\Mvc\Controller
 
    }
    public function studentsearchAction(){
-
+     $numberPage = $this->request->getQuery("page", "int");
+     $parameters["order"] = "id DESC";
+     $users = Users::find($parameters);
+     $paginator = new Paginator([
+       'data' => $users,
+       'limit'=> 10,
+       'page' => $numberPage
+     ]);
+     $this->view->page = $paginator->getPaginate();
    }
+
+
    public function studenteditAction(){
 
    }
@@ -47,6 +65,10 @@ class ManageController extends \Phalcon\Mvc\Controller
 
    }
    public function studentdeleteAction(){
+
+   }
+   public function registerAction()
+   {
 
    }
 }
