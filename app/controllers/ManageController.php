@@ -66,7 +66,44 @@ class ManageController extends \Phalcon\Mvc\Controller
 
    }
    public function studentaddpostAction(){
-     $stdid = "";
+     $username = $this->request->getPost("username");
+     $user = Users::findFirst(
+       [
+          "username = '" . $username . "'"
+       ]
+     );
+     if ($user)
+     {
+       $this->flashSession->error("รหัสนักศึกษา  ". $username ." ถูกสร้างเเล้ว กรุณาลองใหม่อีกครั้ง");
+       return $this->response->redirect("manage/studentadd");
+     }
+     else {
+       //add user
+       $user = new Users;
+       $user->username = $this->request->getPost("username");
+       $user->password = $this->security->hash($this->request->getPost("username"));
+       $user->isteacher	= 0 ;
+       $user->Firstname = $this->request->getPost("Firstname");
+       $user->Lastname	= $this->request->getPost("Lastname");
+       $user->Years	= $this->request->getPost("Years");
+       if($user->save())
+       {
+         $this->flashSession->success("เพิ่มรหัสนักศึกษา  ". $username ." สำเร็จ");
+         return $this->response->redirect("manage/studentsearch");
+       }
+       else {
+         $ms = "";
+         foreach ($user->getMessages() as $message) {
+            $ms .= $message;
+          }
+         $this->flashSession->error("ไม่สำเร็จ  [". $ms ."]");
+         return $this->response->redirect("manage/studentadd");
+       }
+     }
+
+
+
+
    }
    // end student add
    public function studentdeleteAction(){

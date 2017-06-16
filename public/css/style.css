@@ -11,10 +11,18 @@ h5 {
 }
 
 .hd {
-  font-size: 1.28571429em;
+  font-size: 2.38571429em;
   font-weight: 700;
   line-height: 1.2857em;
   margin: 0;
+}
+
+.pull-right {
+  float: right !important;
+}
+
+.pull-left {
+  float: left !important;
 }
 
 @media(min-width: 768px) {

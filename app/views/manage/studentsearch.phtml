@@ -6,8 +6,12 @@
     <div class="col-md-11 contentstd" style="margin-top:20px">
       <div class="page-header">
       <br>
-      <label class="hd">text</label>
-      <?= $this->tag->submitButton(["Search","class"=>"btn btn-info"]); ?>
+        <form class="form-inline my-2 my-lg-">
+          <label class="pull-left"><h1>รายชื่อนักศึกษา</h1></label>
+          <input class="form-control mr-sm-2 pull-right" type="text" placeholder="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0 pull-right" type="submit">Search</button>
+          <?= $this->tag->linkTo(["manage/studentadd","class"=>"btn btn-success pull-right","Add+"]); ?>
+        </form>
       </div>
 
       <table class="table table-striped" style="margin-top:10px">
