@@ -3,28 +3,27 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-11 contentstd" style="margin-top:70px">
-      <table class="table table-bordered">
-        <thead class="thead-default">
+    <div class="col-md-11 contentstd" style="margin-top:20px">
       <div class="page-header">
       <br>
-      <h1>รายชื่อนักศึกษา</h1>
+      <label class="hd">text</label>
+      <?= $this->tag->submitButton(["Search","class"=>"btn btn-info"]); ?>
       </div>
 
-      <table class="table table-striped">
+      <table class="table table-striped" style="margin-top:10px">
         <thead>
           <tr>
             <th>Id</th>
             <th>ชื่อ</th>
             <th>นามสกุล</th>
             <th>ชั้นปี</th>
-            <th width="">แก้ไข</th>
+            <th >แก้ไข</th>
             <th>ลบ</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th scope="row">58140500</th>
+            <td>58140500</td>
             <td>Thasawat</td>
             <td>Rattanaphan</td>
             <td>Admin</td>
@@ -85,9 +84,7 @@
               <td><?=$act->Years?></td>
               <td><button type="button" class="btn btn-info">แก้ไข</button></td>
               <td><button type="button" class="btn btn-danger">ลบ</button></td>
-
             </tr>
-
           <?php endforeach; ?>
         </tbody>
       </table>
