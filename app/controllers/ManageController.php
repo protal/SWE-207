@@ -74,7 +74,8 @@ class ManageController extends \Phalcon\Mvc\Controller
      );
      if ($user)
      {
-       echo "duplicate login: ". $username ." Please try again";
+       $this->flashSession->error("รหัสนักศึกษา  ". $username ." ถูกสร้างเเล้ว กรุณาลองใหม่อีกครั้ง");
+       return $this->response->redirect("manage/studentadd");
      }
      else {
        //add user
@@ -87,14 +88,16 @@ class ManageController extends \Phalcon\Mvc\Controller
        $user->Years	= $this->request->getPost("Years");
        if($user->save())
        {
-         //success
+         $this->flashSession->success("เพิ่มรหัสนักศึกษา  ". $username ." สำเร็จ");
+         return $this->response->redirect("manage/studentsearch");
        }
        else {
          $ms = "";
          foreach ($user->getMessages() as $message) {
             $ms .= $message;
           }
-         echo $ms;
+         $this->flashSession->error("ไม่สำเร็จ  [". $ms ."]");
+         return $this->response->redirect("manage/studentadd");
        }
      }
 
