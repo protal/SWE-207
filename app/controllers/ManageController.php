@@ -66,31 +66,41 @@ class ManageController extends \Phalcon\Mvc\Controller
 
    }
    public function studentaddpostAction(){
-     //$username = $this->request->getPost("username");
-
-
-
-
-     //echo $username;
-     //add user
-     $user = new Users;
-     $user->username = $this->request->getPost("username");
-     $user->password = $this->security->hash($this->request->getPost("username"));
-     $user->isteacher	= 0 ;
-     $user->Firstname = $this->request->getPost("Firstname");
-     $user->Lastname	= $this->request->getPost("Lastname");
-     $user->Years	= $this->request->getPost("Years	");
-     if($user->save())
+     $username = $this->request->getPost("username");
+     $user = Users::findFirst(
+       [
+          "username = '" . $username . "'"
+       ]
+     );
+     if ($user)
      {
-       //success
+       echo "duplicate login: ". $username ." Please try again";
      }
      else {
-       $ms = "";
-       foreach ($user->getMessages() as $message) {
-          $ms .= $message;
-        }
-       echo $ms;
+       //add user
+       $user = new Users;
+       $user->username = $this->request->getPost("username");
+       $user->password = $this->security->hash($this->request->getPost("username"));
+       $user->isteacher	= 0 ;
+       $user->Firstname = $this->request->getPost("Firstname");
+       $user->Lastname	= $this->request->getPost("Lastname");
+       $user->Years	= $this->request->getPost("Years");
+       if($user->save())
+       {
+         //success
+       }
+       else {
+         $ms = "";
+         foreach ($user->getMessages() as $message) {
+            $ms .= $message;
+          }
+         echo $ms;
+       }
      }
+
+
+
+
    }
    // end student add
    public function studentdeleteAction(){
