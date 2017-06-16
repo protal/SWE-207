@@ -61,9 +61,14 @@ class ManageController extends \Phalcon\Mvc\Controller
    public function studentupdateAction(){
 
    }
+   //  student add
    public function studentaddAction(){
 
    }
+   public function studentaddpostAction(){
+     $stdid = "";
+   }
+   // end student add
    public function studentdeleteAction(){
 
    }

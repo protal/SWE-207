@@ -9,7 +9,7 @@
 <?php
   echo $this->tag->form(
       [
-          "manage/studentadd",
+          "manage/studentaddpost",
           "autocomplete" =>"off",
           "class" => "form-horizontal"
       ]
@@ -33,7 +33,8 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-laptop"></i></div>
-                        <input type="text" name="id" class="form-control" id="id" placeholder="ID" required autofocus>
+                        <?=$this->tag->numericField( [ "username", "class" => "form-control","placeholder" => "รหัสนักศึกษา", "required"=>"","autofocus"=>""] );?>
+
                     </div>
                 </div>
             </div>
@@ -53,7 +54,7 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
-                        <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+                        <?=$this->tag->passwordField( [ "password", "class" => "form-control","placeholder" => "Password", "required"=>""] );?>
                     </div>
                 </div>
             </div>
@@ -73,7 +74,7 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
-                        <input type="text" name="fname" class="form-control" id="firstname" placeholder="Firstname" required autofocus>
+                        <?=$this->tag->textField( [ "Firstname", "class" => "form-control","placeholder" => "Firstname", "required"=>""] );?>
                     </div>
                 </div>
             </div>
@@ -93,7 +94,7 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-signal"></i></div>
-                        <input type="text" name="lname" class="form-control" id="lastname" placeholder="Lastname" required autofocus>
+                        <?=$this->tag->textField( [ "Lastname", "class" => "form-control","placeholder" => "Lastname", "required"=>""] );?>
                     </div>
                 </div>
             </div>
@@ -105,23 +106,6 @@
                 </div>
             </div>
         </div>
-          <div class="row">
-              <div class="col-md-3 field-label-responsive">
-                  <label for="exampleSelect1">กรุณาเลือกสถานะ</label>
-              </div>
-              <div class="col-md-6">
-                  <div class="form-group">
-                      <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-star-o"></i></div>
-                        <select class="form-control" id="exampleSelect1">
-                          <option>นักศึกษา</option>
-                          <option>อาจารย์</option>
-                          <option>อาจารย์และผู้ดูแลระบบ</option>
-                        </select>
-                      </div>
-                  </div>
-              </div>
-            </div>
             <div class="row">
                 <div class="col-md-3 field-label-responsive">
                     <label for="email">ปีการศึกษา</label>
@@ -130,7 +114,7 @@
                     <div class="form-group">
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-calendar"></i></div>
-                            <input type="text" name="lname" class="form-control" id="lastname" placeholder="ปีการศึกษา" required autofocus>
+                            <?=$this->tag->textField( [ "Years", "class" => "form-control","placeholder" => "ปีการศึกษา", "required"=>""] );?>
                         </div>
                     </div>
                 </div>
