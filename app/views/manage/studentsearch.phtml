@@ -6,12 +6,11 @@
     <div class="col-md-11 contentstd" style="margin-top:20px">
       <div class="page-header">
       <br>
-        <form class="form-inline my-2 my-lg-">
-          <label class="pull-left"><h1>รายชื่อนักศึกษา</h1></label>
-          <input class="form-control mr-sm-2 pull-right" type="text" placeholder="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0 pull-right" type="submit">Search</button>
-          <?= $this->tag->linkTo(["manage/studentadd","class"=>"btn btn-success pull-right","Add+"]); ?>
-        </form>
+
+      <label class="pull-left"><h1>รายชื่อนักศึกษา</h1></label>
+      <input class="form-control pull-right" type="text" placeholder="Search">
+      <button class="btn btn-outline-success  pull-right" type="submit">Search</button>
+      <?= $this->tag->linkTo(["manage/studentadd","class"=>"btn btn-success pull-right","Add+"]); ?>
       </div>
 
       <table class="table table-striped" style="margin-top:10px">
@@ -26,60 +25,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>58140500</td>
-            <td>Thasawat</td>
-            <td>Rattanaphan</td>
-            <td>Admin</td>
-            <td><button type="button" class="btn btn-info">แก้ไข</button></td>
-            <td><button type="button" class="btn btn-danger">ลบ</button></td>
-
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Thasawat</td>
-            <td>Rattanaphan</td>
-            <td>Admin</td>
-            <td><button type="button" class="btn btn-info">แก้ไข</button></td>
-            <td><button type="button" class="btn btn-danger">ลบ</button></td>
-
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>Thasawat</td>
-            <td>Rattanaphan</td>
-            <td>Admin</td>
-            <td><button type="button" class="btn btn-info">แก้ไข</button></td>
-            <td><button type="button" class="btn btn-danger">ลบ</button></td>
-
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Thasawat</td>
-            <td>Rattanaphan</td>
-            <td>Admin</td>
-            <td><button type="button" class="btn btn-info">แก้ไข</button></td>
-            <td><button type="button" class="btn btn-danger">ลบ</button></td>
-
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>Thasawat</td>
-            <td>Rattanaphan</td>
-            <td>Admin</td>
-            <td><button type="button" class="btn btn-info">แก้ไข</button></td>
-            <td><button type="button" class="btn btn-danger">ลบ</button></td>
-
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Thasawat</td>
-            <td>Rattanaphan</td>
-            <td>Admin</td>
-            <td><button type="button" class="btn btn-info">แก้ไข</button></td>
-            <td><button type="button" class="btn btn-danger">ลบ</button></td>
-
-          </tr>
+          
           <?php foreach ($page->items as $act): ?>
             <tr>
               <th scope="row"><?=$act->id; ?></th>
