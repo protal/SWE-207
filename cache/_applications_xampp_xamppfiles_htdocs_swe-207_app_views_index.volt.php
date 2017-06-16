@@ -40,6 +40,7 @@
           </div>
         </nav>
       <?php } elseif ($this->router->getControllerName() == 'manage') { ?>
+
         <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #c3e0f5;">
           <div class="container">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,10 +60,16 @@
                     <?= $this->tag->linkTo(['manage/studentsearch', 'จัดการนักศึกษา', 'class' => 'nav-link']) ?>
                   </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                <ul class="navbar-nav my-lg-0">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <?= $this->session->get('auth')['Firstname'] ?> <?= $this->session->get('auth')['Lastname'] ?>
+                    </a>
+                    <div class="dropdown-menu" style="float:right;" aria-labelledby="navbarDropdownMenuLink">
+                      <?= $this->tag->linkTo(['auth/logout', 'ออกจากระบบ', 'class' => 'dropdown-item']) ?>
+                    </div>
+                  </li>
+                </ul>
             </div>
           </div>
         </nav>

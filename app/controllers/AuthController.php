@@ -11,30 +11,37 @@ class AuthController extends \Phalcon\Mvc\Controller
     {
 
     }
+    public function logoutAction()
+    {
+      $this->session->destroy();
+      $this->flashSession->success("ออกจาระบบสำเร็จ");
+      return $this->response->redirect("auth/login");
+    }
     public function checkLoginAction()
     {
-      $email = $this->request->getPost("email");
-    $password = $this->request->getPost("password");
-    $user = Users::findFirst(
+      $username = $this->request->getPost("username");
+      $password = $this->request->getPost("password");
 
-    [
-    "username = '" . $email . "'"
-    ]
-    );
-    if (!$user) {
-          $this->flashSession->error("invalid  login: " . $email . ",
-          Please try again");
+      $user = Users::findFirst(
+        [
+        "username = '" . $username . "'"
+        ]
+      );
+
+
+      if ($user) {
+        if ($this->security->checkHash($password, $user->password)) {
+          $this->session->set("auth", $user->toArray());
+          $this->flashSession->success("ยินดีต้อนรับ คุณ ".$user->Firstname." เข้าสู่ระบบ");
+          return $this->response->redirect("manage/index");
+        }
+        else{
+          $this->flashSession->error("เข้าสู่ระบบผิดพลาด , กรุณาลองใหม่อีกครั้ง");
           return $this->response->redirect("auth/login");
-    }
-
-    if ($user) {
-    if ($this->security->checkHash($password, $user->password)) {
-      $this->session->set("email", $email);
-      return $this->response->redirect("manage/index");
-    }
-    } else {
-      $this->flashSession->success("Unsuccessful login, please try again");
-      return $this->response->redirect("password/login");
-    }
+        }
+      } else {
+        $this->flashSession->error("เข้าสู่ระบบผิดพลาด , กรุณาลองใหม่อีกครั้ง");
+        return $this->response->redirect("auth/login");
+      }
   }
 }
