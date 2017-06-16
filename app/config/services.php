@@ -103,10 +103,10 @@ $di->set('flash', function () {
 
 $di->set('flashSession', function(){
    $flash = new \Phalcon\Flash\Session(array(
-     'error' => 'alert alert-danger',
-     'success' => 'alert alert-success',
-     'notice' => 'alert alert-info',
-     'warning' => 'alert alert-warning'
+     'error' => 'alert alert-danger text-center',
+     'success' => 'alert alert-success text-center',
+     'notice' => 'alert alert-info text-center',
+     'warning' => 'alert alert-warning text-center'
    ));
    return $flash;
  });
