@@ -88,14 +88,11 @@ class ManageController extends \Phalcon\Mvc\Controller
        $user->Years	= $this->request->getPost("Years");
        if($user->save())
        {
-<<<<<<< HEAD
          //success
          $this->flashSession->success("เพิ่มข้อมูลเรียนร้อย !!");
          $this->response->redirect("manage/studentsearch");
-=======
          $this->flashSession->success("เพิ่มรหัสนักศึกษา  ". $username ." สำเร็จ");
          return $this->response->redirect("manage/studentsearch");
->>>>>>> 949aaa85dc2c912f85839cdabcc0373bf71c82a7
        }
        else {
          $ms = "";
