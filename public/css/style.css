@@ -10,8 +10,32 @@ h5 {
   margin: 0;
 }
 
+.hd {
+  font-size: 1.28571429em;
+  font-weight: 700;
+  line-height: 1.2857em;
+  margin: 0;
+}
+
+@media(min-width: 768px) {
+.field-label-responsive {
+  padding-top: .5rem;
+  text-align: right;
+}
+}
+
+.table-bordered
+{
+    border: 150px solid #ddd;
+}
+
 .content {
     max-width: 500px;
+    margin: auto;
+}
+
+.contentstd {
+    max-width: 1000px;
     margin: auto;
 }
 
