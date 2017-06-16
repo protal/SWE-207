@@ -3,16 +3,14 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-11 contentstd" style="margin-top:20px">
+    <div class="col-md-11 contentstd" style="margin-top:40px">
       <div class="page-header">
-      <br>
-
-      <label class="pull-left"><h1>รายชื่อนักศึกษา</h1></label>
-      <input class="form-control pull-right" type="text" placeholder="Search">
-      <button class="btn btn-outline-success  pull-right" type="submit">Search</button>
-      <?= $this->tag->linkTo(["manage/studentadd","class"=>"btn btn-success pull-right","Add+"]); ?>
+        <form class="form-inline">
+          <label class="pull-left mb-5 mr-sm-5 mb-sm-0"><h1>รายชื่อนักศึกษา</h1></label>
+          <input class="form-control mb-2 mr-sm-2 mb-sm-0" type="text" placeholder="Search">
+          <button class="btn btn-outline-primary mb-5 mr-sm-5 mb-sm-0" type="submit">Search</button>
+        </form>
       </div>
-
       <table class="table table-striped" style="margin-top:10px">
         <thead>
           <tr>
@@ -25,7 +23,7 @@
           </tr>
         </thead>
         <tbody>
-          
+
           <?php foreach ($page->items as $act): ?>
             <tr>
               <th scope="row"><?=$act->id; ?></th>

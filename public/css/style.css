@@ -10,6 +10,11 @@ h5 {
   margin: 0;
 }
 
+#search {
+    width: 60em;
+    height: 6em;
+}
+
 .pull-right {
   float: right !important;
 }
