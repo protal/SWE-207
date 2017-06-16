@@ -120,3 +120,12 @@ $di->setShared('session', function () {
 
     return $session;
 });
+
+
+$di->set('session', function() {
+    $session = new Phalcon\Session\Adapter\Files();
+    if (session_status() == PHP_SESSION_NONE) {
+        $session->start();
+    }
+    return $session;
+});
