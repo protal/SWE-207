@@ -59,7 +59,7 @@ class ManageController extends \Phalcon\Mvc\Controller
    }
    public function studentsearchAction(){
      $numberPage = $this->request->getQuery("page", "int");
-     $parameters["order"] = "id ASC";
+     $parameters["order"] = "username DESC";
      $users = Users::find($parameters);
      $paginator = new Paginator([
        'data' => $users,
