@@ -6,9 +6,9 @@
       <div class="page-header" style="margin-top:40px">
         <form class="form-inline">
           <h1 class="mb-4 mr-sm-4 mb-sm-0">รายชื่อนักศึกษา</h1>
-          <input class="form-control mb-2 mr-sm-2 mb-sm-0" type="text" placeholder="Search">
-          <?php echo $this->tag->submitButton(["Search", "class" => "btn btn-outline-primary mb-2 mr-sm-2 mb-sm-0"]) ?>
-          <?php echo $this->tag->linkto(["manage/studentadd", "class" => "btn btn-outline-success mb-3 mr-sm-3 mb-sm-0","ADD+"]) ?>
+          <?php echo $this->tag->textField(["s", "class" => "form-control mb-2 mr-sm-2 mb-sm-0", "placeholder" => "ค้นหาชื่อ,นามสกุล,ชั้นปี"]) ?>
+          <?php echo $this->tag->submitButton(["ค้นหา", "class" => "btn btn-outline-primary mb-2 mr-sm-2 mb-sm-0"]) ?>
+          <?php echo $this->tag->linkto(["manage/studentadd", "class" => "btn btn-outline-success mb-3 mr-sm-3 mb-sm-0","เพิ่มนักศึกษา"]) ?>
         </form>
       </div>
       <table class="table table-striped" style="margin-top:10px">
@@ -28,8 +28,10 @@
               <td class="text-center"><?=$act->Firstname?></td>
               <td class="text-center"><?=$act->Lastname?></td>
               <td class="text-center"><?=$act->Years?></td>
-              <td class="text-center"><button type="button" class="btn btn-info btn-sm">แก้ไข</button>&nbsp;&nbsp;
-                  <button type="button" class="btn btn-danger btn-sm">ลบ</button></td>
+              <td class="text-center">
+                <?php echo $this->tag->linkto(["manage/studentedit/".$act->id, "class" => "btn btn-info btn-sm","แก้ไข"]) ?>
+                <?php echo $this->tag->linkto(["manage/studentdelete".$act->id, "class" => "btn btn-danger btn-sm","ลบ"]) ?>
+              </td>
             </tr>
           <?php endforeach; ?>
         </tbody>
