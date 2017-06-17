@@ -2,15 +2,19 @@
 <?php $this->flashSession->output() ?>
 
 <div class="container">
-  <div class="row">
+
       <div class="page-header" style="margin-top:40px">
-        <form class="form-inline">
-          <h1 class="mb-4 mr-sm-4 mb-sm-0">รายชื่อนักศึกษา</h1>
-          <?php echo $this->tag->textField(["s", "class" => "form-control mb-2 mr-sm-2 mb-sm-0", "placeholder" => "ค้นหาชื่อ,นามสกุล,ชั้นปี"]) ?>
-          <?php echo $this->tag->submitButton(["ค้นหา", "class" => "btn btn-outline-primary mb-2 mr-sm-2 mb-sm-0"]) ?>
-          <?php echo $this->tag->linkto(["manage/studentadd", "class" => "btn btn-outline-success mb-3 mr-sm-3 mb-sm-0","เพิ่มนักศึกษา"]) ?>
-        </form>
+        <h1 class="mb-4 mr-sm-4 mb-sm-0">รายชื่อนักศึกษา <?php echo $this->tag->linkto(["manage/studentadd", "class" => "btn btn-outline-success btn-secondary pull-right","เพิ่มนักศึกษา"]) ?></h1>
       </div>
+      <br>
+      <form>
+        <div class="input-group">
+          <?php echo $this->tag->textField(["s", "class" => "form-control" , "placeholder" => "ค้นหาชื่อ,นามสกุล,ปี่ที่เข้าศึกษา"]) ?>
+          <span class="input-group-btn">
+            <?php echo $this->tag->submitButton(["ค้นหา", "class" => "btn btn-outline-primary btn-secondary"]) ?>
+          </span>
+        </div>
+      </form>
       <table class="table table-striped" style="margin-top:10px">
         <thead>
           <tr>
@@ -40,24 +44,23 @@
         <nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
             <li class="page-item">
-              <?php echo $this->tag->linkto(["manage/studentsearch", "class" => "page-link","< หน้าแรก"]) ?>
+              <?php echo $this->tag->linkto(["manage/studentsearch".(isset($s)?"/?s={$s}":""), "class" => "page-link","< หน้าแรก"]) ?>
             </li>
             <?php if ($page->before != $page->current): ?>
             <li class="page-item">
-              <?php echo $this->tag->linkto(["manage/studentsearch/?page=".$page->before, "class" => "page-link",$page->before]) ?>
+              <?php echo $this->tag->linkto(["manage/studentsearch/?".(isset($s)?"s={$s}&":"")."page=".$page->before, "class" => "page-link",$page->before]) ?>
             </li>
             <?php endif; ?>
             <li class="page-item disabled"><a class="page-link" href="#"><?=$page->current?></a></li>
-            <?php if ($page->next != $page->current): ?>
+            <?php if ($page->next != $page->current && $page->next > 0 ): ?>
             <li class="page-item">
-              <?php echo $this->tag->linkto(["manage/studentsearch/?page=".$page->next, "class" => "page-link",$page->next]) ?>
+              <?php echo $this->tag->linkto(["manage/studentsearch/?".(isset($s)?"s={$s}&":"")."page=".$page->next, "class" => "page-link",$page->next]) ?>
             </li>
             <?php endif; ?>
             <li class="page-item">
-              <?php echo $this->tag->linkto(["manage/studentsearch/?page=".$page->last, "class" => "page-link","สุดท้าย >>"]) ?>
+              <?php echo $this->tag->linkto(["manage/studentsearch/?".(isset($s)?"s={$s}&":"")."page=".$page->last, "class" => "page-link","สุดท้าย >>"]) ?>
             </li>
           </ul>
         </nav>
       </div>
-  </div>
 </div>

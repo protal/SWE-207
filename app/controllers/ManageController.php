@@ -58,15 +58,26 @@ class ManageController extends \Phalcon\Mvc\Controller
 
    }
    public function studentsearchAction(){
+
+     $s = $this->request->get("s");
+
      $numberPage = $this->request->getQuery("page", "int");
      $parameters["order"] = "Years desc , username ASC ";
-     $users = Users::find($parameters);
+     $users = Users::query()
+     ->where("username like '%".$s."%'")
+     ->orwhere("Firstname like '%".$s."%'")
+     ->orwhere("Lastname like '%".$s."%'")
+     ->orwhere("Years like '%".$s."%'")
+     ->order("Years desc,username ASC")
+     ->execute();
      $paginator = new Paginator([
        'data' => $users,
        'limit'=> 10,
        'page' => $numberPage
      ]);
+     $this->tag->setDefault("s", $s);
      $this->view->page = $paginator->getPaginate();
+     $this->view->s = $s;
    }
 
 
