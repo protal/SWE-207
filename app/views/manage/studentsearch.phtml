@@ -14,17 +14,17 @@
       <table class="table table-striped" style="margin-top:10px">
         <thead>
           <tr>
-            <th class="text-center">Id</th>
+            <th class="text-center">รหัสนักศึกษา</th>
             <th class="text-center">ชื่อ</th>
             <th class="text-center">นามสกุล</th>
-            <th class="text-center">ชั้นปี</th>
+            <th class="text-center">ปีที่เข้าศึกษา</th>
             <th class="text-center">ดำเนินการ</th>
           </tr>
         </thead>
         <tbody>
           <?php foreach ($page->items as $act): ?>
             <tr>
-              <th class="text-center" scope="row"><?=$act->id; ?></th>
+              <th class="text-center" scope="row"><?=$act->username; ?></th>
               <td class="text-center"><?=$act->Firstname?></td>
               <td class="text-center"><?=$act->Lastname?></td>
               <td class="text-center"><?=$act->Years?></td>
@@ -37,25 +37,39 @@
         </tbody>
       </table>
       <center>
-      <nav aria-label="Page navigation">
-        <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-              <span class="sr-only">Previous</span>
-            </a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-              <span class="sr-only">Next</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </center>
+
+
+        <nav>
+          <ul class="pagination">
+          <li><?php echo $this->tag->linkTo("manage/studentsearch", "First") ?></li>
+          <li><?php echo $this->tag->linkTo("manage/studentsearch?page=" . $page->before,
+          "Previous") ?></li>
+          <li><?php echo $this->tag->linkTo("manage/studentsearch?page=" . $page->next, "Next") ?></
+          li>
+          <li><?php echo $this->tag->linkTo("manage/studentsearch?page=" . $page->last, "Last") ?></
+          li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </center>
   </div>
 </div>
