@@ -44,7 +44,7 @@ class ManageController extends \Phalcon\Mvc\Controller
    }
    public function studentsearchAction(){
      $numberPage = $this->request->getQuery("page", "int");
-     $parameters["order"] = "id DESC";
+     $parameters["order"] = "id ASC";
      $users = Users::find($parameters);
      $paginator = new Paginator([
        'data' => $users,
@@ -88,6 +88,9 @@ class ManageController extends \Phalcon\Mvc\Controller
        $user->Years	= $this->request->getPost("Years");
        if($user->save())
        {
+         //success
+         $this->flashSession->success("เพิ่มข้อมูลเรียนร้อย !!");
+         $this->response->redirect("manage/studentsearch");
          $this->flashSession->success("เพิ่มรหัสนักศึกษา  ". $username ." สำเร็จ");
          return $this->response->redirect("manage/studentsearch");
        }
@@ -100,10 +103,6 @@ class ManageController extends \Phalcon\Mvc\Controller
          return $this->response->redirect("manage/studentadd");
        }
      }
-
-
-
-
    }
    // end student add
    public function studentdeleteAction(){
