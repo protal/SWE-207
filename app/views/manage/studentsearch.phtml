@@ -30,7 +30,7 @@
               <td class="text-center"><?=$act->Years?></td>
               <td class="text-center">
                 <?php echo $this->tag->linkto(["manage/studentedit/".$act->id, "class" => "btn btn-info btn-sm","แก้ไข"]) ?>
-                <?php echo $this->tag->linkto(["manage/studentdelete".$act->id, "class" => "btn btn-danger btn-sm","ลบ"]) ?>
+                <?php echo $this->tag->linkto(["manage/studentdelete/".$act->id, "class" => "btn btn-danger btn-sm","ลบ"]) ?>
               </td>
             </tr>
           <?php endforeach; ?>
