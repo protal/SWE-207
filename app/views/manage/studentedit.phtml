@@ -2,7 +2,7 @@
 <?php
   echo $this->tag->form(
       [
-          "manage/studentaddpost",
+          "manage/studentupdate/".$id,
           "autocomplete" =>"off",
           "class" => "form-horizontal"
       ]
@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6" style="margin-top:50px">
-                <h2>สร้างข้อมูลนักศึกษา</h2>
+                <h2>แก้ไขข้อมูลนักศึกษา</h2>
                 <hr>
             </div>
         </div>
@@ -26,7 +26,7 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-laptop"></i></div>
-                        <?=$this->tag->numericField( [ "username", "class" => "form-control","placeholder" => "รหัสนักศึกษา", "required"=>"","autofocus"=>""] );?>
+                        <?=$this->tag->numericField( [ "username", "class" => "form-control","placeholder" => "รหัสนักศึกษา", "required"=>"","autofocus"=>"" ,"disabled"=>""] );?>
 
                     </div>
                 </div>
@@ -122,7 +122,7 @@
           <div class="row">
               <div class="col-md-3"></div>
               <div class="col-md-6">
-                <?php echo $this->tag->submitButton(["ยืนยันการลงทะเบียน +", "class" => "btn btn-success"]) ?>
+                <?php echo $this->tag->submitButton(["ยืนยันการแก้ไข", "class" => "btn btn-success"]) ?>
               </div>
           </div>
     </form>
