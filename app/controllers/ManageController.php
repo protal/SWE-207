@@ -31,6 +31,9 @@ class ManageController extends \Phalcon\Mvc\Controller
    public function activitydeleteAction(){
 
    }
+   public function activitystudentAction(){
+
+   }
    public function teachersearchAction(){
      $numberPage = $this->request->getQuery("page", "int");
      $parameters["order"] = "id DESC";
@@ -56,7 +59,7 @@ class ManageController extends \Phalcon\Mvc\Controller
    }
    public function studentsearchAction(){
      $numberPage = $this->request->getQuery("page", "int");
-     $parameters["order"] = "id ASC";
+     $parameters["order"] = "username ASC , Years desc ";
      $users = Users::find($parameters);
      $paginator = new Paginator([
        'data' => $users,
@@ -67,10 +70,30 @@ class ManageController extends \Phalcon\Mvc\Controller
    }
 
 
-   public function studenteditAction(){
+   public function studenteditAction($id){
+     $user = Users::findFirst($id);
+     $this->tag->setDefault("username", $user->username);
+     $this->tag->setDefault("Firstname", $user->Firstname);
+     $this->tag->setDefault("Lastname", $user->Lastname);
+     $this->tag->setDefault("Years", $user->Years);
 
+     $this->view->id  = $id;
    }
-   public function studentupdateAction(){
+   public function studentupdateAction($id){
+     $name = $this->request->getPost("Firstname");
+     $user = Users::findFirst($id);
+     $user->password = $this->request->getPost("password");
+     $user->Firstname = $this->request->getPost("Firstname");
+     $user->Lastname = $this->request->getPost("Lastname");
+     $user->Years = $this->request->getPost("Years");
+     if($user->save())
+     {
+       $this->flashSession->success("แก้ไขข้อมูล ".$name." เรียร้อยเเล้ว");
+     }
+     else {
+       $this->flashSession->error("แก้ไม่สำเสร็จ");
+     }
+     return $this->response->redirect("manage/studentedit/".$id);
 
    }
    //  student add
@@ -101,7 +124,6 @@ class ManageController extends \Phalcon\Mvc\Controller
        if($user->save())
        {
          //success
-         $this->flashSession->success("เพิ่มข้อมูลเรียนร้อย !!");
          $this->response->redirect("manage/studentsearch");
          $this->flashSession->success("เพิ่มรหัสนักศึกษา  ". $username ." สำเร็จ");
          return $this->response->redirect("manage/studentsearch");
@@ -117,8 +139,17 @@ class ManageController extends \Phalcon\Mvc\Controller
      }
    }
    // end student add
-   public function studentdeleteAction(){
-
+   public function studentdeleteAction($id){
+     $name = $this->request->getPost("Firstname");
+     $user = Users::findFirst($id);
+     if($user->delete())
+     {
+       $this->flashSession->success("ลบข้อมูล ".$name." เรียร้อยเเล้ว");
+     }
+     else {
+       $this->flashSession->error("ลบข้อมูลไม่สำเสร็จ");
+     }
+     return $this->response->redirect("manage/studentsearch");
    }
    public function registerAction()
    {
