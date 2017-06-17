@@ -3,39 +3,37 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-11 contentstd" style="margin-top:40px">
-      <div class="page-header">
+      <div class="page-header" style="margin-top:40px">
         <form class="form-inline">
-          <label class="pull-left mb-5 mr-sm-5 mb-sm-0"><h1>รายชื่อนักศึกษา</h1></label>
+          <h1 class="mb-4 mr-sm-4 mb-sm-0">รายชื่อนักศึกษา</h1>
           <input class="form-control mb-2 mr-sm-2 mb-sm-0" type="text" placeholder="Search">
-          <button class="btn btn-outline-primary mb-5 mr-sm-5 mb-sm-0" type="submit">Search</button>
+          <?php echo $this->tag->submitButton(["Search", "class" => "btn btn-outline-primary mb-2 mr-sm-2 mb-sm-0"]) ?>
+          <?php echo $this->tag->linkto(["manage/studentadd", "class" => "btn btn-outline-success mb-3 mr-sm-3 mb-sm-0","ADD+"]) ?>
         </form>
       </div>
       <table class="table table-striped" style="margin-top:10px">
         <thead>
           <tr>
-            <th>Id</th>
-            <th>ชื่อ</th>
-            <th>นามสกุล</th>
-            <th>ชั้นปี</th>
-            <th >แก้ไข</th>
-            <th>ลบ</th>
+            <th class="text-center">Id</th>
+            <th class="text-center">ชื่อ</th>
+            <th class="text-center">นามสกุล</th>
+            <th class="text-center">ชั้นปี</th>
+            <th class="text-center">ดำเนินการ</th>
           </tr>
         </thead>
         <tbody>
 
           <?php foreach ($page->items as $act): ?>
             <tr>
-              <th scope="row"><?=$act->id; ?></th>
-              <td><?=$act->Firstname?></td>
-              <td><?=$act->Lastname?></td>
-              <td><?=$act->Years?></td>
-              <td><button type="button" class="btn btn-info">แก้ไข</button></td>
-              <td><button type="button" class="btn btn-danger">ลบ</button></td>
+              <th class="text-center" scope="row"><?=$act->id; ?></th>
+              <td class="text-center"><?=$act->Firstname?></td>
+              <td class="text-center"><?=$act->Lastname?></td>
+              <td class="text-center"><?=$act->Years?></td>
+              <td class="text-center"><button type="button" class="btn btn-info btn-sm">แก้ไข</button>&nbsp;&nbsp;
+                  <button type="button" class="btn btn-danger btn-sm">ลบ</button></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
       </table>
-    </div>
   </div>
 </div>
