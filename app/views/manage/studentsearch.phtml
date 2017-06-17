@@ -36,27 +36,28 @@
           <?php endforeach; ?>
         </tbody>
       </table>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
-        </ul>
-      </nav>
-      <center>
-        <div class="container text-center">
-          <?php echo $this->tag->linkto(["manage/studentsearch", "class" => "","<< หน้าแรก"]) ?>
-          <?php echo $this->tag->linkto(["manage/studentsearch/?page=".$page->before, "class" => "","< ก่อนหน้า"]) ?>
-          <?php echo  "[ ".$page->current, " / ", $page->total_pages." ]"; ?>
-          <?php echo $this->tag->linkto(["manage/studentsearch/?page=".$page->next, "class" => "","ถัดไป >"]) ?>
-          <?php echo $this->tag->linkto(["manage/studentsearch/?page=".$page->last, "class" => "","สุดท้าย >>"]) ?>
-        </div>
-      </center>
+      <div style="width:100%;">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item">
+              <?php echo $this->tag->linkto(["manage/studentsearch", "class" => "page-link","< หน้าแรก"]) ?>
+            </li>
+            <?php if ($page->before != $page->current): ?>
+            <li class="page-item">
+              <?php echo $this->tag->linkto(["manage/studentsearch/?page=".$page->before, "class" => "page-link",$page->before]) ?>
+            </li>
+            <?php endif; ?>
+            <li class="page-item disabled"><a class="page-link" href="#"><?=$page->current?></a></li>
+            <?php if ($page->next != $page->current): ?>
+            <li class="page-item">
+              <?php echo $this->tag->linkto(["manage/studentsearch/?page=".$page->next, "class" => "page-link",$page->next]) ?>
+            </li>
+            <?php endif; ?>
+            <li class="page-item">
+              <?php echo $this->tag->linkto(["manage/studentsearch/?page=".$page->last, "class" => "page-link","สุดท้าย >>"]) ?>
+            </li>
+          </ul>
+        </nav>
+      </div>
   </div>
 </div>
