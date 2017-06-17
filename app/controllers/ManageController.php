@@ -19,6 +19,18 @@ class ManageController extends \Phalcon\Mvc\Controller
      ]);
      $this->view->page = $paginator->getPaginate();
    }
+   public function activityeditAction(){
+
+   }
+   public function activityupdateAction(){
+
+   }
+   public function activityaddAction(){
+
+   }
+   public function activitydeleteAction(){
+
+   }
    public function teachersearchAction(){
      $numberPage = $this->request->getQuery("page", "int");
      $parameters["order"] = "id DESC";
