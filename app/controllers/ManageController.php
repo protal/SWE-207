@@ -257,7 +257,19 @@ class ManageController extends \Phalcon\Mvc\Controller
    {
 
    }
-   public function locationAction()
+   public function locationsearchAction()
+   {
+
+   }
+   public function locationeditAction()
+   {
+
+   }
+   public function locationaddAction()
+   {
+
+   }
+   public function locationdeleteAction()
    {
 
    }
