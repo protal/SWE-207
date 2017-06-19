@@ -1,35 +1,64 @@
-<?php use Phalcon\Tag; ?>
-<?php $this->flashSession->output() ?>
-<br>
-<?= $this->tag->submitButton(["Search","class"=>"btn btn-info"]);?>
-
-<div class="page-header">
+<div class="container">
+  <div class="page-header" style="margin-top:40px">
+    <h1 class="mb-4 mr-sm-4 mb-sm-0">รายชื่ออาจารย์ <?php echo $this->tag->linkto(["manage/studentadd", "class" => "btn btn-outline-success btn-secondary pull-right","เพิ่มนักศึกษา"]) ?></h1>
+  </div>
   <br>
-<h1>รายชื่ออาจารย์</h1>
-</div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>ผู้ใช้งาน</th>
-      <th>รหัสผ่าน</th>
-      <th>ตำแหน่ง</th>
-      <th>แก้ไข</th>
-      <th>ลบ</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($page->items as $act): ?>
+  <form>
+    <div class="input-group">
+      <?php echo $this->tag->textField(["s", "class" => "form-control" , "placeholder" => "ค้นหาชื่อ,นามสกุล,ปี่ที่เข้าศึกษา"]) ?>
+      <span class="input-group-btn">
+        <?php echo $this->tag->submitButton(["ค้นหา", "class" => "btn btn-outline-primary btn-secondary"]) ?>
+      </span>
+    </div>
+  </form>
+  <table class="table table-striped mt-4">
+    <thead>
       <tr>
-        <th scope="row"><?=$act->id; ?></th>
-        <td><?=$act->username?></td>
-        <td><?=$act->password?></td>
-        <td><?=$act->isadmin?></td>
-        <td><button type="button" class="btn btn-info">แก้ไข</button></td>
-        <td><button type="button" class="btn btn-danger">ลบ</button></td>
-
+        <th>Id</th>
+        <th>ผู้ใช้งาน</th>
+        <th>รหัสผ่าน</th>
+        <th>ตำแหน่ง</th>
+        <th>ดำเนินการ</th>
       </tr>
+    </thead>
+    <tbody>
+      <?php foreach ($page->items as $act): ?>
+        <tr>
+          <th scope="row"><?=$act->id; ?></th>
+          <td><?=$act->username?></td>
+          <td><?=$act->password?></td>
+          <td><?=$act->isadmin?></td>
+          <td>
+            <button type="button" class="btn btn-info">แก้ไข</button>
+            <button type="button" class="btn btn-danger">ลบ</button>
+          </td>
 
-    <?php endforeach; ?>
-  </tbody>
-</table>
+        </tr>
+
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+  <div style="width:100%;">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item">
+          <?php echo $this->tag->linkto(["manage/teachersearch".(isset($s)?"/?s={$s}":""), "class" => "page-link","< หน้าแรก"]) ?>
+        </li>
+        <?php if ($page->before != $page->current): ?>
+        <li class="page-item">
+          <?php echo $this->tag->linkto(["manage/teachersearch/?".(isset($s)?"s={$s}&":"")."page=".$page->before, "class" => "page-link",$page->before]) ?>
+        </li>
+        <?php endif; ?>
+        <li class="page-item disabled"><a class="page-link" href="#"><?=$page->current?></a></li>
+        <?php if ($page->next != $page->current && $page->next > 0 ): ?>
+        <li class="page-item">
+          <?php echo $this->tag->linkto(["manage/teachersearch/?".(isset($s)?"s={$s}&":"")."page=".$page->next, "class" => "page-link",$page->next]) ?>
+        </li>
+        <?php endif; ?>
+        <li class="page-item">
+          <?php echo $this->tag->linkto(["manage/teachersearch/?".(isset($s)?"s={$s}&":"")."page=".$page->last, "class" => "page-link","สุดท้าย >>"]) ?>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
