@@ -1,11 +1,11 @@
 <div class="container">
   <div class="page-header" style="margin-top:40px">
-    <h1 class="mb-4 mr-sm-4 mb-sm-0">รายชื่ออาจารย์ <?php echo $this->tag->linkto(["manage/studentadd", "class" => "btn btn-outline-success btn-secondary pull-right","เพิ่มนักศึกษา"]) ?></h1>
+    <h1 class="mb-4 mr-sm-4 mb-sm-0">รายชื่ออาจารย์ <?php echo $this->tag->linkto(["manage/teacheradd", "class" => "btn btn-outline-success btn-secondary pull-right","เพิ่มอาจารย์"]) ?></h1>
   </div>
   <br>
   <form>
     <div class="input-group">
-      <?php echo $this->tag->textField(["s", "class" => "form-control" , "placeholder" => "ค้นหาชื่อ,นามสกุล,ปี่ที่เข้าศึกษา"]) ?>
+      <?php echo $this->tag->textField(["s", "class" => "form-control" , "placeholder" => "ค้นหาชื่อ,นามสกุล,ตำแหน่ง"]) ?>
       <span class="input-group-btn">
         <?php echo $this->tag->submitButton(["ค้นหา", "class" => "btn btn-outline-primary btn-secondary"]) ?>
       </span>
@@ -14,10 +14,11 @@
   <table class="table table-striped mt-4">
     <thead>
       <tr>
-        <th>Id</th>
-        <th>ผู้ใช้งาน</th>
-        <th>รหัสผ่าน</th>
-        <th>ตำแหน่ง</th>
+        <th>#</th>
+        <th>คำนำหน้า</th>
+        <th>ชื่อ</th>
+        <th>นามสกุล</th>
+        <th>อีเมล์</th>
         <th>ดำเนินการ</th>
       </tr>
     </thead>
@@ -25,12 +26,14 @@
       <?php foreach ($page->items as $act): ?>
         <tr>
           <th scope="row"><?=$act->id; ?></th>
-          <td><?=$act->username?></td>
-          <td><?=$act->password?></td>
-          <td><?=$act->isadmin?></td>
+          <td><?=$act->prefix?></td>
+          <td><?=$act->Firstname?></td>
+          <td><?=$act->Lastname?></td>
+          <td><?=$act->email?></td>
+          <td><?=($act->isadmin)?"อาจารย์ (ผู้ดูแลระบบ)":"อาจารย์"?></td>
           <td>
-            <button type="button" class="btn btn-info">แก้ไข</button>
-            <button type="button" class="btn btn-danger">ลบ</button>
+            <?php echo $this->tag->linkto(["manage/teacheredit/".$act->id, "class" => "btn btn-info btn-sm","แก้ไข"]) ?>
+            <?php echo $this->tag->linkto(["manage/teacherdelete/".$act->id, "class" => "btn btn-danger btn-sm","ลบ"]) ?>
           </td>
 
         </tr>

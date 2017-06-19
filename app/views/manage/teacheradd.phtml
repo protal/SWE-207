@@ -81,12 +81,12 @@
                       <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-star-o"></i></div>
                     <?php echo $this->tag->selectStatic(
                       [
-                        "status", "class" => "form-control" ,
+                        "prefix", "class" => "form-control" ,
                         [
-                          "3" => "ผู้ช่วยศาสตราจารย์",
-                          "2" => "อาจารย์ ดร.",
-                          "1" => "ผู้ช่วยศาสตราจารย ดร.",
-                          "0" => "อาจารย์",
+                          "ผู้ช่วยศาสตราจารย์" => "ผู้ช่วยศาสตราจารย์",
+                          "อาจารย์ ดร." => "อาจารย์ ดร.",
+                          "ผู้ช่วยศาสตราจารย ดร." => "ผู้ช่วยศาสตราจารย ดร.",
+                          "อาจารย์" => "อาจารย์",
                         ]
                       ]
                     );?>
@@ -145,7 +145,7 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-envelope-o fa-fw"></i></div>
-                        <?=$this->tag->emailField( [ "Email", "class" => "form-control","placeholder" => "อีเมล์", "required"=>""] );?>
+                        <?=$this->tag->emailField( [ "email", "class" => "form-control","placeholder" => "อีเมล์", "required"=>""] );?>
                     </div>
                 </div>
             </div>
@@ -166,7 +166,7 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-picture-o"></i></div>
-                        <?=$this->tag->fileField( [ "file", "class" => "form-control","placeholder" => "file"] );?>
+                        <?=$this->tag->fileField( [ "file", "class" => "form-control","placeholder" => "file" , "accept"=>"image/png, image/jpeg, image/gif"] );?>
                     </div>
                 </div>
             </div>
@@ -189,7 +189,7 @@
                       <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-star-o"></i></div>
                     <?php echo $this->tag->selectStatic(
                       [
-                        "status", "class" => "form-control" ,
+                        "isAdmin", "class" => "form-control" ,
                         [
                           "1" => "อาจารย์ (ผู้ดูแลระบบ)",
                           "0" => "อาจารย์",
