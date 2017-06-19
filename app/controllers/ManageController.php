@@ -54,6 +54,11 @@ class ManageController extends \Phalcon\Mvc\Controller
    public function teacheraddAction(){
 
    }
+   public function teacherAddPostAction(){
+     $this->flashSession->error("ยังไม่ทำใจเย็น");
+     return $this->response->redirect("manage/teacheradd/".$id);
+
+   }
    public function teacherdeleteAction(){
 
    }
