@@ -80,8 +80,11 @@ class ManageController extends \Phalcon\Mvc\Controller
          $user->username = $this->request->getPost("username");
          $user->password = $this->security->hash($this->request->getPost("password"));
          $user->isteacher	= 1 ;
+         $user->prefix = $this->request->getPost("prefix");
          $user->Firstname = $this->request->getPost("Firstname");
          $user->Lastname	= $this->request->getPost("Lastname");
+         $user->isadmin	= ($this->request->getPost("isAdmin")==1)?1:0;
+         $user->email	= $this->request->getPost("email");
          if($user->save())
          {
            //success
@@ -102,8 +105,17 @@ class ManageController extends \Phalcon\Mvc\Controller
      //return $this->response->redirect("manage/teacheradd/".$id);
 
    }
-   public function teacherdeleteAction(){
-
+   public function teacherdeleteAction($id){
+     $name = $this->request->getPost("Firstname");
+     $user = Users::findFirst($id);
+     if($user->delete())
+     {
+       $this->flashSession->success("ลบข้อมูล ".$name." เรียร้อยเเล้ว");
+     }
+     else {
+       $this->flashSession->error("ลบข้อมูลไม่สำเสร็จ");
+     }
+     return $this->response->redirect("manage/teachersearch");
    }
    public function studentsearchAction(){
 
