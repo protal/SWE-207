@@ -5,7 +5,7 @@
   <br>
   <form>
     <div class="input-group">
-      <?php echo $this->tag->textField(["s", "class" => "form-control" , "placeholder" => "ค้นหาชื่อ,นามสกุล,ปี่ที่เข้าศึกษา"]) ?>
+      <?php echo $this->tag->textField(["s", "class" => "form-control" , "placeholder" => "ค้นหาชื่อ,นามสกุล,ตำแหน่ง"]) ?>
       <span class="input-group-btn">
         <?php echo $this->tag->submitButton(["ค้นหา", "class" => "btn btn-outline-primary btn-secondary"]) ?>
       </span>
@@ -29,8 +29,8 @@
           <td><?=$act->password?></td>
           <td><?=$act->isadmin?></td>
           <td>
-            <button type="button" class="btn btn-info">แก้ไข</button>
-            <button type="button" class="btn btn-danger">ลบ</button>
+            <?php echo $this->tag->linkto(["manage/teacheredit/".$act->id, "class" => "btn btn-info btn-sm","แก้ไข"]) ?>
+            <?php echo $this->tag->linkto(["manage/teacherdelete/".$act->id, "class" => "btn btn-danger btn-sm","ลบ"]) ?>
           </td>
 
         </tr>
