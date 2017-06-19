@@ -10,7 +10,7 @@
 <?php
   echo $this->tag->form(
     [
-      "manage/teacheradd",
+      "manage/teacheraddpost",
       "autocomplete" =>"off",
       "class" => "form-horizontal"
     ]
@@ -30,13 +30,13 @@
 
         <div class="row">
             <div class="col-md-3 field-label-responsive">
-                <label for="name">รหัสประจำตัว</label>
+                <label for="name">ชื่อผู้ใช้</label>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-laptop"></i></div>
-                        <?=$this->tag->textField( [ "username", "class" => "form-control","placeholder" => "รหัสอาจารย์", "required"=>"","autofocus"=>""] );?>
+                        <?=$this->tag->textField( [ "username", "class" => "form-control","placeholder" => "ชื่อผู้ใช้", "required"=>"","autofocus"=>""] );?>
 
                     </div>
                 </div>
@@ -45,6 +45,27 @@
                 <div class="form-control-feedback">
                         <span class="text-danger align-middle">
                             <!-- Put name validation error messages here -->
+                        </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="password">รหัสผ่าน</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key fa-fw"></i></div>
+                        <?=$this->tag->passwordField( [ "password", "class" => "form-control","placeholder" => "รหัสผ่าน", "required"=>""] );?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put e-mail validation error messages here -->
                         </span>
                 </div>
             </div>
@@ -139,34 +160,13 @@
 
         <div class="row">
             <div class="col-md-3 field-label-responsive">
-                <label for="password">รหัสผ่าน</label>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key fa-fw"></i></div>
-                        <?=$this->tag->passwordField( [ "password", "class" => "form-control","placeholder" => "รหัสผ่าน", "required"=>""] );?>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-control-feedback">
-                        <span class="text-danger align-middle">
-                            <!-- Put e-mail validation error messages here -->
-                        </span>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
                 <label for="file">รูปภาพประจำตัว</label>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-picture-o"></i></div>
-                        <?=$this->tag->fileField( [ "file", "class" => "form-control","placeholder" => "file", "required"=>""] );?>
+                        <?=$this->tag->fileField( [ "file", "class" => "form-control","placeholder" => "file"] );?>
                     </div>
                 </div>
             </div>

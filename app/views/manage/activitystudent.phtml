@@ -1,0 +1,98 @@
+<?php use Phalcon\Tag; ?>
+<?php $this->flashSession->output() ?>
+<style>
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #33CC00;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 60px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
+
+<div class="container">
+  <div class="row">
+      <div class="page-header" style="margin-top:40px">
+        <form class="form-inline">
+          <h1 class="mb-4 mr-sm-4 mb-sm-0">รายชื่อนักศึกษาที่เข้าร่วมกิจกรรม</h1>
+          <?php echo $this->tag->textField(["s", "class" => "form-control mb-2 mr-sm-2 mb-sm-0", "placeholder" => "ค้นหาชื่อ,นามสกุล,ชั้นปี"]) ?>
+          <?php echo $this->tag->submitButton(["ค้นหา", "class" => "btn btn-outline-primary mb-2 mr-sm-2 mb-sm-0"]) ?>
+        </form>
+      </div>
+      <table class="table table-striped" style="margin-top:10px">
+        <thead>
+          <tr>
+            <th class="text-center">รหัสนักศึกษา</th>
+            <th class="text-center">ชื่อ</th>
+            <th class="text-center">นามสกุล</th>
+            <th class="text-center">สถานะ</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <?php //foreach ($page->items as $act): ?>
+            <tr>
+              <th class="text-center" scope="row">1</th>
+              <td class="text-center">ดี</td>
+              <td class="text-center">จ้า</td>
+              <td class="text-center">
+                <label class="switch">
+                  <input type="checkbox">
+                  <div class="slider round"></div>
+                </label>
+              </td>
+            </tr>
+          <?php //endforeach; ?>
+        </tbody>
+      </table>
+
+  </div>
+</div>
