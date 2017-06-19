@@ -51,7 +51,20 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
-                      <?= $this->tag->linkTo(['manage/activitysearch', 'จัดการกิจกรรม', 'class' => 'nav-link']) ?>
+
+                    <ul class="navbar-nav my-lg-0">
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          จัดการกิจกรรม
+                        </a>
+                        <div class="dropdown-menu" style="float:right;" aria-labelledby="navbarDropdownMenuLink">
+                          <?= $this->tag->linkTo(['manage/activitysearch', 'กิจกรรม', 'class' => 'dropdown-item']) ?>
+                          <?= $this->tag->linkTo(['manage/locationsearch', 'สถานที่', 'class' => 'dropdown-item']) ?>
+                        </div>
+                      </li>
+                    </ul>
+
+
                   </li>
                   <li class="nav-item">
                     <?= $this->tag->linkTo(['manage/teachersearch', 'จัดการอาจารย์', 'class' => 'nav-link']) ?>
@@ -62,7 +75,7 @@
                 </ul>
                 <ul class="navbar-nav my-lg-0">
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <?= $this->session->get('auth')['Firstname'] ?> <?= $this->session->get('auth')['Lastname'] ?>
                     </a>
                     <div class="dropdown-menu" style="float:right;" aria-labelledby="navbarDropdownMenuLink">
