@@ -1,0 +1,28 @@
+
+<div class="container">
+  <div class="page-header" style="margin-top:40px">
+    <h1 class="mb-4 mr-sm-4 mb-sm-0">รายการสถานที่ <?php echo $this->tag->linkto(["manage/locationadd", "class" => "btn btn-outline-success btn-secondary pull-right","เพิ่มสถานที่"]) ?></h1>
+  </div>
+  <br>
+  <form>
+    <div class="input-group">
+      <?php echo $this->tag->textField(["s", "class" => "form-control" , "placeholder" => "ค้นหาจากชื่อสถานที่ , รายละเอียดสถานที่"]) ?>
+      <span class="input-group-btn">
+        <?php echo $this->tag->submitButton(["ค้นหา", "class" => "btn btn-outline-primary btn-secondary"]) ?>
+      </span>
+    </div>
+  </form>
+    <table class="table table-striped" style="margin-top:20px">
+      <thead>
+        <tr>
+          <th class="text-center">ชื่อสถานที่</th>
+          <th class="text-center">รายละเอียดสถานที่</th>
+          <th class="text-center">ดำเนินการ</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
+</div>

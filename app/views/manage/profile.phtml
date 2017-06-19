@@ -10,7 +10,7 @@
 <?php
   echo $this->tag->form(
     [
-      "manage/teacheraddpost",
+      "manage/profileUpdate",
       "autocomplete" =>"off",
       "class" => "form-horizontal"
     ]
@@ -36,7 +36,7 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-laptop"></i></div>
-                        <?=$this->tag->textField( [ "username", "class" => "form-control","placeholder" => "ชื่อผู้ใช้", "required"=>"","autofocus"=>""] );?>
+                        <?=$this->tag->textField( [ "username", "class" => "form-control","placeholder" => "ชื่อผู้ใช้", "required"=>"","autofocus"=>"" , "disabled"=>""] );?>
 
                     </div>
                 </div>
@@ -59,6 +59,26 @@
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key fa-fw"></i></div>
                         <?=$this->tag->passwordField( [ "password", "class" => "form-control","placeholder" => "รหัสผ่าน", "required"=>""] );?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put e-mail validation error messages here -->
+                        </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="password">ยืนยันรหัสผ่าน</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key fa-fw"></i></div>
+                        <?=$this->tag->passwordField( [ "repassword", "class" => "form-control","placeholder" => "ยืนยันรหัสผ่าน", "required"=>""] );?>
                     </div>
                 </div>
             </div>
@@ -182,8 +202,7 @@
 <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
-      <?php echo $this->tag->submitButton(["Update","class"=>"btn btn-success"]); ?>
-      <?php echo $this->tag->submitButton(["cancle","class"=>"btn btn-danger"]); ?>
+      <?php echo $this->tag->submitButton(["แก้ไข","class"=>"btn btn-success"]); ?>
     </div>
 </div>
 </form>

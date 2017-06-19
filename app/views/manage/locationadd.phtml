@@ -1,0 +1,91 @@
+
+<?php
+  echo $this->tag->form(
+      [
+          "manage/locationaddpost",
+          "autocomplete" =>"off",
+          "class" => "form-horizontal"
+      ]
+);
+?>
+<div class="container">
+    <form class="form-horizontal" role="form" method="POST" action="/register">
+      <ul class="errorMessages"></ul>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6" style="margin-top:50px">
+                <h2>สร้างข้อมูลสถานที่</h2>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="name">ชื่อสถานที่</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-laptop"></i></div>
+                        <?=$this->tag->textField( [ "name", "class" => "form-control","placeholder" => "ชื่อสถานที่", "required"=>"","autofocus"=>""] );?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put name validation error messages here -->
+                        </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="name">รายละเอียดสถานที่</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-comment"></i></div>
+                        <?=$this->tag->textarea( [ "activitydetail", "class" => "form-control","placeholder" => "รายละเอียดสถานที่", "required"=>""] );?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+
+                        </span>
+                </div>
+            </div>
+        </div>
+          <div class="row">
+              <div class="col-md-3"></div>
+              <div class="col-md-3">
+                <?php echo $this->tag->submitButton(["บันทึก", "class" => "btn btn-success"]) ?>
+              </div>
+          </div>
+    </form>
+
+    <!--
+    <div class="row">
+        <div class="col-md-3 field-label-responsive" style="margin-top:3px">
+            <label for="password">ชั้นปีที่เข้าร่วม</label>
+        </div>
+        <div class="col-md-6">
+            <div class="form-inline">
+                <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="margin-top:5px">
+                  <div class="form-group">
+                    <select class="form-control" id="exampleSelect1">
+                      <option>นักศึกษาทุกชั้นปี</option>
+                      <option>นักศึกษาชั้นปีที่ 1</option>
+                      <option>นักศึกษาชั้นปีที่ 2</option>
+                      <option>นักศึกษาชั้นปีที่ 3</option>
+                      <option>นักศึกษาชั้นปีที่ 4</option>
+                    </select>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  -->
+</div><?php echo $this->tag->endForm(); ?>

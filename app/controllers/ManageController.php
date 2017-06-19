@@ -114,7 +114,7 @@ class ManageController extends \Phalcon\Mvc\Controller
          {
            //success
            $this->flashSession->success("เพิ่มอาจารย์  ". $user->Firstname ." สำเร็จ");
-           return $this->response->redirect("manage/teacheradd");
+           return $this->response->redirect("manage/teachersearch");
          }
          else {
            $ms = "";
@@ -255,9 +255,54 @@ class ManageController extends \Phalcon\Mvc\Controller
 
    public function profileAction()
    {
+     $user = Users::findFirst($this->session->get('auth')["id"]);
+     $this->tag->setDefault("username", $user->username);
+     $this->tag->setDefault("Firstname", $user->Firstname);
+     $this->tag->setDefault("Lastname", $user->Lastname);
+     $this->tag->setDefault("Years", $user->Years);
+
+     $this->view->id  = $id;
+   }
+   public function profileUpdateAction()
+   {
+        if($this->request->getPost("password")!=$this->request->getPost("repassword"))
+        {
+          $this->flashSession->error("รหัสผ่านไม่ตรงกัน");
+          return $this->response->redirect("manage/profile");
+        }
+
+       $user = Users::findFirst($this->session->get('auth')["id"]);
+       $user->password = $this->security->hash($this->request->getPost("password"));
+       $user->Firstname = $this->request->getPost("Firstname");
+       $user->Lastname = $this->request->getPost("Lastname");
+       $user->Years = $this->request->getPost("Years");
+       if($user->save())
+       {
+         $this->flashSession->success("แก้ไขข้อมูลเรียร้อยเเล้ว");
+       }
+       else {
+         $this->flashSession->error("แก้ไม่สำเสร็จ");
+       }
+       return $this->response->redirect("manage/profile");
 
    }
-   public function locationAction()
+   public function locationsearchAction()
+   {
+
+   }
+   public function locationeditAction()
+   {
+
+   }
+   public function locationaddAction()
+   {
+
+   }
+   public function locationaddpostAction()
+   {
+
+   }
+   public function locationdeleteAction()
    {
 
    }
