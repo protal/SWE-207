@@ -1,0 +1,191 @@
+<?php $this->flashSession->output() ?>
+<style media="screen">
+@media(min-width: 768px) {
+.field-label-responsive {
+  padding-top: .5rem;
+  text-align: right;
+}
+}
+</style>
+<?php
+  echo $this->tag->form(
+    [
+      "manage/teacheraddpost",
+      "autocomplete" =>"off",
+      "class" => "form-horizontal"
+    ]
+);
+?>
+<br>
+<div class="container">
+    <form class="form-horizontal" role="form" method="POST" action="/register">
+      <ul class="errorMessages"></ul>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h2>แก้ไขข้อมูล</h2>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="name">ชื่อผู้ใช้</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-laptop"></i></div>
+                        <?=$this->tag->textField( [ "username", "class" => "form-control","placeholder" => "ชื่อผู้ใช้", "required"=>"","autofocus"=>""] );?>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put name validation error messages here -->
+                        </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="password">รหัสผ่าน</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key fa-fw"></i></div>
+                        <?=$this->tag->passwordField( [ "password", "class" => "form-control","placeholder" => "รหัสผ่าน", "required"=>""] );?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put e-mail validation error messages here -->
+                        </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                  <label for="exampleSelect1">คำนำหน้า</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                      <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-star-o"></i></div>
+                    <?php echo $this->tag->selectStatic(
+                      [
+                        "prefix", "class" => "form-control" ,
+                        [
+                          "ผู้ช่วยศาสตราจารย์" => "ผู้ช่วยศาสตราจารย์",
+                          "อาจารย์ ดร." => "อาจารย์ ดร.",
+                          "ผู้ช่วยศาสตราจารย ดร." => "ผู้ช่วยศาสตราจารย ดร.",
+                          "อาจารย์" => "อาจารย์",
+                        ]
+                      ]
+                    );?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="name">ชื่อ</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                        <?=$this->tag->textField( [ "Firstname", "class" => "form-control","placeholder" => "ชื่อ", "required"=>""] );?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+
+                        </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="email">นามสกุล</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-signal"></i></div>
+                        <?=$this->tag->textField( [ "Lastname", "class" => "form-control","placeholder" => "นามสกุล", "required"=>""] );?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put e-mail validation error messages here -->
+                        </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="email">อีเมล์</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-envelope-o fa-fw"></i></div>
+                        <?=$this->tag->emailField( [ "email", "class" => "form-control","placeholder" => "อีเมล์", "required"=>""] );?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put e-mail validation error messages here -->
+                        </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="file">รูปภาพประจำตัว</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-picture-o"></i></div>
+                        <?=$this->tag->fileField( [ "file", "class" => "form-control","placeholder" => "file" , "accept"=>"image/png, image/jpeg, image/gif"] );?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put e-mail validation error messages here -->
+                        </span>
+                </div>
+            </div>
+        </div>
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <?php echo $this->tag->submitButton(["Update","class"=>"btn btn-success"]); ?>
+      <?php echo $this->tag->submitButton(["cancle","class"=>"btn btn-danger"]); ?>
+    </div>
+</div>
+</form>
+</div>
+<?php echo $this->tag->endForm(); ?>

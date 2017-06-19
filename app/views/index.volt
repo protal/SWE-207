@@ -66,6 +66,7 @@
                       {{ session.get("auth")['Firstname']}} {{ session.get("auth")['Lastname']}}
                     </a>
                     <div class="dropdown-menu" style="float:right;" aria-labelledby="navbarDropdownMenuLink">
+                      {{ link_to('manage/profile','แก้ไขข้อมูลส่วนตัว' , "class": "dropdown-item") }}
                       {{ link_to('auth/logout','ออกจากระบบ' , "class": "dropdown-item") }}
                     </div>
                   </li>
