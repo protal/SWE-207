@@ -54,12 +54,37 @@ class ManageController extends \Phalcon\Mvc\Controller
      $this->view->page = $paginator->getPaginate();
      $this->view->s = $s;
    }
-   public function teachereditAction(){
+   public function teachereditAction($id){
+     $user = Users::findFirst($id);
+     $this->tag->setDefault("username", $user->username);
+     $this->tag->setDefault("prefix", $user->prefix);
+     $this->tag->setDefault("Firstname", $user->Firstname);
+     $this->tag->setDefault("Lastname", $user->Lastname);
+     $this->tag->setDefault("email", $user->email);
+
+     $this->view->id  = $id;
+   }
+   public function teacherupdateAction($id){
+
+     $user = Users::findFirst($id);
+     $name = $this->request->getPost("Username");
+     $user->username = $this->request->getPost("username");
+     $user->password = $this->security->hash($this->request->getPost("password"));
+     $user->prefix = $this->request->getPost("prefix");
+     $user->Firstname = $this->request->getPost("Firstname");
+     $user->Lastname = $this->request->getPost("Lastname");
+     $user->email	= $this->request->getPost("email");
+     if($user->save())
+     {
+       $this->flashSession->success("แก้ไขข้อมูล ".$name." เรียร้อยเเล้ว");
+     }
+     else {
+       $this->flashSession->error("แก้ไม่สำเสร็จ");
+     }
+     return $this->response->redirect("manage/teachersearch/");
 
    }
-   public function teacherupdateAction(){
 
-   }
    public function teacheraddAction(){
 
    }
@@ -117,7 +142,7 @@ class ManageController extends \Phalcon\Mvc\Controller
      }
      return $this->response->redirect("manage/teachersearch");
    }
-   public function studentsearchAction(){
+    public function studentsearchAction(){
 
      $s = $this->request->get("s");
 
@@ -229,6 +254,10 @@ class ManageController extends \Phalcon\Mvc\Controller
    }
 
    public function profileAction()
+   {
+
+   }
+   public function locationAction()
    {
 
    }

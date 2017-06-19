@@ -32,6 +32,8 @@
           <td><?=$act->Lastname?></td>
           <td><?=$act->email?></td>
           <td><?=($act->isadmin)?"อาจารย์ (ผู้ดูแลระบบ)":"อาจารย์"?></td>
+
+    
           <td>
             <?php echo $this->tag->linkto(["manage/teacheredit/".$act->id, "class" => "btn btn-info btn-sm","แก้ไข"]) ?>
             <?php echo $this->tag->linkto(["manage/teacherdelete/".$act->id, "class" => "btn btn-danger btn-sm","ลบ"]) ?>
