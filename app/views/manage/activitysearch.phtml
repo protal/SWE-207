@@ -1,14 +1,17 @@
 
 <div class="container">
-  <div class="row">
-      <div class="page-header" style="margin-top:40px">
-        <form class="form-inline">
-          <h1 class="mb-4 mr-sm-4 mb-sm-0">รายชื่อกิจกรรม</h1>
-          <?php echo $this->tag->textField(["s", "class" => "form-control mb-2 mr-sm-2 mb-sm-0", "placeholder" => "ค้นหาชื่อ,นามสกุล,ชั้นปี"]) ?>
-          <?php echo $this->tag->submitButton(["ค้นหา", "class" => "btn btn-outline-primary mb-2 mr-sm-2 mb-sm-0"]) ?>
-          <?php echo $this->tag->linkto(["manage/activityadd", "class" => "btn btn-outline-success mb-3 mr-sm-3 mb-sm-0","เพิ่มกิจกรรม"]) ?>
-        </form>
-      </div>
+  <div class="page-header" style="margin-top:40px">
+    <h1 class="mb-4 mr-sm-4 mb-sm-0">รายชื่อกิจกรรม <?php echo $this->tag->linkto(["manage/studentadd", "class" => "btn btn-outline-success btn-secondary pull-right","เพิ่มนักศึกษา"]) ?></h1>
+  </div>
+  <br>
+  <form>
+    <div class="input-group">
+      <?php echo $this->tag->textField(["s", "class" => "form-control" , "placeholder" => "ค้นหาชื่อ,นามสกุล,ปี่ที่เข้าศึกษา"]) ?>
+      <span class="input-group-btn">
+        <?php echo $this->tag->submitButton(["ค้นหา", "class" => "btn btn-outline-primary btn-secondary"]) ?>
+      </span>
+    </div>
+  </form>
     <table class="table table-striped" style="margin-top:20px">
       <thead>
         <tr>
