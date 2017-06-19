@@ -227,4 +227,9 @@ class ManageController extends \Phalcon\Mvc\Controller
    {
 
    }
+
+   public function profileAction()
+   {
+
+   }
 }
