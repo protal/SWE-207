@@ -66,6 +66,7 @@
                       <?= $this->session->get('auth')['Firstname'] ?> <?= $this->session->get('auth')['Lastname'] ?>
                     </a>
                     <div class="dropdown-menu" style="float:right;" aria-labelledby="navbarDropdownMenuLink">
+                      <?= $this->tag->linkTo(['manage/profile', 'แก้ไขข้อมูลส่วนตัว', 'class' => 'dropdown-item']) ?>
                       <?= $this->tag->linkTo(['auth/logout', 'ออกจากระบบ', 'class' => 'dropdown-item']) ?>
                     </div>
                   </li>
