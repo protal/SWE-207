@@ -1,0 +1,30 @@
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Active</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-block">
+    <div class="row">
+      <?php for ($i=0; $i < 12; $i++) {
+      ?>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-block">
+            This is some text within a card block.
+          </div>
+        </div>
+      </div>
+      <?php
+      } ?>
+    </div>
+  </div>
+</div>
