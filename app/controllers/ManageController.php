@@ -114,7 +114,7 @@ class ManageController extends \Phalcon\Mvc\Controller
          {
            //success
            $this->flashSession->success("เพิ่มอาจารย์  ". $user->Firstname ." สำเร็จ");
-           return $this->response->redirect("manage/teacheradd");
+           return $this->response->redirect("manage/teachersearch");
          }
          else {
            $ms = "";
