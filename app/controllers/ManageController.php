@@ -54,8 +54,14 @@ class ManageController extends \Phalcon\Mvc\Controller
      $this->view->page = $paginator->getPaginate();
      $this->view->s = $s;
    }
-   public function teachereditAction(){
+   public function teachereditAction($id){
+     $user = Users::findFirst($id);
+     $this->tag->setDefault("prefix", $user->prefix);
+     $this->tag->setDefault("Firstname", $user->Firstname);
+     $this->tag->setDefault("Lastname", $user->Lastname);
+     $this->tag->setDefault("email", $user->email);
 
+     $this->view->id  = $id;
    }
    public function teacherupdateAction(){
 
