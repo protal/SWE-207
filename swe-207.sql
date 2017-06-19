@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jun 19, 2017 at 06:41 PM
+-- Host: 127.0.0.1
+-- Generation Time: Jun 19, 2017 at 07:11 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -30,7 +28,6 @@ USE `swe-207`;
 -- Table structure for table `activity`
 --
 
-DROP TABLE IF EXISTS `activity`;
 CREATE TABLE `activity` (
   `id` int(11) NOT NULL,
   `name` text COLLATE utf8_unicode_ci NOT NULL,
@@ -58,7 +55,6 @@ INSERT INTO `activity` (`id`, `name`, `Datail`, `StartDate`, `EndDate`, `YearSTD
 -- Table structure for table `detailactivity`
 --
 
-DROP TABLE IF EXISTS `detailactivity`;
 CREATE TABLE `detailactivity` (
   `user_id` int(11) NOT NULL,
   `activity_id` int(11) NOT NULL
@@ -70,7 +66,6 @@ CREATE TABLE `detailactivity` (
 -- Table structure for table `location`
 --
 
-DROP TABLE IF EXISTS `location`;
 CREATE TABLE `location` (
   `id` int(11) NOT NULL,
   `name` text COLLATE utf8_unicode_ci NOT NULL,
@@ -90,7 +85,6 @@ INSERT INTO `location` (`id`, `name`, `room`) VALUES
 -- Table structure for table `type`
 --
 
-DROP TABLE IF EXISTS `type`;
 CREATE TABLE `type` (
   `id` int(11) NOT NULL,
   `name` text COLLATE utf8_unicode_ci NOT NULL
@@ -109,7 +103,6 @@ INSERT INTO `type` (`id`, `name`) VALUES
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `prefix` text COLLATE utf8_unicode_ci,
@@ -202,7 +195,14 @@ INSERT INTO `users` (`id`, `prefix`, `username`, `password`, `isteacher`, `isadm
 (72, NULL, '56149214', '$2y$08$ZnFvZ0MxaGowYloxeHhZVeHKD21xCEvnvFMd3IE0qjKWYLv1/N2V.', 0, 0, 'สามารถ', 'นิลพงษ์', NULL, 2556),
 (73, NULL, '56161177', '$2y$08$SkpXSWpUOTZpclF5eXR6eecCc7J7sYrN8PFn0glSKIaBxoFu4k/sK', 0, 0, ' นายปรัชญา ยีขะเด', ' นายปรัชญา ยีขะเด', NULL, 2556),
 (74, NULL, '56162712', '$2y$08$VzV6VnE0cTZIRG13dkVuZ.YQAOjnqR10r5JHg8Bur3oRa3B9zrdGi', 0, 0, 'อัศม์เดช', 'โส้สมัน', NULL, 2556),
-(83, 'ผู้ช่วยศาสตราจารย์', 'test1', '$2y$08$M5i3XOz8bLhB0pG7UJyBbu1IkixecojW1YIFu3UzZuaQEoF8KAjdy', 1, 1, 'test1', 'test1', 'test1@test1.com', NULL);
+(83, 'ผู้ช่วยศาสตราจารย์', 'test1', '$2y$08$M5i3XOz8bLhB0pG7UJyBbu1IkixecojW1YIFu3UzZuaQEoF8KAjdy', 1, 1, 'test1', 'test1', 'test1@test1.com', NULL),
+(84, 'ผู้ช่วยศาสตราจารย์', 'admin1', '$2y$08$Z21OOGZmZVNlcklLdmVla.RT8lDMmZS/dtF8NwpeQNHOT05a8HUhq', 1, 1, 'ฐิมาพร', 'เพชรแก้ว', 'pthimapo@wu.ac.th', NULL),
+(85, 'ผู้ช่วยศาสตราจารย์', 'admin2', '$2y$08$MVhtbTBxN0tiOGlvYUNFKu5zKvj.Ac1NVJnMAKKt8FoeZZbKrpsKa', 1, 1, 'เยาวเรศ', 'ศิริสถิตย์กุล', 'syaowara@wu.ac.th', NULL),
+(86, 'ผู้ช่วยศาสตราจารย์', 'admin3', '$2y$08$VUdOb2VTK2FBb2RpS1hCaODxFo6Oyzegf2QSr/k9e6EB7t2WZDM2a', 1, 0, 'อุหมาด', 'หมัดอาด้ำ', 'muhamard@wu.ac.th', NULL),
+(87, 'อาจารย์ ดร.', 'admin4', '$2y$08$cVhHMzRUU3U1bGFKTTEra.Ap1dW2GaClnyjL089/J4oVt.Fh9nuvS', 1, 1, 'พุทธิพร', 'ธนธรรมเมธี', 'putthiporn.th@wu.ac.th', NULL),
+(88, 'อาจารย์', 'admin5', '$2y$08$cFRwV1pGb1RoSFpuYjE2cu8ZHP1nyb7.f8JogdgqwnQWSv2aj927W', 1, 0, 'ศิริภิญโญ', 'จันทมุณี', 'csiripin@wu.ac.th', NULL),
+(89, 'อาจารย์ ดร.', 'admin6', '$2y$08$VVpncG8wZ2dpdmJuTWl4ZOWBFHSBpAIDjHjXojirK09MCVg5VYh1O', 1, 0, 'กรัณรัตน์', 'ธรรมรักษ์', 'kanchan.th@wu.ac.th', NULL),
+(90, 'อาจารย์ ดร.', 'admin7', '$2y$08$OEVlQUl4TXVPVnhGZUhvbeyttD6bgVhPYC95su/CHUHPwLfvozJDO', 1, 0, 'จิตติมา', 'ศังขมณี	', 'sjidtima@wu.ac.th', NULL);
 
 -- --------------------------------------------------------
 
@@ -210,7 +210,6 @@ INSERT INTO `users` (`id`, `prefix`, `username`, `password`, `isteacher`, `isadm
 -- Table structure for table `yearofeducation`
 --
 
-DROP TABLE IF EXISTS `yearofeducation`;
 CREATE TABLE `yearofeducation` (
   `semester` int(11) NOT NULL,
   `Year` int(11) NOT NULL,
@@ -297,7 +296,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 --
 -- Constraints for dumped tables
 --
@@ -316,7 +315,6 @@ ALTER TABLE `activity`
 ALTER TABLE `detailactivity`
   ADD CONSTRAINT `detailactivity_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `detailactivity_ibfk_2` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
