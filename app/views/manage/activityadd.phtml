@@ -100,29 +100,38 @@
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive" style="margin-top:3px">
-                <label for="password">อาจารย์ผู้รับผิดชอบ</label>
+                <label for="password">ภาคการศึกษา/เทอม</label>
             </div>
             <div class="col-md-6">
                 <div class="form-inline">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="margin-top:5px">
                       <div class="form-group">
-                        <select class="form-control" id="exampleSelect1">
-                          <option>นักศึกษาทุกชั้นปี</option>
-                          <option>นักศึกษาชั้นปีที่ 1</option>
-                          <option>นักศึกษาชั้นปีที่ 2</option>
-                          <option>นักศึกษาชั้นปีที่ 3</option>
-                          <option>นักศึกษาชั้นปีที่ 4</option>
-                        </select>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <?php echo $this->tag->selectStatic(
+                          [
+                            "YearSTD", "class" => "form-control" ,
+                            [
+                              "ภาคการศึกษาที่ 1" => "1",
+                              "ภาคการศึกษาที่ 2" => "2",
+                              "ภาคการศึกษาที่ 3" => "3",
+                            ]
+                          ]
+                        );?>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <label for="password">อาจารย์ผู้รับผิดชอบ</label>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <select class="form-control" id="exampleSelect1">
-                          <option>นักศึกษาทุกชั้นปี</option>
-                          <option>นักศึกษาชั้นปีที่ 1</option>
-                          <option>นักศึกษาชั้นปีที่ 2</option>
-                          <option>นักศึกษาชั้นปีที่ 3</option>
-                          <option>นักศึกษาชั้นปีที่ 4</option>
-                        </select>
+                        <?php echo $this->tag->selectStatic(
+                          [
+                            "teacher_id", "class" => "form-control" ,
+                            [
+                              "ผู้ช่วยศาสตราจารย์ เยาวเรศ ศิริสถิตย์กุล" => "ผู้ช่วยศาสตราจารย์	เยาวเรศ ศิริสถิตย์กุล",
+                              "ผู้ช่วยศาสตราจารย์ อุหมาด หมัดอาด้ำ" => "ผู้ช่วยศาสตราจารย์	อุหมาด หมัดอาด้ำ",
+                              "อาจารย์ ดร.กรัณรัตน์ ธรรมรักษ์" => "อาจารย์ ดร.กรัณรัตน์ ธรรมรักษ์",
+                              "อาจารย์ ดร.จิตติมา ศังขมณี์" => "อาจารย์ ดร.จิตติมา ศังขมณี์",
+                              "ผู้ช่วยศาสตราจารย ดร.ฐิมาพร เพชรแก้ว" => "ผู้ช่วยศาสตราจารย ดร.ฐิมาพร เพชรแก้ว",
+                              "อาจารย์ ศิริภิญโญ จันทมุณี" => "อาจารย์ ศิริภิญโญ จันทมุณี",
+                            ]
+                          ]
+                        );?>
                       </div>
                     </div>
                 </div>
