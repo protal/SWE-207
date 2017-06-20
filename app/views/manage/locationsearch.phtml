@@ -16,12 +16,21 @@
       <thead>
         <tr>
           <th class="text-center">ชื่อสถานที่</th>
-          <th class="text-center">รายละเอียดสถานที่</th>
+          <th class="text-center">ห้อง</th>
           <th class="text-center">ดำเนินการ</th>
         </tr>
       </thead>
       <tbody>
-
+        <?php foreach ($page->items as $act): ?>
+          <tr>
+            <th class="text-center" scope="row"><?=$act->name; ?></th>
+            <td class="text-center"><?=$act->room?></td>
+            <td class="text-center">
+              <?php echo $this->tag->linkto(["manage/locationedit/".$act->id, "class" => "btn btn-info btn-sm","แก้ไข"]) ?>
+              <?php echo $this->tag->linkto(["manage/locationdelete/".$act->id, "class" => "btn btn-danger btn-sm","ลบ"]) ?>
+            </td>
+          </tr>
+        <?php endforeach; ?>
       </tbody>
     </table>
   </div>

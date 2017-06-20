@@ -11,6 +11,7 @@ class UserController extends \Phalcon\Mvc\Controller
 
     public function profileAction()
     {
+      $user->username = $this->request->getPost("username");
       $user = Users::findFirst($id);
       $this->tag->setDefault("username", $user->username);
       $this->tag->setDefault("Firstname", $user->Firstname);
