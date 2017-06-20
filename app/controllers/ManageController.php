@@ -298,6 +298,10 @@ class ManageController extends \Phalcon\Mvc\Controller
    {
 
    }
+   public function locationaddpostAction()
+   {
+
+   }
    public function locationdeleteAction()
    {
 
