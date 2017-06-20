@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2017 at 07:11 PM
+-- Generation Time: Jun 20, 2017 at 09:26 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -36,6 +36,7 @@ CREATE TABLE `activity` (
   `EndDate` datetime NOT NULL,
   `YearSTD` text COLLATE utf8_unicode_ci NOT NULL,
   `teacher_id` int(11) NOT NULL,
+  `image` text COLLATE utf8_unicode_ci NOT NULL,
   `yearofeducation_semester` int(11) NOT NULL,
   `yearofeducation_year` int(11) NOT NULL,
   `location_id` int(11) NOT NULL,
@@ -46,8 +47,8 @@ CREATE TABLE `activity` (
 -- Dumping data for table `activity`
 --
 
-INSERT INTO `activity` (`id`, `name`, `Datail`, `StartDate`, `EndDate`, `YearSTD`, `teacher_id`, `yearofeducation_semester`, `yearofeducation_year`, `location_id`, `type_id`) VALUES
-(2, 'test name', 'test datail', '2017-06-01 22:01:05', '2017-06-01 22:01:05', '3', 1, 3, 2560, 1, 1);
+INSERT INTO `activity` (`id`, `name`, `Datail`, `StartDate`, `EndDate`, `YearSTD`, `teacher_id`, `image`, `yearofeducation_semester`, `yearofeducation_year`, `location_id`, `type_id`) VALUES
+(2, 'test name', 'test datail', '2017-06-01 22:01:05', '2017-06-01 22:01:05', '3', 1, '', 3, 2560, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -195,7 +196,6 @@ INSERT INTO `users` (`id`, `prefix`, `username`, `password`, `isteacher`, `isadm
 (72, NULL, '56149214', '$2y$08$ZnFvZ0MxaGowYloxeHhZVeHKD21xCEvnvFMd3IE0qjKWYLv1/N2V.', 0, 0, 'สามารถ', 'นิลพงษ์', NULL, 2556),
 (73, NULL, '56161177', '$2y$08$SkpXSWpUOTZpclF5eXR6eecCc7J7sYrN8PFn0glSKIaBxoFu4k/sK', 0, 0, ' นายปรัชญา ยีขะเด', ' นายปรัชญา ยีขะเด', NULL, 2556),
 (74, NULL, '56162712', '$2y$08$VzV6VnE0cTZIRG13dkVuZ.YQAOjnqR10r5JHg8Bur3oRa3B9zrdGi', 0, 0, 'อัศม์เดช', 'โส้สมัน', NULL, 2556),
-(83, 'ผู้ช่วยศาสตราจารย์', 'test1', '$2y$08$M5i3XOz8bLhB0pG7UJyBbu1IkixecojW1YIFu3UzZuaQEoF8KAjdy', 1, 1, 'test1', 'test1', 'test1@test1.com', NULL),
 (84, 'ผู้ช่วยศาสตราจารย์', 'admin1', '$2y$08$Z21OOGZmZVNlcklLdmVla.RT8lDMmZS/dtF8NwpeQNHOT05a8HUhq', 1, 1, 'ฐิมาพร', 'เพชรแก้ว', 'pthimapo@wu.ac.th', NULL),
 (85, 'ผู้ช่วยศาสตราจารย์', 'admin2', '$2y$08$MVhtbTBxN0tiOGlvYUNFKu5zKvj.Ac1NVJnMAKKt8FoeZZbKrpsKa', 1, 1, 'เยาวเรศ', 'ศิริสถิตย์กุล', 'syaowara@wu.ac.th', NULL),
 (86, 'ผู้ช่วยศาสตราจารย์', 'admin3', '$2y$08$VUdOb2VTK2FBb2RpS1hCaODxFo6Oyzegf2QSr/k9e6EB7t2WZDM2a', 1, 0, 'อุหมาด', 'หมัดอาด้ำ', 'muhamard@wu.ac.th', NULL),
