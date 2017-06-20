@@ -92,7 +92,6 @@ class ManageController extends \Phalcon\Mvc\Controller
        $this->flashSession->error("แก้ไม่สำเสร็จ");
      }
      return $this->response->redirect("manage/teachersearch/");
-
    }
  }
 
