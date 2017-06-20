@@ -89,6 +89,7 @@ class ManageController extends \Phalcon\Mvc\Controller
 
    }
    public function teacherAddPostAction(){
+        $username = $this->request->getPost("username");
        $user = Users::findFirst(
          [
             "username = '" . $username . "'"
