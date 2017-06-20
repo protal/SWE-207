@@ -2,7 +2,7 @@
 <?php
   echo $this->tag->form(
       [
-          "manage/locationaddpost",
+          "manage/locationupdate/".$id,
           "autocomplete" =>"off",
           "class" => "form-horizontal"
       ]
@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6" style="margin-top:50px">
-                <h2>สร้างข้อมูลสถานที่</h2>
+                <h2>แก้ไขข้อมูลสถานที่</h2>
                 <hr>
             </div>
         </div>
@@ -61,7 +61,7 @@
           <div class="row">
               <div class="col-md-3"></div>
               <div class="col-md-3">
-                <?php echo $this->tag->submitButton(["บันทึก", "class" => "btn btn-success"]) ?>
+                <?php echo $this->tag->submitButton(["อัพเดท", "class" => "btn btn-success"]) ?>
               </div>
           </div>
     </form>
