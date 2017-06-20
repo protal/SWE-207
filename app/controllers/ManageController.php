@@ -65,9 +65,19 @@ class ManageController extends \Phalcon\Mvc\Controller
      $this->view->id  = $id;
    }
    public function teacherupdateAction($id){
-
-     $user = Users::findFirst($id);
-     $name = $this->request->getPost("Username");
+     $username = $this->request->getPost("username");
+     $user = Users::findFirst(
+       [
+          "username = '" . $username . "'"
+       ]
+     );
+     if ($user)
+     {
+       $this->flashSession->error("ชื่อผู้ใช้ ". $username ." ได้ใช้งานไปแล้ว กรุณาลองใหม่อีกครั้ง");
+       return $this->response->redirect("manage/teachersearch");
+     }
+     else {
+     $user = new Users;
      $user->username = $this->request->getPost("username");
      $user->password = $this->security->hash($this->request->getPost("password"));
      $user->prefix = $this->request->getPost("prefix");
@@ -84,6 +94,7 @@ class ManageController extends \Phalcon\Mvc\Controller
      return $this->response->redirect("manage/teachersearch/");
 
    }
+ }
 
    public function teacheraddAction(){
 
