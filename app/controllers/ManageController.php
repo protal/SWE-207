@@ -351,7 +351,7 @@ class ManageController extends \Phalcon\Mvc\Controller
        if($location->save())
        {
          //success
-         $this->flashSession->success("เพิ่มสถานที่ ". $location->name ."ห้อง".$location->room." สำเร็จ");
+         $this->flashSession->success("เพิ่มสถานที่ ". $location->name ." ห้อง ".$location->room." สำเร็จ");
          return $this->response->redirect("manage/locationsearch");
        }
        else {
@@ -370,7 +370,7 @@ class ManageController extends \Phalcon\Mvc\Controller
      $location = location::findFirst($id);
      if($location->delete())
      {
-       $this->flashSession->success("ลบห้อง ".$location->name."ห้อง".$location->room." เรียบร้อยเเล้ว");
+       $this->flashSession->success("ลบ ".$location->name." ห้อง ".$location->room." เรียบร้อยเเล้ว");
      }
      else {
        $this->flashSession->error("ลบห้องไม่สำเสร็จ");
