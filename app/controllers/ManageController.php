@@ -96,7 +96,7 @@ class ManageController extends \Phalcon\Mvc\Controller
        );
        if ($user)
        {
-         $this->flashSession->error("ชื่อผู้ใช้  ". $username ." ถูกสร้างเเล้ว กรุณาลองใหม่อีกครั้ง");
+         $this->flashSession->error("ชื่อผู้ใช้ ". $username ." ถูกสร้างเเล้ว กรุณาลองใหม่อีกครั้ง");
          return $this->response->redirect("manage/teacheradd");
        }
        else {
