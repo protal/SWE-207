@@ -20,6 +20,18 @@ class ManageController extends \Phalcon\Mvc\Controller
      $this->view->page = $paginator->getPaginate();
    }
    public function activityeditAction(){
+     $semester = $this->request->get("semester");
+     $Year = $this->request->get("Year");
+     //$yearofeducation = Yearofeducation::findFirst("semester = '".$semester."' and Year = '".$Year."'");
+     $yearofeducation = new Yearofeducation;
+     $yearofeducation->semester = $semester;
+     $yearofeducation->Year = $Year;
+
+     $yearofeducation->save();
+
+
+   }
+   public function activityaddpostAction(){
 
    }
    public function activityupdateAction(){
