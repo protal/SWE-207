@@ -26,7 +26,58 @@ class ManageController extends \Phalcon\Mvc\Controller
       $this->view->page = $paginator->getPaginate();
       $this->view->s = $s;
    }
-   public function activityeditAction(){
+   public function activityeditAction($id){
+     //type
+     $types = Type::find()->toArray();
+     $types_arr = array();
+     foreach ($types as $type) {
+       $types_arr[$type['id']] = $type['name'];
+     }
+     $this->view->type_id  = $types_arr;
+
+    //  location
+     $locations = Location::find()->toArray();
+     $locations_arr = array();
+     foreach ($locations as $location) {
+       $locations_arr[$location['id']] = $location['name']."  ( ".$location['room']." )";
+     }
+     $this->view->location_id  = $locations_arr;
+
+    //  user teacher
+    $locations = Location::find()->toArray();
+    $locations_arr = array();
+    foreach ($locations as $location) {
+      $locations_arr[$location['id']] = $location['name']."  ( ".$location['room']." )";
+    }
+    $this->view->location_id  = $locations_arr;
+
+    //
+    $users = Users::find(["isteacher = 1"])->toArray();
+    $users_arr = array();
+    foreach ($users as $user) {
+      $users_arr[$user['id']] = $user['prefix']." ".$user['Firstname']."  ".$user['Lastname'];
+    }
+    $this->view->users_id  = $users_arr;
+
+
+    $users = Users::find(["conditions"=>"isteacher = 0","order" => "Years DESC","group"=>"Years"])->toArray();
+    $users_arr = array();
+    foreach ($users as $user) {
+      array_push($users_arr,$user['Years']);
+    }
+    $this->view->years  = $users_arr;
+
+    $activity = Activity::findFirst($id);
+    $this->tag->setDefault("name", $activity->name);
+    $this->tag->setDefault("type_id", $activity->type_id);
+    $this->tag->setDefault("activitydetail", $activity->Datail);
+    $this->tag->setDefault("Yearstart", date("Y-m-d",$activity->StartDate));
+    $this->tag->setDefault("Yearend", date("Y-m-d",$activity->EndDate));
+    $this->tag->setDefault("semester", $activity->yearofeducation_semester);
+    $this->tag->setDefault("Year", $activity->yearofeducation_year);
+    $this->tag->setDefault("teacher_id", $activity->teacher_id);
+    $this->tag->setDefault("location_id", $activity->location_id);
+    $this->view->id  = $id;
 
    }
    public function activityaddpostAction(){
@@ -87,10 +138,71 @@ class ManageController extends \Phalcon\Mvc\Controller
       $join->save();
     }
     $this->flashSession->success("เพิ่มกิจกรรมสำเร็จ");
-    return $this->response->redirect("manage/activityadd");
+    return $this->response->redirect("manage/activitysearch");
 
    }
-   public function activityupdateAction(){
+   public function activityupdateAction($id){
+
+          //create YOD
+          $semester = $this->request->get("semester");
+          $Year = $this->request->get("Year");
+          $yearofeducation = new Yearofeducation;
+          $yearofeducation->semester = $semester;
+          $yearofeducation->Year = $Year;
+          if(!$yearofeducation->save())
+          {
+            $ms = "";
+            foreach ($yearofeducation->getMessages() as $message) {
+               $ms .= $message;
+             }
+            $this->flashSession->error("ไม่สำเร็จ  YOE[". $ms ."]");
+            return $this->response->redirect("manage/activityadd");
+          }
+
+          //create_activity
+          $activity = Activity::findFirst($id);
+          $activity->name = $this->request->get("name");
+          $activity->Datail = $this->request->get("activitydetail");
+          $activity->StartDate	= $this->request->get("Yearstart");
+          $activity->EndDate = $this->request->get("Yearend");
+          $activity->yearofeducation_semester = $this->request->get("semester");
+          $activity->yearofeducation_year = $this->request->get("Year");
+          $activity->teacher_id = $this->request->get("teacher_id");
+          $activity->location_id = $this->request->get("location_id");;
+          $activity->type_id = $this->request->get("type_id");
+          if(!$activity->save())
+          {
+            $ms = "";
+            foreach ($activity->getMessages() as $message) {
+               $ms .= $message;
+             }
+            $this->flashSession->error("ไม่สำเร็จ  activity[". $ms ."]");
+            return $this->response->redirect("manage/activityadd");
+          }
+
+         //  MAKE JOIN STUDENT
+         $years = $this->request->get("years");
+         $users = Users::query();
+
+         foreach ($years as $year) {
+           $users = $users->orwhere("Years = ".$year);
+         }
+         $users = $users->andwhere("isteacher =  0")
+                 ->execute();
+         $users_array = $users->toArray();
+
+
+         $activity->joinActivity->delete();
+
+         foreach ($users_array as $user) {
+           $join = new joinActivity;
+           $join->activity_id = $activity->id;
+           $join->user_id = $user['id'];
+           $join->save();
+         }
+         $this->flashSession->success("เพิ่มกิจกรรมสำเร็จ");
+         return $this->response->redirect("manage/activitysearch");
+
 
    }
    public function activityaddAction(){

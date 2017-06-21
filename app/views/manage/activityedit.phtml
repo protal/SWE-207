@@ -2,7 +2,7 @@
 <?php
   echo $this->tag->form(
       [
-          "manage/activityaddpost",
+          "manage/activityupdate",
           "autocomplete" =>"off",
           "class" => "form-horizontal"
       ]
@@ -90,7 +90,7 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-calendar"></i></div>
-                        <?=$this->tag->dateField( [ "Yearstart", "class" => "form-control", "required"=>"" , "value" => date("Y-m-d")] );?>
+                        <?=$this->tag->dateField( [ "Yearstart", "class" => "form-control", "required"=>""] );?>
                     </div>
                 </div>
             </div>
@@ -110,7 +110,7 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-calendar"></i></div>
-                        <?=$this->tag->dateField( ["Yearend", "class" => "form-control", "required"=>"" , "value" => date("Y-m-d")] );?>
+                        <?=$this->tag->dateField( ["Yearend", "class" => "form-control", "required"=>""] );?>
                     </div>
                 </div>
             </div>
@@ -224,15 +224,17 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="margin-top:8px">
-                        <div class="form-group ">
+                      <fieldset class="form-group">
+                        <div class="form-check">
                           <?php foreach ($years as $year): ?>
-                            <label class="form-check-label required">
+                            <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input" name="years[]" id="optionsRadios1" value="<?=$year?>" >
                                 นักศึกษาปีการศึกษา <?=$year?>
                             </label>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <?php endforeach; ?>
                         </div>
+                        </fieldset>
                     </div>
                 </div>
             </div>
