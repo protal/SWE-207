@@ -55,9 +55,9 @@ class ManageController extends \Phalcon\Mvc\Controller
      $activity->EndDate = $this->request->get("Yearend");
      $activity->yearofeducation_semester = $this->request->get("semester");
      $activity->yearofeducation_year = $this->request->get("Year");
-     $activity->teacher_id = 1;
+     $activity->teacher_id = $this->request->get("teacher_id");
      $activity->create_id	= $this->session->get('auth')["id"];
-     $activity->location_id = 1;
+     $activity->location_id = $this->request->get("location_id");;
      $activity->type_id = $this->request->get("type_id");
      if(!$activity->save())
      {
@@ -137,8 +137,19 @@ class ManageController extends \Phalcon\Mvc\Controller
     //  var_dump($users_arr);exit;
 
    }
-   public function activitydeleteAction(){
+   public function activitydeleteAction($id){
 
+       $activity = Activity::findFirst($id);
+       $name = $activity->name;
+       $activity->JoinActivity->delete();
+       if($activity->delete())
+       {
+         $this->flashSession->success("ลบข้อมูล ".$name." เรียร้อยเเล้ว");
+       }
+       else {
+         $this->flashSession->error("ลบข้อมูลไม่สำเสร็จ");
+       }
+       return $this->response->redirect("manage/activitysearch");
    }
    public function activitystudentAction(){
 

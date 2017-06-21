@@ -100,6 +100,7 @@ class Activity extends \Phalcon\Mvc\Model
         $this->belongsTo('yearofeducation_semester', '\Yearofeducation', 'semester', ['alias' => 'Yearofeducation']);
         $this->belongsTo('type_id', '\Type', 'id', ['alias' => 'Type']);
         $this->belongsTo('location_id', '\Location', 'id', ['alias' => 'Location']);
+        $this->belongsTo('teacher_id', '\Users', 'id', ['alias' => 'Teacher']);
     }
 
     /**
