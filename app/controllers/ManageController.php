@@ -9,29 +9,82 @@ class ManageController extends \Phalcon\Mvc\Controller
     }
     public function activitysearchAction()
     {
-     $numberPage = $this->request->getQuery("page", "int");
-     $parameters["order"] = "id DESC";
-     $activity = Activity::find($parameters);
-     $paginator = new Paginator([
-       'data' => $activity,
-       'limit'=> 10,
-       'page' => $numberPage
-     ]);
-     $this->view->page = $paginator->getPaginate();
+      $numberPage = $this->request->getQuery("page", "int");
+      $s = $this->request->get("s");
+      $activity = Activity::query()
+                ->where("name like '%".$s."%'")
+                ->orwhere("Datail like '%".$s."%'")
+                ->order("id ASC")
+                ->execute();
+      $paginator = new Paginator([
+        'data' => $activity,
+        'limit'=> 60,
+        'page' => $numberPage
+      ]);
+
+      $this->tag->setDefault("s", $s);
+      $this->view->page = $paginator->getPaginate();
+      $this->view->s = $s;
    }
    public function activityeditAction(){
-     $semester = $this->request->get("semester");
-     $Year = $this->request->get("Year");
-     //$yearofeducation = Yearofeducation::findFirst("semester = '".$semester."' and Year = '".$Year."'");
-     $yearofeducation = new Yearofeducation;
-     $yearofeducation->semester = $semester;
-     $yearofeducation->Year = $Year;
-
-     $yearofeducation->save();
-
 
    }
    public function activityaddpostAction(){
+
+     //create YOD
+     $semester = $this->request->get("semester");
+     $Year = $this->request->get("Year");
+     $yearofeducation = new Yearofeducation;
+     $yearofeducation->semester = $semester;
+     $yearofeducation->Year = $Year;
+     if(!$yearofeducation->save())
+     {
+       $ms = "";
+       foreach ($yearofeducation->getMessages() as $message) {
+          $ms .= $message;
+        }
+       $this->flashSession->error("ไม่สำเร็จ  [". $ms ."]");
+     }
+
+     //create_activity
+     $activity = new Activity;
+     $activity->name = $this->request->get("name");
+     $activity->Datail = $this->request->get("activitydetail");
+     $activity->StartDate	= $this->request->get("Yearstart");
+     $activity->EndDate = $this->request->get("Yearend");
+     $activity->yearofeducation_semester = $this->request->get("semester");
+     $activity->yearofeducation_year = $this->request->get("Year");
+     $activity->teacher_id = 1;
+     $activity->create_id	= $this->session->get('auth')["id"];
+     $activity->location_id = 1;
+     $activity->type_id = $this->request->get("type_id");
+     if(!$activity->save())
+     {
+       $ms = "";
+       foreach ($yearofeducation->getMessages() as $message) {
+          $ms .= $message;
+        }
+       $this->flashSession->error("ไม่สำเร็จ  [". $ms ."]");
+     }
+
+    //  MAKE JOIN STUDENT
+    $years = $this->request->get("years");
+    $users = Users::query();
+
+    foreach ($years as $year) {
+      $users = $users->orwhere("Years = ".$year);
+    }
+    $users = $users->andwhere("isteacher =  0")
+            ->execute();
+    $users_array = $users->toArray();
+
+    foreach ($users_array as $user) {
+      $join = new joinActivity;
+      $join->activity_id = $activity->id;
+      $join->user_id = $user['id'];
+      $join->save();
+    }
+    var_dump($users_array);exit;
 
    }
    public function activityupdateAction(){
@@ -264,7 +317,7 @@ class ManageController extends \Phalcon\Mvc\Controller
      $user = Users::findFirst($id);
      if($user->delete())
      {
-       $this->flashSession->success("ลบข้อมูล ".$name." เรียบร้อยเเล้ว");
+       $this->flashSession->success("ลบข้อมูล ".$name." เรียร้อยเเล้ว");
      }
      else {
        $this->flashSession->error("ลบข้อมูลไม่สำเสร็จ");
@@ -301,7 +354,7 @@ class ManageController extends \Phalcon\Mvc\Controller
        $user->Years = $this->request->getPost("Years");
        if($user->save())
        {
-         $this->flashSession->success("แก้ไขข้อมูลเรียบร้อยเเล้ว");
+         $this->flashSession->success("แก้ไขข้อมูลเรียร้อยเเล้ว");
        }
        else {
          $this->flashSession->error("แก้ไม่สำเสร็จ");
@@ -311,83 +364,22 @@ class ManageController extends \Phalcon\Mvc\Controller
    }
    public function locationsearchAction()
    {
-     $location = $this->request->get("s");
-     $loaction = $this->request->getQuery("page", "int");
-     $location = Location::query()
 
-     ->where("name like '%".$s."%'")
-     ->orwhere("room like '%".$s."%'")
-     ->execute();
-     $paginator = new Paginator([
-       'data' => $location,
-       'limit'=> 10,
-       'page' => $numberPage
-     ]);
-     $this->tag->setDefault("s", $s);
-     $this->view->page = $paginator->getPaginate();
-     $this->view->s = $s;
    }
-   public function locationeditAction($id)
+   public function locationeditAction()
    {
-     $location = Location::findFirst($id);
-     $this->tag->setDefault("name", $location->name);
-     $this->tag->setDefault("room", $location->room);
-     $this->view->id=$id;
-   }
-   public function locationUpdateAction($id){
-
-     $location = $this->request->getPost("name");
-     $location = Location::findFirst($id);
-     $location->name = $this->request->getPost("name");
-     $location->room = $this->request->getPost("room");
-     if($location->save())
-     {
-       $this->flashSession->success("แก้ไขข้อมูล ".$name." เรียร้อยเเล้ว");
-     }
-     else {
-       $this->flashSession->error("แก้ไม่สำเสร็จ");
-     }
-     return $this->response->redirect("manage/locationsearch/".$id);
 
    }
-
    public function locationaddAction()
    {
 
    }
    public function locationaddpostAction()
    {
-       $location = new Location;
-       $location->name = $this->request->getPost("name");
-       $location->room = $this->request->getPost("room");
-       if($location->save())
-       {
-         //success
-         $this->flashSession->success("เพิ่มสถานที่ ". $location->name ." ห้อง ".$location->room." สำเร็จ");
-         return $this->response->redirect("manage/locationsearch");
-       }
-       else {
-         $ms = "";
-         foreach ($location->getMessages() as $message) {
-            $ms .= $message;
-          }
-         $this->flashSession->error("ไม่สำเร็จ  [". $ms ."]");
-         return $this->response->redirect("manage/locationadd");
-       }
-     }
 
-   public function locationdeleteAction($id)
+   }
+   public function locationdeleteAction()
    {
-     $location = $this->request->getPost("Firstname");
-     $location = location::findFirst($id);
-     if($location->delete())
-     {
-       $this->flashSession->success("ลบ ".$location->name." ห้อง ".$location->room." เรียบร้อยเเล้ว");
-     }
-     else {
-       $this->flashSession->error("ลบห้องไม่สำเสร็จ");
-     }
-     return $this->response->redirect("manage/locationsearch");
 
    }
 }
