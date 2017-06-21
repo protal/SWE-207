@@ -81,7 +81,6 @@ class ManageController extends \Phalcon\Mvc\Controller
 
    }
    public function activityaddpostAction(){
-
      //create YOD
      $semester = $this->request->get("semester");
      $Year = $this->request->get("Year");
@@ -159,6 +158,21 @@ class ManageController extends \Phalcon\Mvc\Controller
             return $this->response->redirect("manage/activityedit/".$id);
           }
 
+          if ($this->request->hasFiles()) {
+            foreach ($this->request->getUploadedFiles() as $file) {
+                if (!$this->imageCheck($file->getRealType())) {
+                    $this->flashSession->error(t('We don\'t accept that kind of file. Please upload an image.'));
+                    return $this->response->redirect("manage/activityedit/".$id);
+                }
+                else {
+                  var_dump($file->getName());exit();
+                }
+
+            }
+          }
+
+
+
           //create_activity
           $activity = Activity::findFirst($id);
           $activity->name = $this->request->get("name");
@@ -202,7 +216,7 @@ class ManageController extends \Phalcon\Mvc\Controller
            $join->save();
          }
          $this->flashSession->success("แก้ไขกิจกรรมสำเร็จ");
-         return $this->response->redirect("manage/activitysearch");
+         return $this->response->redirect("manage/activityedit/".$id);
 
 
    }
@@ -264,10 +278,33 @@ class ManageController extends \Phalcon\Mvc\Controller
        }
        return $this->response->redirect("manage/activitysearch");
    }
-   public function activitystudentAction(){
+   public function activitystudentAction($id){
+     $students = joinActivity::find(["activity_id = ".$id]);
+
+     $this->view->students = $students;
+    //  var_dump($students->toArray());exit();
 
    }
-   public function teachersearchAction(){      
+   public function studentcheckAction()
+   {
+     $data = $this->request->get("data");
+     $data = explode("|",$data);
+     $activity_id = $data[0];
+     $user_id = $data[1];
+
+     $JoinActivity = JoinActivity::findFirst(["activity_id = ".$activity_id." and user_id = ".$user_id]);
+     if($JoinActivity)
+     {
+       $JoinActivity->joined = ($JoinActivity->joined)?"0":"1";
+       $JoinActivity->save();
+       echo "SUCESS|".$activity_id."|".$user_id;
+     }
+     else {
+       echo "FAIL";
+     }
+     exit();
+   }
+   public function teachersearchAction(){
      $numberPage = $this->request->getQuery("page", "int");
      $s = $this->request->get("s");
      $users = Users::query()

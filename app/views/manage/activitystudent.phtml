@@ -78,19 +78,19 @@ input:checked + .slider:before {
           </tr>
         </thead>
         <tbody>
-          <?php //foreach ($page->items as $act): ?>
+          <?php foreach ($students as $student): ?>
             <tr>
-              <th class="text-center" scope="row">1</th>
-              <td class="text-center">ดี</td>
-              <td class="text-center">จ้า</td>
+              <td class="text-center"><?=$student->Users->username?></td>
+              <td class="text-center"><?=$student->Users->Firstname?></td>
+              <td class="text-center"><?=$student->Users->Lastname?></td>
               <td class="text-center">
                 <label class="switch">
-                  <input type="checkbox">
+                  <input class="CheckAjax" type="checkbox" value="<?=$student->activity_id?>|<?=$student->Users->id?>" <?=($student->joined)?"checked":""?>>
                   <div class="slider round"></div>
                 </label>
               </td>
             </tr>
-          <?php //endforeach; ?>
+          <?php endforeach; ?>
         </tbody>
       </table>
 
