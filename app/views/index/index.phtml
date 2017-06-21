@@ -1,55 +1,29 @@
 
-
 <div class="container">
-        <div class="row">
-          <?php foreach ($page->items as $act): ?>
-          <div class="col-sm-6 col-md-4 col-lg-4 mt-4">
-              <div class="card card-inverse card-info">
+    <div class="row">
+      <?php foreach ($page->items as $act): ?>
+        <div class="col-sm-6 col-md-4 col-lg-4 mt-4">
+            <div class="card card-inverse card-info">
 
-                  <img class="card-img-top" src="<?=$this->url->get('img/activity/dotnet.jpg') ?>">
-                  <div class="card-block">
-                      <figure class="profile">
-                          <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" width="30px" class="profile-avatar" alt="">
-                      </figure>
+                <img class="card-img-top" src="<?=$this->url->get('img/activity/dotnet.jpg') ?>">
+                <div class="card-block">
+                    <figure class="profile">
+                        <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" width="30px" class="profile-avatar" alt="">
+                    </figure>
 
-                      <h4 class="card-title mt-3"><?=$act->name; ?></h4>
-                      <div class="meta">
-                          <a><?=$act->prefix; ?><?=$act->Firstname; ?><?=$act->Lastname; ?></a>
-                      </div>
-                      <div class="card-text">
-                        <?=$act->StartDate; ?><?=$act->EndDate; ?>
-                      </div>
-                  </div>
-                  <div class="card-footer">
-                      <small>Last updated 3 mins ago</small>
-                      <?= $this->tag->linkTo(["activity/show/10", "เพิ่มเติม", "class" => "btn btn-secondary float-right btn-sm"]) ?>
-                  </div>
-              </div>
-          </div>
-        <?php endforeach; ?>
-
-          <div class="col-sm-6 col-md-4 col-lg-4 mt-4">
-              <div class="card card-inverse card-success">
-
-                  <img class="card-img-top" src="<?=$this->url->get('img/activity/waipa.jpg') ?>">
-                  <div class="card-block">
-                      <figure class="profile">
-                          <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="">
-                      </figure>
-                      <h4 class="card-title mt-3">ค่ายพัฒนาซอฟต์แวร์ "SWE ไหวป่ะ"</h4>
-                      <div class="meta">
-                          <a>อาจารย์ ดร.จิตติมา ศังขมณี</a>
-                      </div>
-                      <div class="card-text">
-                        วันที่ 29-30 เม.ย. 2560
-                        ไม่ไปเรียน , ไปเรียนสาย , เสร็จแล้ว
-                      </div>
-                  </div>
-                  <div class="card-footer">
-                      <small>Last updated 3 mins ago</small>
-                      <?= $this->tag->linkTo(["activity/show/10", "เพิ่มเติม", "class" => "btn btn-secondary float-right btn-sm"]) ?>
-                  </div>
-              </div>
-          </div>
+                    <h4 class="card-title mt-3"><?=$act->name; ?></h4>
+                    <div class="meta">
+                        <a><?=$act->users->prefix; ?><?=$act->Firstname; ?><?=$act->Lastname; ?></a>
+                    </div>
+                    <div class="card-text">
+                      วันเริ่มกิจกรรม : <?=$act->StartDate; ?> <br> วันสิ้นสุดกิจกรรม : <?=$act->EndDate; ?>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <small>Last updated 3 mins ago</small>
+                    <?= $this->tag->linkTo(["activity/show/10", "เพิ่มเติม", "class" => "btn btn-secondary float-right btn-sm"]) ?>
+                </div>
+            </div>
         </div>
+    <?php endforeach; ?>
 </div>
