@@ -43,7 +43,7 @@ class ManageController extends \Phalcon\Mvc\Controller
        foreach ($yearofeducation->getMessages() as $message) {
           $ms .= $message;
         }
-       $this->flashSession->error("ไม่สำเร็จ  [". $ms ."]");
+       $this->flashSession->error("ไม่สำเร็จ  YOE[". $ms ."]");
        return $this->response->redirect("manage/activityadd");
      }
 
@@ -55,17 +55,17 @@ class ManageController extends \Phalcon\Mvc\Controller
      $activity->EndDate = $this->request->get("Yearend");
      $activity->yearofeducation_semester = $this->request->get("semester");
      $activity->yearofeducation_year = $this->request->get("Year");
-     $activity->teacher_id = 1;
+     $activity->teacher_id = $this->request->get("teacher_id");
      $activity->create_id	= $this->session->get('auth')["id"];
-     $activity->location_id = 1;
+     $activity->location_id = $this->request->get("location_id");;
      $activity->type_id = $this->request->get("type_id");
      if(!$activity->save())
      {
        $ms = "";
-       foreach ($yearofeducation->getMessages() as $message) {
+       foreach ($activity->getMessages() as $message) {
           $ms .= $message;
         }
-       $this->flashSession->error("ไม่สำเร็จ  [". $ms ."]");
+       $this->flashSession->error("ไม่สำเร็จ  activity[". $ms ."]");
        return $this->response->redirect("manage/activityadd");
      }
 
@@ -86,7 +86,7 @@ class ManageController extends \Phalcon\Mvc\Controller
       $join->user_id = $user['id'];
       $join->save();
     }
-    $this->flashSession->error("เพิ่มกิจกรรมสำเร็จ");
+    $this->flashSession->success("เพิ่มกิจกรรมสำเร็จ");
     return $this->response->redirect("manage/activityadd");
 
    }
@@ -94,18 +94,62 @@ class ManageController extends \Phalcon\Mvc\Controller
 
    }
    public function activityaddAction(){
+
+     //type
      $types = Type::find()->toArray();
      $types_arr = array();
      foreach ($types as $type) {
        $types_arr[$type['id']] = $type['name'];
      }
-
      $this->view->type_id  = $types_arr;
-     // var_dump($types_arr);exit;
+
+    //  location
+     $locations = Location::find()->toArray();
+     $locations_arr = array();
+     foreach ($locations as $location) {
+       $locations_arr[$location['id']] = $location['name']."  ( ".$location['room']." )";
+     }
+     $this->view->location_id  = $locations_arr;
+
+    //  user teacher
+    $locations = Location::find()->toArray();
+    $locations_arr = array();
+    foreach ($locations as $location) {
+      $locations_arr[$location['id']] = $location['name']."  ( ".$location['room']." )";
+    }
+    $this->view->location_id  = $locations_arr;
+
+    //
+    $users = Users::find(["isteacher = 1"])->toArray();
+    $users_arr = array();
+    foreach ($users as $user) {
+      $users_arr[$user['id']] = $user['prefix']." ".$user['Firstname']."  ".$user['Lastname'];
+    }
+    $this->view->users_id  = $users_arr;
+
+
+    $users = Users::find(["conditions"=>"isteacher = 0","order" => "Years DESC","group"=>"Years"])->toArray();
+    $users_arr = array();
+    foreach ($users as $user) {
+      array_push($users_arr,$user['Years']);
+    }
+    $this->view->years  = $users_arr;
+    //  var_dump($users_arr);exit;
 
    }
-   public function activitydeleteAction(){
+   public function activitydeleteAction($id){
 
+       $activity = Activity::findFirst($id);
+       $name = $activity->name;
+       $activity->JoinActivity->delete();
+       if($activity->delete())
+       {
+         $this->flashSession->success("ลบข้อมูล ".$name." เรียร้อยเเล้ว");
+       }
+       else {
+         $this->flashSession->error("ลบข้อมูลไม่สำเสร็จ");
+       }
+       return $this->response->redirect("manage/activitysearch");
    }
    public function activitystudentAction(){
 

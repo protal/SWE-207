@@ -48,7 +48,7 @@
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-laptop"></i></div>
                         <?php echo $this->tag->selectStatic(
                           [
-                            "type_id", "class" => "form-control" ,  $type_id
+                            "type_id", "class" => "form-control" ,$type_id
                           ]
                         );?>
                     </div>
@@ -159,15 +159,7 @@
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
                         <?php echo $this->tag->selectStatic(
                           [
-                            "teacher_id", "class" => "form-control" ,
-                            [
-                              "ผู้ช่วยศาสตราจารย์ เยาวเรศ ศิริสถิตย์กุล" => "ผู้ช่วยศาสตราจารย์	เยาวเรศ ศิริสถิตย์กุล",
-                              "ผู้ช่วยศาสตราจารย์ อุหมาด หมัดอาด้ำ" => "ผู้ช่วยศาสตราจารย์	อุหมาด หมัดอาด้ำ",
-                              "อาจารย์ ดร.กรัณรัตน์ ธรรมรักษ์" => "อาจารย์ ดร.กรัณรัตน์ ธรรมรักษ์",
-                              "อาจารย์ ดร.จิตติมา ศังขมณี์" => "อาจารย์ ดร.จิตติมา ศังขมณี์",
-                              "ผู้ช่วยศาสตราจารย ดร.ฐิมาพร เพชรแก้ว" => "ผู้ช่วยศาสตราจารย ดร.ฐิมาพร เพชรแก้ว",
-                              "อาจารย์ ศิริภิญโญ จันทมุณี" => "อาจารย์ ศิริภิญโญ จันทมุณี",
-                            ]
+                            "teacher_id", "class" => "form-control" , $users_id
                           ]
                         );?>
                     </div>
@@ -191,10 +183,7 @@
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-home"></i></div>
                         <?php echo $this->tag->selectStatic(
                           [
-                            "location_id", "class" => "form-control" ,
-                            [
-                              "รอปอมาทำ" => "รอปอมาทำ",
-                            ]
+                            "location_id", "class" => "form-control" ,$location_id
                           ]
                         );?>
                     </div>
@@ -237,25 +226,13 @@
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="margin-top:8px">
                       <fieldset class="form-group">
                         <div class="form-check">
-                          <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" name="years[]" id="optionsRadios1" value="2557">
-                              นักศึกษาปีการศึกษา 2557
-                          </label>
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" name="years[]" id="optionsRadios2" value="2558">
-                              นักศึกษาปีการศึกษา 2558
-                          </label>
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" name="years[]" id="optionsRadios3" value="option3">
-                              นักศึกษาปีการศึกษา 2559
-                          </label>
-                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                          <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" name="years[]" id="optionsRadios4" value="option4">
-                              นักศึกษาปีการศึกษา 2560
-                          </label>
+                          <?php foreach ($years as $year): ?>
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="years[]" id="optionsRadios1" value="<?=$year?>">
+                                นักศึกษาปีการศึกษา <?=$year?>
+                            </label>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <?php endforeach; ?>
                         </div>
                         </fieldset>
                     </div>
