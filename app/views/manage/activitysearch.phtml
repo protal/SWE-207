@@ -15,7 +15,6 @@
     <table class="table table-striped" style="margin-top:20px">
       <thead>
         <tr>
-          <th class="text-center">#</th>
           <th class="text-center">ชื่อกิจกรรม</th>
           <th class="text-center">ประเภทกิจกรรม</th>
           <th class="text-center">อาจารย์ที่ปรึกษา</th>
@@ -25,7 +24,6 @@
       <tbody>
         <?php foreach ($page->items as $act): ?>
           <tr>
-            <th class="text-center" scope="row">1</th>
             <td class="text-center"><?=$act->name?></td>
             <td class="text-center"><?=$act->Type->name?></td>
             <td class="text-center"><?=$act->Teacher->prefix?> <?=$act->Teacher->Firstname?> <?=$act->Teacher->Lastname?> </td>
