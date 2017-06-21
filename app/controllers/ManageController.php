@@ -62,10 +62,10 @@ class ManageController extends \Phalcon\Mvc\Controller
      if(!$activity->save())
      {
        $ms = "";
-       foreach ($yearofeducation->getMessages() as $message) {
+       foreach ($activity->getMessages() as $message) {
           $ms .= $message;
         }
-       $this->flashSession->error("ไม่สำเร็จ  TYPE[". $ms ."]");
+       $this->flashSession->error("ไม่สำเร็จ  activity[". $ms ."]");
        return $this->response->redirect("manage/activityadd");
      }
 
