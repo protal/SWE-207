@@ -28,8 +28,8 @@
             <td class="text-center"><?=$act->Type->name?></td>
             <td class="text-center"><?=$act->Teacher->prefix?> <?=$act->Teacher->Firstname?> <?=$act->Teacher->Lastname?> </td>
             <td class="text-center">
-              <?php echo $this->tag->linkto(["manage/activityedit", "class" => "btn btn-info btn-sm","แก้ไข"]) ?>
-              <?php echo $this->tag->linkto(["manage/activitystudent", "class" => "btn btn-success btn-sm","ผู้เข้าร่วม"]) ?>
+              <?php echo $this->tag->linkto(["manage/activityedit/".$act->id, "class" => "btn btn-info btn-sm","แก้ไข"]) ?>
+              <?php echo $this->tag->linkto(["manage/activitystudent/".$act->id, "class" => "btn btn-success btn-sm","ผู้เข้าร่วม (".$act->JoinActivity->count().") "]) ?>
               <?php echo $this->tag->linkto(["manage/activitydelete/".$act->id, "class" => "btn btn-danger btn-sm","ลบ"]) ?>
             </td>
           </tr>
