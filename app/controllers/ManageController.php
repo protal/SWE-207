@@ -603,7 +603,7 @@ class ManageController extends \Phalcon\Mvc\Controller
      $location = location::findFirst($id);
      if($location->delete())
      {
-       $this->flashSession->success("ลบ ".$location->name." รายละเอียด ".$location->room." เรียบร้อยเเล้ว");
+       $this->flashSession->success("ลบ " .$location->name. " เรียบร้อยเเล้ว");
      }
      else {
        $this->flashSession->error("ลบรายละเอียดไม่สำเสร็จ");
