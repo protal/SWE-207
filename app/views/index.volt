@@ -67,12 +67,15 @@
 
 
                   </li>
+                  {% if session.get('auth')['isadmin'] %}
                   <li class="nav-item">
                     {{ link_to('manage/teachersearch','จัดการอาจารย์', 'class': 'nav-link') }}
                   </li>
                   <li class="nav-item">
                     {{ link_to('manage/studentsearch','จัดการนักศึกษา', 'class': 'nav-link') }}
                   </li>
+                  {% endif %}
+
                 </ul>
                 <ul class="navbar-nav my-lg-0">
                   <li class="nav-item dropdown">

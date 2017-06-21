@@ -9,7 +9,10 @@ class AuthController extends \Phalcon\Mvc\Controller
     }
     public function loginAction()
     {
-
+      if($this->session->has("auth"))
+      {
+        return $this->response->redirect("manage");
+      }
     }
     public function logoutAction()
     {
