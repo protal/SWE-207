@@ -9,8 +9,8 @@
 <div class="row">
   <div class="col-md-4">
   <div class="card" style="margin-top:30px">
-    <div class="card-header card-info">
-      กิจกรรมทั้งหมด
+    <div class="card-header card-info text-center">
+      <h3>กิจกรรมทั้งหมด</h3>
     </div>
     <div class="card-block">
       <blockquote class="card-blockquote">
@@ -18,15 +18,15 @@
         <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
       </blockquote>
     </div>
-    <div class="card-footer text-muted">
-    2 days ago
+    <div class="card-footer text-muted text-right">
+    <?php echo $this->tag->linkto(["manage/activitysearch", "class" => "btn btn-outline-info btn-secondary pull-right","ดูเพิ่มเติม"]) ?>
   </div>
   </div>
   </div>
   <div class="col-md-4">
   <div class="card" style="margin-top:30px">
-    <div class="card-header card-success">
-      อาจารย์ทั้งหมด
+    <div class="card-header card-success text-center">
+      <h3>อาจารย์ทั้งหมด</h3>
     </div>
     <div class="card-block">
       <blockquote class="card-blockquote">
@@ -34,15 +34,15 @@
         <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
       </blockquote>
     </div>
-    <div class="card-footer text-muted">
-    2 days ago
+    <div class="card-footer text-muted text-right">
+    <?php echo $this->tag->linkto(["manage/teachersearch", "class" => "btn btn-outline-success btn-secondary pull-right","ดูเพิ่มเติม"]) ?>
   </div>
   </div>
   </div>
   <div class="col-md-4">
   <div class="card" style="margin-top:30px">
-    <div class="card-header card-warning">
-      นักศึกษาทั้งหมด
+    <div class="card-header card-warning text-center">
+      <h3>นักศึกษาทั้งหมด</h3>
     </div>
     <div class="card-block">
       <blockquote class="card-blockquote">
@@ -50,8 +50,8 @@
         <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
       </blockquote>
     </div>
-    <div class="card-footer text-muted">
-    2 days ago
+    <div class="card-footer text-muted text-right">
+    <?php echo $this->tag->linkto(["manage/studentsearch", "class" => "btn btn-outline-warning btn-secondary pull-right","ดูเพิ่มเติม"]) ?>
   </div>
   </div>
   </div>
