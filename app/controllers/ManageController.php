@@ -307,7 +307,7 @@ class ManageController extends \Phalcon\Mvc\Controller
      exit();
    }
    public function teachersearchAction(){
-     if(!$this->session->get("auth")["isAdmin"])
+     if(!$this->session->get("auth")["isadmin"])
      {
        $this->flashSession->error("ไม่สามาถเข้าถึงหน้านี้ได้");
        return $this->response->redirect("manage");
@@ -433,7 +433,7 @@ class ManageController extends \Phalcon\Mvc\Controller
    }
     public function studentsearchAction(){
 
-      if(!$this->session->get("auth")["isAdmin"])
+      if(!$this->session->get("auth")["isadmin"])
       {
         $this->flashSession->error("ไม่สามาถเข้าถึงหน้านี้ได้");
         return $this->response->redirect("manage");
