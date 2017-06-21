@@ -40,6 +40,35 @@
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
+                <label for="name">ประเภทกิจกรรม</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-laptop"></i></div>
+                        <?php echo $this->tag->selectStatic(
+                          [
+                            "type_id", "class" => "form-control" ,
+                            [
+                              "1" => "กิจกรรมเสริมหลักสูตร",
+                              "2" => "กิจกรรมรายวิชา",
+                              "3" => "กิจกรรมนักศึกษา",
+                            ]
+                          ]
+                        );?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put name validation error messages here -->
+                        </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
                 <label for="name">รายละเอียด</label>
             </div>
             <div class="col-md-6">
@@ -108,18 +137,18 @@
                       <div class="form-group">
                         <?php echo $this->tag->selectStatic(
                           [
-                            "yearofeducation_semester", "class" => "form-control" ,
+                            "semester", "class" => "form-control" ,
                             [
-                              "ภาคการศึกษาที่ 1" => "1",
-                              "ภาคการศึกษาที่ 2" => "2",
-                              "ภาคการศึกษาที่ 3" => "3",
+                              "1" => "ภาคการศึกษาที่ 1",
+                              "2" => "ภาคการศึกษาที่ 2",
+                              "3" => "ภาคการศึกษาที่ 3",
                             ]
                           ]
                         );?>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <label for="password">ปีการศึกษา</label>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <?=$this->tag->textField( [ "yearofeducation_year", "class" => "form-control","placeholder" => "ปีการศึกษา", "required"=>""] );?>
+                        <?=$this->tag->textField( [ "Year", "class" => "form-control","placeholder" => "ปีการศึกษา", "required"=>""] );?>
                       </div>
                     </div>
                 </div>
@@ -214,22 +243,22 @@
                       <fieldset class="form-group">
                         <div class="form-check">
                           <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1">
+                              <input type="checkbox" class="form-check-input" name="years[]" id="optionsRadios1" value="2557">
                               นักศึกษาปีการศึกษา 2557
                           </label>
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+                              <input type="checkbox" class="form-check-input" name="years[]" id="optionsRadios2" value="2558">
                               นักศึกษาปีการศึกษา 2558
                           </label>
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3">
+                              <input type="checkbox" class="form-check-input" name="years[]" id="optionsRadios3" value="option3">
                               นักศึกษาปีการศึกษา 2559
                           </label>
                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" name="optionsRadios" id="optionsRadios4" value="option4">
+                              <input type="checkbox" class="form-check-input" name="years[]" id="optionsRadios4" value="option4">
                               นักศึกษาปีการศึกษา 2560
                           </label>
                         </div>

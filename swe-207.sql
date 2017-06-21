@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 20, 2017 at 09:26 PM
+-- Host: localhost
+-- Generation Time: Jun 21, 2017 at 02:48 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -28,27 +30,28 @@ USE `swe-207`;
 -- Table structure for table `activity`
 --
 
+DROP TABLE IF EXISTS `activity`;
 CREATE TABLE `activity` (
   `id` int(11) NOT NULL,
   `name` text COLLATE utf8_unicode_ci NOT NULL,
   `Datail` text COLLATE utf8_unicode_ci NOT NULL,
   `StartDate` datetime NOT NULL,
   `EndDate` datetime NOT NULL,
-  `YearSTD` text COLLATE utf8_unicode_ci NOT NULL,
   `teacher_id` int(11) NOT NULL,
-  `image` text COLLATE utf8_unicode_ci NOT NULL,
+  `image` text COLLATE utf8_unicode_ci,
   `yearofeducation_semester` int(11) NOT NULL,
   `yearofeducation_year` int(11) NOT NULL,
   `location_id` int(11) NOT NULL,
-  `type_id` int(11) NOT NULL
+  `type_id` int(11) NOT NULL,
+  `create_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `activity`
 --
 
-INSERT INTO `activity` (`id`, `name`, `Datail`, `StartDate`, `EndDate`, `YearSTD`, `teacher_id`, `image`, `yearofeducation_semester`, `yearofeducation_year`, `location_id`, `type_id`) VALUES
-(2, 'test name', 'test datail', '2017-06-01 22:01:05', '2017-06-01 22:01:05', '3', 1, '', 3, 2560, 1, 1);
+INSERT INTO `activity` (`id`, `name`, `Datail`, `StartDate`, `EndDate`, `teacher_id`, `image`, `yearofeducation_semester`, `yearofeducation_year`, `location_id`, `type_id`, `create_id`) VALUES
+(18, 'test', 'test', '2017-06-09 00:00:00', '2017-06-24 00:00:00', 1, NULL, 2, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -56,6 +59,7 @@ INSERT INTO `activity` (`id`, `name`, `Datail`, `StartDate`, `EndDate`, `YearSTD
 -- Table structure for table `detailactivity`
 --
 
+DROP TABLE IF EXISTS `detailactivity`;
 CREATE TABLE `detailactivity` (
   `user_id` int(11) NOT NULL,
   `activity_id` int(11) NOT NULL
@@ -64,9 +68,69 @@ CREATE TABLE `detailactivity` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `joinActivity`
+--
+
+DROP TABLE IF EXISTS `joinActivity`;
+CREATE TABLE `joinActivity` (
+  `activity_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `joined` int(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `joinActivity`
+--
+
+INSERT INTO `joinActivity` (`activity_id`, `user_id`, `joined`) VALUES
+(18, 1, 0),
+(18, 2, 0),
+(18, 3, 0),
+(18, 4, 0),
+(18, 5, 0),
+(18, 6, 0),
+(18, 7, 0),
+(18, 8, 0),
+(18, 9, 0),
+(18, 10, 0),
+(18, 11, 0),
+(18, 12, 0),
+(18, 13, 0),
+(18, 14, 0),
+(18, 15, 0),
+(18, 16, 0),
+(18, 17, 0),
+(18, 18, 0),
+(18, 19, 0),
+(18, 20, 0),
+(18, 21, 0),
+(18, 22, 0),
+(18, 23, 0),
+(18, 24, 0),
+(18, 25, 0),
+(18, 26, 0),
+(18, 27, 0),
+(18, 28, 0),
+(18, 29, 0),
+(18, 30, 0),
+(18, 31, 0),
+(18, 32, 0),
+(18, 33, 0),
+(18, 34, 0),
+(18, 35, 0),
+(18, 36, 0),
+(18, 37, 0),
+(18, 38, 0),
+(18, 39, 0),
+(18, 40, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `location`
 --
 
+DROP TABLE IF EXISTS `location`;
 CREATE TABLE `location` (
   `id` int(11) NOT NULL,
   `name` text COLLATE utf8_unicode_ci NOT NULL,
@@ -86,6 +150,7 @@ INSERT INTO `location` (`id`, `name`, `room`) VALUES
 -- Table structure for table `type`
 --
 
+DROP TABLE IF EXISTS `type`;
 CREATE TABLE `type` (
   `id` int(11) NOT NULL,
   `name` text COLLATE utf8_unicode_ci NOT NULL
@@ -96,7 +161,9 @@ CREATE TABLE `type` (
 --
 
 INSERT INTO `type` (`id`, `name`) VALUES
-(1, 'type test');
+(1, 'กิจกรรมเสริมหลักสูตร'),
+(2, 'กิจกรรมรายวิชา'),
+(3, 'กิจกรรมนักศึกษา');
 
 -- --------------------------------------------------------
 
@@ -104,6 +171,7 @@ INSERT INTO `type` (`id`, `name`) VALUES
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `prefix` text COLLATE utf8_unicode_ci,
@@ -210,11 +278,12 @@ INSERT INTO `users` (`id`, `prefix`, `username`, `password`, `isteacher`, `isadm
 -- Table structure for table `yearofeducation`
 --
 
+DROP TABLE IF EXISTS `yearofeducation`;
 CREATE TABLE `yearofeducation` (
   `semester` int(11) NOT NULL,
   `Year` int(11) NOT NULL,
-  `StartDate` datetime NOT NULL,
-  `EndDate` datetime NOT NULL
+  `StartDate` datetime DEFAULT NULL,
+  `EndDate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -222,6 +291,10 @@ CREATE TABLE `yearofeducation` (
 --
 
 INSERT INTO `yearofeducation` (`semester`, `Year`, `StartDate`, `EndDate`) VALUES
+(1, 1, NULL, NULL),
+(1, 2558, NULL, NULL),
+(2, 1, NULL, NULL),
+(3, 2553, NULL, NULL),
 (3, 2560, '2017-06-01 21:58:23', '2017-06-01 21:58:23');
 
 --
@@ -245,6 +318,14 @@ ALTER TABLE `activity`
 ALTER TABLE `detailactivity`
   ADD PRIMARY KEY (`user_id`,`activity_id`),
   ADD KEY `user_id` (`user_id`,`activity_id`),
+  ADD KEY `activity_id` (`activity_id`);
+
+--
+-- Indexes for table `joinActivity`
+--
+ALTER TABLE `joinActivity`
+  ADD PRIMARY KEY (`activity_id`,`user_id`),
+  ADD KEY `user_id` (`user_id`),
   ADD KEY `activity_id` (`activity_id`);
 
 --
@@ -281,7 +362,7 @@ ALTER TABLE `yearofeducation`
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `location`
 --
@@ -291,7 +372,7 @@ ALTER TABLE `location`
 -- AUTO_INCREMENT for table `type`
 --
 ALTER TABLE `type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -315,6 +396,14 @@ ALTER TABLE `activity`
 ALTER TABLE `detailactivity`
   ADD CONSTRAINT `detailactivity_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `detailactivity_ibfk_2` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `joinActivity`
+--
+ALTER TABLE `joinActivity`
+  ADD CONSTRAINT `joinactivity_ibfk_1` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`id`),
+  ADD CONSTRAINT `joinactivity_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

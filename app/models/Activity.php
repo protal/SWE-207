@@ -42,17 +42,17 @@ class Activity extends \Phalcon\Mvc\Model
 
     /**
      *
-     * @var string
-     * @Column(type="string", nullable=false)
-     */
-    public $YearSTD;
-
-    /**
-     *
      * @var integer
      * @Column(type="integer", length=11, nullable=false)
      */
     public $teacher_id;
+
+    /**
+     *
+     * @var string
+     * @Column(type="string", nullable=true)
+     */
+    public $image;
 
     /**
      *
@@ -83,14 +83,21 @@ class Activity extends \Phalcon\Mvc\Model
     public $type_id;
 
     /**
+     *
+     * @var integer
+     * @Column(type="integer", length=11, nullable=false)
+     */
+    public $create_id;
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
     {
         $this->setSchema("swe-207");
         $this->hasMany('id', 'Detailactivity', 'activity_id', ['alias' => 'Detailactivity']);
+        $this->hasMany('id', 'JoinActivity', 'activity_id', ['alias' => 'JoinActivity']);
         $this->belongsTo('yearofeducation_semester', '\Yearofeducation', 'semester', ['alias' => 'Yearofeducation']);
-        $this->belongsTo('teacher_id', '\Teacher', 'id', ['alias' => 'Teacher']);
         $this->belongsTo('type_id', '\Type', 'id', ['alias' => 'Type']);
         $this->belongsTo('location_id', '\Location', 'id', ['alias' => 'Location']);
     }

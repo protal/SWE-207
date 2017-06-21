@@ -17,6 +17,7 @@
         <tr>
           <th class="text-center">#</th>
           <th class="text-center">ชื่อกิจกรรม</th>
+          <th class="text-center">ประเภทกิจกรรม</th>
           <th class="text-center">นักศึกษาทั้งหมด</th>
           <th class="text-center">นักศึกษาที่เข้าร่วม</th>
           <th class="text-center">ดำเนินการ</th>
@@ -26,37 +27,13 @@
         <?php foreach ($page->items as $act): ?>
           <tr>
             <th class="text-center" scope="row">1</th>
-            <td class="text-center">ค่ายอมรม Scrum Framwork 2017</td>
-            <td class="text-center">100</td>
-            <td class="text-center">78</td>
+            <td class="text-center"><?=$act->name?></td>
+            <td class="text-center"><?=$act->Type->name?></td>
+            <td class="text-center"><?=$act->joinActivity->count()?></td>
+            <td class="text-center"><?=$act->joinActivity->count()?></td>
             <td class="text-center"><?php echo $this->tag->linkto(["manage/activityedit", "class" => "btn btn-info btn-sm","แก้ไข"]) ?>
             <?php echo $this->tag->linkto(["manage/activitystudent", "class" => "btn btn-success btn-sm","ผู้เข้าร่วม"]) ?></td>
           </tr>
-          <tr>
-            <th class="text-center" scope="row">1</th>
-            <td class="text-center">ค่ายอมรม Scrum Framwork 2017</td>
-            <td class="text-center">100</td>
-            <td class="text-center">78</td>
-            <td class="text-center"><?php echo $this->tag->linkto(["manage/activityedit", "class" => "btn btn-info btn-sm","แก้ไข"]) ?>
-            <?php echo $this->tag->linkto(["manage/activitystudent", "class" => "btn btn-success btn-sm","ผู้เข้าร่วม"]) ?></td>
-          </tr>
-          <tr>
-            <th class="text-center" scope="row">1</th>
-            <td class="text-center">ค่ายอมรม Scrum Framwork 2017</td>
-            <td class="text-center">100</td>
-            <td class="text-center">78</td>
-            <td class="text-center"><?php echo $this->tag->linkto(["manage/activityedit", "class" => "btn btn-info btn-sm","แก้ไข"]) ?>
-            <?php echo $this->tag->linkto(["manage/activitystudent", "class" => "btn btn-success btn-sm","ผู้เข้าร่วม"]) ?></td>
-          </tr>
-          <tr>
-            <th class="text-center" scope="row">1</th>
-            <td class="text-center">ค่ายอมรม Scrum Framwork 2017</td>
-            <td class="text-center">100</td>
-            <td class="text-center">78</td>
-            <td class="text-center"><?php echo $this->tag->linkto(["manage/activityedit", "class" => "btn btn-info btn-sm","แก้ไข"]) ?>
-            <?php echo $this->tag->linkto(["manage/activitystudent", "class" => "btn btn-success btn-sm","ผู้เข้าร่วม"]) ?></td>
-          </tr>
-
         <?php endforeach; ?>
       </tbody>
     </table>
