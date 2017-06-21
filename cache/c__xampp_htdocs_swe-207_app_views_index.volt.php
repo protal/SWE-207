@@ -67,12 +67,15 @@
 
 
                   </li>
+                  <?php if ($this->session->get('auth')['isadmin']) { ?>
                   <li class="nav-item">
                     <?= $this->tag->linkTo(['manage/teachersearch', 'จัดการอาจารย์', 'class' => 'nav-link']) ?>
                   </li>
                   <li class="nav-item">
                     <?= $this->tag->linkTo(['manage/studentsearch', 'จัดการนักศึกษา', 'class' => 'nav-link']) ?>
                   </li>
+                  <?php } ?>
+
                 </ul>
                 <ul class="navbar-nav my-lg-0">
                   <li class="nav-item dropdown">
