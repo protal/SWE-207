@@ -29,12 +29,37 @@
             <td class="text-center"><?=$act->Teacher->prefix?> <?=$act->Teacher->Firstname?> <?=$act->Teacher->Lastname?> </td>
             <td class="text-center">
               <?php echo $this->tag->linkto(["manage/activityedit/".$act->id, "class" => "btn btn-info btn-sm","แก้ไข"]) ?>
-              <?php echo $this->tag->linkto(["manage/activitystudent/".$act->id, "class" => "btn btn-success btn-sm","ผู้เข้าร่วม (".JoinActivity::find(["conditions"=>"activity_id = ".$act->id." and joined = 1"])->count()."/".$act->JoinActivity->count().") "]) ?>
               <?php echo $this->tag->linkto(["manage/activitydelete/".$act->id, "class" => "btn btn-danger btn-sm","ลบ"]) ?>
+              <?php if ($this->session->get('auth')['id']==$act->teacher_id): ?>
+                <?php echo $this->tag->linkto(["manage/activitystudent/".$act->id, "class" => "btn btn-success btn-sm","ผู้เข้าร่วม (".JoinActivity::find(["conditions"=>"activity_id = ".$act->id." and joined = 1"])->count()."/".$act->JoinActivity->count().") "]) ?>
+              <?php endif; ?>
             </td>
           </tr>
         <?php endforeach; ?>
       </tbody>
     </table>
+  </div>
+  <div style="width:100%;">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item">
+          <?php echo $this->tag->linkto(["manage/teachersearch".(isset($s)?"/?s={$s}":""), "class" => "page-link","< หน้าแรก"]) ?>
+        </li>
+        <?php if ($page->before != $page->current): ?>
+        <li class="page-item">
+          <?php echo $this->tag->linkto(["manage/teachersearch/?".(isset($s)?"s={$s}&":"")."page=".$page->before, "class" => "page-link",$page->before]) ?>
+        </li>
+        <?php endif; ?>
+        <li class="page-item disabled"><a class="page-link" href="#"><?=$page->current?></a></li>
+        <?php if ($page->next != $page->current && $page->next > 0 ): ?>
+        <li class="page-item">
+          <?php echo $this->tag->linkto(["manage/teachersearch/?".(isset($s)?"s={$s}&":"")."page=".$page->next, "class" => "page-link",$page->next]) ?>
+        </li>
+        <?php endif; ?>
+        <li class="page-item">
+          <?php echo $this->tag->linkto(["manage/teachersearch/?".(isset($s)?"s={$s}&":"")."page=".$page->last, "class" => "page-link","สุดท้าย >>"]) ?>
+        </li>
+      </ul>
+    </nav>
   </div>
 </div>
