@@ -267,7 +267,7 @@ class ManageController extends \Phalcon\Mvc\Controller
    public function activitystudentAction(){
 
    }
-   public function teachersearchAction(){      
+   public function teachersearchAction(){
      $numberPage = $this->request->getQuery("page", "int");
      $s = $this->request->get("s");
      $users = Users::query()
@@ -584,7 +584,7 @@ class ManageController extends \Phalcon\Mvc\Controller
        if($location->save())
        {
          //success
-         $this->flashSession->success("เพิ่มสถานที่ ". $location->name ." ห้อง ".$location->room." สำเร็จ");
+         $this->flashSession->success("เพิ่มสถานที่ ". $location->name ." รายละเอียด ".$location->room." สำเร็จ");
          return $this->response->redirect("manage/locationsearch");
        }
        else {
@@ -603,10 +603,10 @@ class ManageController extends \Phalcon\Mvc\Controller
      $location = location::findFirst($id);
      if($location->delete())
      {
-       $this->flashSession->success("ลบ ".$location->name." ห้อง ".$location->room." เรียบร้อยเเล้ว");
+       $this->flashSession->success("ลบ ".$location->name." รายละเอียด ".$location->room." เรียบร้อยเเล้ว");
      }
      else {
-       $this->flashSession->error("ลบห้องไม่สำเสร็จ");
+       $this->flashSession->error("ลบรายละเอียดไม่สำเสร็จ");
      }
      return $this->response->redirect("manage/locationsearch");
 
