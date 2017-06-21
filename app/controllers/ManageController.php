@@ -43,7 +43,7 @@ class ManageController extends \Phalcon\Mvc\Controller
        foreach ($yearofeducation->getMessages() as $message) {
           $ms .= $message;
         }
-       $this->flashSession->error("ไม่สำเร็จ  [". $ms ."]");
+       $this->flashSession->error("ไม่สำเร็จ  YOE[". $ms ."]");
        return $this->response->redirect("manage/activityadd");
      }
 
@@ -65,7 +65,7 @@ class ManageController extends \Phalcon\Mvc\Controller
        foreach ($yearofeducation->getMessages() as $message) {
           $ms .= $message;
         }
-       $this->flashSession->error("ไม่สำเร็จ  [". $ms ."]");
+       $this->flashSession->error("ไม่สำเร็จ  TYPE[". $ms ."]");
        return $this->response->redirect("manage/activityadd");
      }
 
