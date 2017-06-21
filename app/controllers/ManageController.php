@@ -156,7 +156,7 @@ class ManageController extends \Phalcon\Mvc\Controller
                $ms .= $message;
              }
             $this->flashSession->error("ไม่สำเร็จ  YOE[". $ms ."]");
-            return $this->response->redirect("manage/activityadd");
+            return $this->response->redirect("manage/activityedit/".$id);
           }
 
           //create_activity
@@ -177,7 +177,8 @@ class ManageController extends \Phalcon\Mvc\Controller
                $ms .= $message;
              }
             $this->flashSession->error("ไม่สำเร็จ  activity[". $ms ."]");
-            return $this->response->redirect("manage/activityadd");
+            return $this->response->redirect("manage/activityedit/".$id);
+
           }
 
          //  MAKE JOIN STUDENT
@@ -200,7 +201,7 @@ class ManageController extends \Phalcon\Mvc\Controller
            $join->user_id = $user['id'];
            $join->save();
          }
-         $this->flashSession->success("เพิ่มกิจกรรมสำเร็จ");
+         $this->flashSession->success("แก้ไขกิจกรรมสำเร็จ");
          return $this->response->redirect("manage/activitysearch");
 
 
@@ -266,7 +267,7 @@ class ManageController extends \Phalcon\Mvc\Controller
    public function activitystudentAction(){
 
    }
-   public function teachersearchAction(){
+   public function teachersearchAction(){      
      $numberPage = $this->request->getQuery("page", "int");
      $s = $this->request->get("s");
      $users = Users::query()
@@ -610,4 +611,18 @@ class ManageController extends \Phalcon\Mvc\Controller
      return $this->response->redirect("manage/locationsearch");
 
    }
+
+
+   private function imageCheck($extension)
+    {
+        $allowedTypes = [
+            'image/gif',
+            'image/jpg',
+            'image/png',
+            'image/bmp',
+            'image/jpeg'
+        ];
+
+        return in_array($extension, $allowedTypes);
+    }
 }
