@@ -2,7 +2,7 @@
 
 <div class="container">
         <div class="row">
-          <?php for ($i = 0 ; $i<5 ;$i++): ?>
+          <?php foreach ($page->items as $act): ?>
           <div class="col-sm-6 col-md-4 col-lg-4 mt-4">
               <div class="card card-inverse card-info">
 
@@ -11,12 +11,13 @@
                       <figure class="profile">
                           <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" width="30px" class="profile-avatar" alt="">
                       </figure>
-                      <h4 class="card-title mt-3">จัดอบรม .NET for Web-based Application สำหรับนักศึกษาชั้นปีที่ 2</h4>
+
+                      <h4 class="card-title mt-3"><?=$act->name; ?></h4>
                       <div class="meta">
-                          <a>อาจารย์ ดร.จิตติมา ศังขมณี</a>
+                          <a><?=$act->prefix; ?><?=$act->Firstname; ?><?=$act->Lastname; ?></a>
                       </div>
                       <div class="card-text">
-                        วันที่ 29-30 เม.ย. 2560
+                        <?=$act->StartDate; ?><?=$act->EndDate; ?>
                       </div>
                   </div>
                   <div class="card-footer">
@@ -25,7 +26,8 @@
                   </div>
               </div>
           </div>
-        <?php endfor; ?>
+        <?php endforeach; ?>
+
           <div class="col-sm-6 col-md-4 col-lg-4 mt-4">
               <div class="card card-inverse card-success">
 
