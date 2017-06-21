@@ -14,7 +14,7 @@
     </div>
     <div class="card-block">
       <blockquote class="card-blockquote">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+        <center><?php $activity = Activity::find(); echo "<h1>", count($activity), "</h1><h4> กิจกรรม</h4>"; ?></center>
       </blockquote>
     </div>
     <div class="card-footer text-muted text-right">
@@ -29,7 +29,7 @@
     </div>
     <div class="card-block">
       <blockquote class="card-blockquote">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+        <center><?php $user = Users::find("isteacher = '1'"); echo "<h1>", count($user), "</h1><h4> คน</h4>"; ?></center>
       </blockquote>
     </div>
     <div class="card-footer text-muted text-right">
@@ -44,7 +44,7 @@
     </div>
     <div class="card-block">
       <blockquote class="card-blockquote">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+        <center><?php $user = Users::find("isteacher = '0'"); echo "<h1>", count($user), "</h1><h4> คน</h4>"; ?></center>
       </blockquote>
     </div>
     <div class="card-footer text-muted text-right">
