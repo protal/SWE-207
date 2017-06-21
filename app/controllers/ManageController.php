@@ -44,6 +44,7 @@ class ManageController extends \Phalcon\Mvc\Controller
           $ms .= $message;
         }
        $this->flashSession->error("ไม่สำเร็จ  [". $ms ."]");
+       return $this->response->redirect("manage/activityadd");
      }
 
      //create_activity
@@ -65,6 +66,7 @@ class ManageController extends \Phalcon\Mvc\Controller
           $ms .= $message;
         }
        $this->flashSession->error("ไม่สำเร็จ  [". $ms ."]");
+       return $this->response->redirect("manage/activityadd");
      }
 
     //  MAKE JOIN STUDENT
@@ -84,13 +86,22 @@ class ManageController extends \Phalcon\Mvc\Controller
       $join->user_id = $user['id'];
       $join->save();
     }
-    var_dump($users_array);exit;
+    $this->flashSession->error("เพิ่มกิจกรรมสำเร็จ");
+    return $this->response->redirect("manage/activityadd");
 
    }
    public function activityupdateAction(){
 
    }
    public function activityaddAction(){
+     $types = Type::find()->toArray();
+     $types_arr = array();
+     foreach ($types as $type) {
+       $types_arr[$type['id']] = $type['name'];
+     }
+
+     $this->view->type_id  = $types_arr;
+     // var_dump($types_arr);exit;
 
    }
    public function activitydeleteAction(){

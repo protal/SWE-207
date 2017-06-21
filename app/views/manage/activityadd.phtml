@@ -48,12 +48,7 @@
                         <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-laptop"></i></div>
                         <?php echo $this->tag->selectStatic(
                           [
-                            "type_id", "class" => "form-control" ,
-                            [
-                              "1" => "กิจกรรมเสริมหลักสูตร",
-                              "2" => "กิจกรรมรายวิชา",
-                              "3" => "กิจกรรมนักศึกษา",
-                            ]
+                            "type_id", "class" => "form-control" ,  $type_id
                           ]
                         );?>
                     </div>
