@@ -44,6 +44,7 @@ class ManageController extends \Phalcon\Mvc\Controller
           $ms .= $message;
         }
        $this->flashSession->error("ไม่สำเร็จ  [". $ms ."]");
+       return $this->response->redirect("manage/activityadd");
      }
 
      //create_activity
@@ -65,6 +66,7 @@ class ManageController extends \Phalcon\Mvc\Controller
           $ms .= $message;
         }
        $this->flashSession->error("ไม่สำเร็จ  [". $ms ."]");
+       return $this->response->redirect("manage/activityadd");
      }
 
     //  MAKE JOIN STUDENT
@@ -84,13 +86,22 @@ class ManageController extends \Phalcon\Mvc\Controller
       $join->user_id = $user['id'];
       $join->save();
     }
-    var_dump($users_array);exit;
+    $this->flashSession->error("เพิ่มกิจกรรมสำเร็จ");
+    return $this->response->redirect("manage/activityadd");
 
    }
    public function activityupdateAction(){
 
    }
    public function activityaddAction(){
+     $types = Type::find()->toArray();
+     $types_arr = array();
+     foreach ($types as $type) {
+       $types_arr[$type['id']] = $type['name'];
+     }
+
+     $this->view->type_id  = $types_arr;
+     // var_dump($types_arr);exit;
 
    }
    public function activitydeleteAction(){
@@ -364,22 +375,83 @@ class ManageController extends \Phalcon\Mvc\Controller
    }
    public function locationsearchAction()
    {
+     $location = $this->request->get("s");
+     $loaction = $this->request->getQuery("page", "int");
+     $location = Location::query()
 
+     ->where("name like '%".$s."%'")
+     ->orwhere("room like '%".$s."%'")
+     ->execute();
+     $paginator = new Paginator([
+       'data' => $location,
+       'limit'=> 10,
+       'page' => $numberPage
+     ]);
+     $this->tag->setDefault("s", $s);
+     $this->view->page = $paginator->getPaginate();
+     $this->view->s = $s;
    }
-   public function locationeditAction()
+   public function locationeditAction($id)
    {
+     $location = Location::findFirst($id);
+     $this->tag->setDefault("name", $location->name);
+     $this->tag->setDefault("room", $location->room);
+     $this->view->id=$id;
+   }
+   public function locationUpdateAction($id){
+
+     $location = $this->request->getPost("name");
+     $location = Location::findFirst($id);
+     $location->name = $this->request->getPost("name");
+     $location->room = $this->request->getPost("room");
+     if($location->save())
+     {
+       $this->flashSession->success("แก้ไขข้อมูล ".$name." เรียร้อยเเล้ว");
+     }
+     else {
+       $this->flashSession->error("แก้ไม่สำเสร็จ");
+     }
+     return $this->response->redirect("manage/locationsearch/".$id);
 
    }
+
    public function locationaddAction()
    {
 
    }
    public function locationaddpostAction()
    {
+       $location = new Location;
+       $location->name = $this->request->getPost("name");
+       $location->room = $this->request->getPost("room");
+       if($location->save())
+       {
+         //success
+         $this->flashSession->success("เพิ่มสถานที่ ". $location->name ." ห้อง ".$location->room." สำเร็จ");
+         return $this->response->redirect("manage/locationsearch");
+       }
+       else {
+         $ms = "";
+         foreach ($location->getMessages() as $message) {
+            $ms .= $message;
+          }
+         $this->flashSession->error("ไม่สำเร็จ  [". $ms ."]");
+         return $this->response->redirect("manage/locationadd");
+       }
+     }
 
-   }
-   public function locationdeleteAction()
+   public function locationdeleteAction($id)
    {
+     $location = $this->request->getPost("Firstname");
+     $location = location::findFirst($id);
+     if($location->delete())
+     {
+       $this->flashSession->success("ลบ ".$location->name." ห้อง ".$location->room." เรียบร้อยเเล้ว");
+     }
+     else {
+       $this->flashSession->error("ลบห้องไม่สำเสร็จ");
+     }
+     return $this->response->redirect("manage/locationsearch");
 
    }
 }
