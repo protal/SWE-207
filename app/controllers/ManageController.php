@@ -307,7 +307,7 @@ class ManageController extends \Phalcon\Mvc\Controller
      exit();
    }
    public function teachersearchAction(){
-     if(!$this->session->get("auth")["isAdmin"])
+     if(!$this->session->get("auth")["isadmin"])
      {
        $this->flashSession->error("ไม่สามาถเข้าถึงหน้านี้ได้");
        return $this->response->redirect("manage");
@@ -433,7 +433,7 @@ class ManageController extends \Phalcon\Mvc\Controller
    }
     public function studentsearchAction(){
 
-      if(!$this->session->get("auth")["isAdmin"])
+      if(!$this->session->get("auth")["isadmin"])
       {
         $this->flashSession->error("ไม่สามาถเข้าถึงหน้านี้ได้");
         return $this->response->redirect("manage");
@@ -551,10 +551,12 @@ class ManageController extends \Phalcon\Mvc\Controller
    public function profileAction()
    {
      $user = Users::findFirst($this->session->get('auth')["id"]);
+     $this->tag->setDefault("prefix",$user->prefix);
      $this->tag->setDefault("username", $user->username);
      $this->tag->setDefault("Firstname", $user->Firstname);
      $this->tag->setDefault("Lastname", $user->Lastname);
      $this->tag->setDefault("Years", $user->Years);
+     $this->tag->setDefault("email", $user->email);
 
      $this->view->id  = $id;
    }
@@ -571,6 +573,8 @@ class ManageController extends \Phalcon\Mvc\Controller
        $user->Firstname = $this->request->getPost("Firstname");
        $user->Lastname = $this->request->getPost("Lastname");
        $user->Years = $this->request->getPost("Years");
+       $user->prefix =  $this->request->getPost("prefix");
+       $user->email =  $this->request->getPost("email");
        if($user->save())
        {
          $this->flashSession->success("แก้ไขข้อมูลเรียร้อยเเล้ว");
@@ -578,6 +582,8 @@ class ManageController extends \Phalcon\Mvc\Controller
        else {
          $this->flashSession->error("แก้ไม่สำเสร็จ");
        }
+
+       $this->session->set("auth", $user->toArray());
        return $this->response->redirect("manage/profile");
 
    }

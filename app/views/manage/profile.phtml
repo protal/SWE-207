@@ -91,6 +91,8 @@
             </div>
         </div>
 
+
+        <?php if ($this->session->get('auth')["isteacher"]): ?>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
                   <label for="exampleSelect1">คำนำหน้า</label>
@@ -114,6 +116,8 @@
                 </div>
             </div>
         </div>
+        <?php endif; ?>
+
 
         <div class="row">
             <div class="col-md-3 field-label-responsive">
@@ -157,6 +161,8 @@
             </div>
         </div>
 
+
+        <?php if ($this->session->get('auth')["isteacher"]): ?>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
                 <label for="email">อีเมล์</label>
@@ -177,6 +183,8 @@
                 </div>
             </div>
         </div>
+        <?php endif; ?>
+
 
         <div class="row">
             <div class="col-md-3 field-label-responsive">
