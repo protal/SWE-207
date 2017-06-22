@@ -20,8 +20,13 @@ class UserController extends \Phalcon\Mvc\Controller
       else {
         $this->view->user = $user;
       }
-
-      $activitys =  Activity::find(["create_id = ".$id." or teacher_id  = ".$id]);
+      if($user->isteacher)
+      {
+        $activitys =  Activity::find(["create_id = ".$id." or teacher_id  = ".$id]);
+      }
+      else {
+        $activitys = JoinActivity::find(["joined = 1 and user_id  = ".$user->id]);
+      }
       $this->view->activitys = $activitys;
     }
 }

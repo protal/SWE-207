@@ -17,11 +17,7 @@
                         <img src="<?=$this->url->get($act->Teacher->image)?>" width="30px" class="profile-avatar" alt="">
                     </figure>
 
-                    <h4 class="card-title mt-3">
-                      <a href="<?=$this->url->get('activity/show/'.$act->id)?>" style=" color: #000000;">
-                        <?=$act->name; ?>
-                      </a>
-                    </h4>
+                    <h4 class="card-title mt-3"><?=$act->name; ?></h4>
                     <div class="meta">
                         <a href="<?=$this->url->get('user/profile/'.$act->Teacher->id)?>"><?=$act->Teacher->prefix;?>&nbsp;&nbsp;<?=$act->Teacher->Firstname; ?>&nbsp;&nbsp;<?=$act->Teacher->Lastname; ?></a>
                     </div>
