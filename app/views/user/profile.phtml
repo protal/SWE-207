@@ -58,7 +58,7 @@
                     <figure class="profile">
                         <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" width="30px" class="profile-avatar" alt="">
                     </figure>
-                    <h4 class="card-title mt-3"><?=$activity->name?></h4>
+                    <h4 class="card-title mt-3"><a href="<?=$this->url->get('activity/show/'.$activity->id)?>"><?=$activity->name?></a></h4>
                     <div class="meta">
                         <a class="text-primary"><?=$activity->Teacher->prefix;?>&nbsp;&nbsp;<?=$activity->Teacher->Firstname; ?>&nbsp;&nbsp;<?=$activity->Teacher->Lastname; ?></a>
                     </div>
