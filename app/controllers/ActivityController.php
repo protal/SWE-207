@@ -1,4 +1,5 @@
 <?php
+use Phalcon\Paginator\Adapter\Model as Paginator;
 
 class ActivityController extends \Phalcon\Mvc\Controller
 {
@@ -7,8 +8,9 @@ class ActivityController extends \Phalcon\Mvc\Controller
     {
 
     }
-    public function showAction()
+    public function showAction($id)
     {
-      
+      $activity = Activity::findFirst($id);
+      $this->view->activity = $activity;
     }
 }
