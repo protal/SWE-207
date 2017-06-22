@@ -11,7 +11,7 @@ class ActivityController extends \Phalcon\Mvc\Controller
     public function showAction($id)
     {
       $numberPage = $this->request->getQuery("page", "int");
-      $s = $this->request->get("s" = "id");
+      $s = $this->request->get("s");
       $activity = Activity::query()
                 ->where("name like '%".$s."%'")
                 ->orwhere("Datail like '%".$s."%'")
