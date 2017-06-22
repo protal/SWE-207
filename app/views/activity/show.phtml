@@ -1,5 +1,4 @@
   <div class="container">
-    <?php foreach ($page->items as $act): ?>
         <div class="card mt-4">
             <div class="crop">
               <img class="card-img-top " src="<?=$this->url->get('img/activity/dotnet.jpg') ?>">
@@ -8,9 +7,9 @@
                 <figure class="profile">
                     <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" width="30px" class="profile-avatar" alt="">
                 </figure>
-                <h4 class="card-title mt-3"><?=$act->name; ?></h4>
+                <h4 class="card-title mt-3"><?=$activity->name; ?></h4>
                 <div class="meta">
-                  <a><?=$act->Teacher->prefix;?>&nbsp;&nbsp;<?=$act->Teacher->Firstname; ?>&nbsp;&nbsp;<?=$act->Teacher->Lastname; ?></a>
+                  <a><?=$activity->Teacher->prefix;?>&nbsp;&nbsp;<?=$activity->Teacher->Firstname; ?>&nbsp;&nbsp;<?=$activity->Teacher->Lastname; ?></a>
                 </div>
                 <div class="card-text">
                   <ul class="mbm_social">
@@ -36,7 +35,7 @@
                   		</a>
                   	</li>
                   </ul>
-                    <?=$act->Datail; ?>
+                    <?=$activity->Datail; ?>
                 </div>
             </div>
             <div class="card-footer">
@@ -71,6 +70,5 @@
             </div>
         </div>
     </div>
-  <?php endforeach; ?>
 
 </div>
