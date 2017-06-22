@@ -34,7 +34,13 @@
                 </form>
                 {% endif %}
                 &nbsp;
+                {% if session.get('auth') %}
+                {{ link_to('auth/login','จัดการระบบ', 'class': 'btn btn-outline-primary btn-secondary pull-right') }}
+
+                {% else %}
                 {{ link_to('auth/login','เข้าสู่ระบบ', 'class': 'btn btn-outline-success btn-secondary pull-right') }}
+
+                {% endif %}
             </div>
           </div>
         </nav>
@@ -73,6 +79,9 @@
                     {{ link_to('manage/studentsearch','จัดการนักศึกษา', 'class': 'nav-link') }}
                   </li>
                   {% endif %}
+                  <li class="nav-item">
+                    {{ link_to('','หน้าแรก', 'class': 'nav-link') }}
+                  </li>
 
                 </ul>
                 <ul class="navbar-nav my-lg-0">

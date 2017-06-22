@@ -2,7 +2,14 @@
 use Phalcon\Paginator\Adapter\Model as Paginator;
 class ManageController extends \Phalcon\Mvc\Controller
 {
-
+    public function initialize()
+    {
+      if(!$this->session->has("auth"))
+      {
+        $this->flashSession->error("ไม่สามารถเข้าหน้านี้ได้  กรุณาเข้าสู่ระบบ");
+        return $this->response->redirect("auth/login");
+      }
+    }
     public function indexAction()
     {
 
@@ -573,7 +580,6 @@ class ManageController extends \Phalcon\Mvc\Controller
        $user->password = $this->security->hash($this->request->getPost("password"));
        $user->Firstname = $this->request->getPost("Firstname");
        $user->Lastname = $this->request->getPost("Lastname");
-       $user->Years = $this->request->getPost("Years");
        $user->prefix =  $this->request->getPost("prefix");
        $user->email =  $this->request->getPost("email");
        if($user->save())
