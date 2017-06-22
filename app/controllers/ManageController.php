@@ -2,7 +2,14 @@
 use Phalcon\Paginator\Adapter\Model as Paginator;
 class ManageController extends \Phalcon\Mvc\Controller
 {
-
+    public function initialize()
+    {
+      if(!$this->session->has("auth"))
+      {
+        $this->flashSession->error("ไม่สามารถเข้าหน้านี้ได้  กรุณาเข้าสู่ระบบ");
+        return $this->response->redirect("auth/login");
+      }
+    }
     public function indexAction()
     {
 
