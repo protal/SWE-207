@@ -573,7 +573,6 @@ class ManageController extends \Phalcon\Mvc\Controller
        $user->password = $this->security->hash($this->request->getPost("password"));
        $user->Firstname = $this->request->getPost("Firstname");
        $user->Lastname = $this->request->getPost("Lastname");
-       $user->Years = $this->request->getPost("Years");
        $user->prefix =  $this->request->getPost("prefix");
        $user->email =  $this->request->getPost("email");
        if($user->save())
