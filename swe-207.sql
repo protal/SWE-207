@@ -2,10 +2,10 @@
 -- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 22, 2017 at 07:49 PM
--- Server version: 10.1.22-MariaDB
--- PHP Version: 7.1.4
+-- Host: localhost
+-- Generation Time: Jun 22, 2017 at 09:12 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -564,7 +564,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `prefix`, `username`, `password`, `isteacher`, `isadmin`, `Firstname`, `Lastname`, `email`, `Years`, `image`) VALUES
-(1, NULL, '58122516', '$2y$08$PZQnZfgorBljayY99TqaVuUBc3FGYy8hGvfji1m7wJ6wp/dAAZBqm', 0, 0, 'หฤษฎ์', 'คงทอง', NULL, NULL, 'img/user/1.jpg'),
+(1, NULL, '58122516', '$2y$08$NzBQAiS9sH4xNHIYxWZcyemRlg/h9DTTHgjhmPxRYKMBiRxbb.Oei', 0, 0, 'หฤษฎ์', 'คงทอง', NULL, 2558, 'img/user/1.jpg'),
 (2, NULL, '58111410', '$2y$08$L2FYTnM1Mmlza0xNWmNodOfKDaFyFsdgERJLTupmAwe/EC4iXSBKS', 0, 0, 'โกเมศ', 'รักชุม', NULL, 2558, ''),
 (3, NULL, '58112418', '$2y$08$T255c2tldnMzSEcycllpa.HD5kP9IjrQVlWYQNzU880HI1OcZW7Ya', 0, 0, 'ฉลองราช ', 'ประสิทธิวงศ์', NULL, 2558, ''),
 (4, NULL, '58112970', '$2y$08$WEhHQ29IUkh1bnozdEZlRuXfGIN9mrk8TXm2hTgQeFZkZaKsxdALa', 0, 0, 'ชิดชนก', 'ยีสมัน', NULL, 2558, 'img/user/4.jpg'),
