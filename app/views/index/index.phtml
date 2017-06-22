@@ -3,8 +3,15 @@
     <div class="row">
       <?php foreach ($page->items as $act): ?>
         <?php
+<<<<<<< HEAD
           if($act->image == null)
               $act->image = "img/inf.png";
+=======
+            if($act->image == null)
+              $act->image = "img/inf.png";
+            if($act->Teacher->image == null)
+              $act->Teacher->image = "img/unknown.gif";
+>>>>>>> 2727c9266e3593d376045f0c3d6dd227213ac235
          ?>
         <div class="col-sm-6 col-md-4 col-lg-4 mt-4">
             <div class="card">
@@ -12,7 +19,7 @@
                 <img class="card-img-top" src="<?=$this->url->get($act->image) ?>">
                 <div class="card-block">
                     <figure class="profile">
-                        <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" width="30px" class="profile-avatar" alt="">
+                        <img src="<?=$this->url->get($act->Teacher->image)?>" width="30px" class="profile-avatar" alt="">
                     </figure>
 
                     <h4 class="card-title mt-3"><?=$act->name; ?></h4>

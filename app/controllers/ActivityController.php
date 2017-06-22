@@ -19,6 +19,8 @@ class ActivityController extends \Phalcon\Mvc\Controller
       else {
         if($activity->image == null)
           $activity->image = "img/inf.png";
+        if($activity->Teacher->image == null)
+          $activity->Teacher->image = "img/unknown.gif";
         $this->view->activity = $activity;
       }
     }
