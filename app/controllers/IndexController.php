@@ -13,7 +13,7 @@ class IndexController extends ControllerBase
                 ->execute();
       $paginator = new Paginator([
         'data' => $activity,
-        'limit'=> 6,
+        'limit'=> 12,
         'page' => $numberPage
       ]);
 
