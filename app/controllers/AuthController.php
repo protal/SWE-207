@@ -17,7 +17,7 @@ class AuthController extends \Phalcon\Mvc\Controller
     public function logoutAction()
     {
       $this->session->destroy();
-      $this->flashSession->success("ออกจาระบบสำเร็จ");
+      $this->flashSession->success("ออกจากระบบสำเร็จ");
       return $this->response->redirect("auth/login");
     }
     public function checkLoginAction()
