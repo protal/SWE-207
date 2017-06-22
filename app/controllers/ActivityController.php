@@ -17,6 +17,8 @@ class ActivityController extends \Phalcon\Mvc\Controller
         return $this->response->redirect("");
       }
       else {
+        if($activity->image == null)
+          $activity->image = "img/inf.png";
         $this->view->activity = $activity;
       }
     }

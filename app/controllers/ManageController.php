@@ -14,7 +14,7 @@ class ManageController extends \Phalcon\Mvc\Controller
       $activity = Activity::query()
                 ->where("name like '%".$s."%'")
                 ->orwhere("Datail like '%".$s."%'")
-                ->order("id ASC")
+                ->order("id DESC")
                 ->execute();
       $paginator = new Paginator([
         'data' => $activity,
@@ -346,7 +346,7 @@ class ManageController extends \Phalcon\Mvc\Controller
      $username = $this->request->getPost("username");
      $user = Users::findFirst(
        [
-          "username = '" . $username . "' and id != ".$id.""
+          " id != ".$id." and username = '" . $username . "'"
        ]
      );
      if ($user)
@@ -355,7 +355,7 @@ class ManageController extends \Phalcon\Mvc\Controller
        return $this->response->redirect("manage/teachersearch");
      }
      else {
-     $user = new Users;
+     $user = Users::findFirst($id);
      $user->username = $this->request->getPost("username");
      $user->password = $this->security->hash($this->request->getPost("password"));
      $user->prefix = $this->request->getPost("prefix");

@@ -18,7 +18,7 @@ class AuthController extends \Phalcon\Mvc\Controller
     {
       $this->session->destroy();
       $this->flashSession->success("ออกจากระบบสำเร็จ");
-      return $this->response->redirect("auth/login");
+      return $this->response->redirect("");
     }
     public function checkLoginAction()
     {
@@ -35,7 +35,7 @@ class AuthController extends \Phalcon\Mvc\Controller
       if ($user) {
         if ($this->security->checkHash($password, $user->password)) {
           $this->session->set("auth", $user->toArray());
-          $this->flashSession->success("ยินดีต้อนรับ คุณ ".$user->Firstname." เข้าสู่ระบบ");
+          $this->flashSession->success("ยินดีต้อนรับ ".$user->prefix.$user->Firstname." เข้าสู่ระบบ");
           return $this->response->redirect("manage/index");
         }
         else{
