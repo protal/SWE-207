@@ -3,9 +3,9 @@
     <div class="row">
       <?php foreach ($page->items as $act): ?>
         <div class="col-sm-6 col-md-4 col-lg-4 mt-4">
-            <div class="card card-inverse card-info">
+            <div class="card">
 
-                <img class="card-img-top" src="<?=$this->url->get('img/activity/dotnet.jpg') ?>">
+                <img class="card-img-top" src="<?=$this->url->get('img/activity/'.$act->id.'.jpg') ?>">
                 <div class="card-block">
                     <figure class="profile">
                         <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" width="30px" class="profile-avatar" alt="">
@@ -16,14 +16,39 @@
                         <a><?=$act->Teacher->prefix;?>&nbsp;&nbsp;<?=$act->Teacher->Firstname; ?>&nbsp;&nbsp;<?=$act->Teacher->Lastname; ?></a>
                     </div>
                     <div class="card-text">
-                      วันเริ่มกิจกรรม : <?=$act->StartDate; ?> <br> วันสิ้นสุดกิจกรรม : <?=$act->EndDate; ?>
+
                     </div>
                 </div>
                 <div class="card-footer">
-                    <small>Last updated 3 mins ago</small>
+                    <small><?=date("d m Y",strtotime($act->StartDate))?> - <?=date("d m Y",strtotime($act->EndDate))?></small>
                     <?= $this->tag->linkTo(["activity/show/".$act->id, "เพิ่มเติม", "class" => "btn btn-secondary float-right btn-sm"]) ?>
                 </div>
             </div>
         </div>
     <?php endforeach; ?>
+    </div>
+    <br>
+    <div style="width:100%;">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <?php echo $this->tag->linkto(["".(isset($s)?"/?s={$s}":""), "class" => "page-link","< หน้าแรก"]) ?>
+          </li>
+          <?php if ($page->before != $page->current): ?>
+          <li class="page-item">
+            <?php echo $this->tag->linkto(["?".(isset($s)?"s={$s}&":"")."page=".$page->before, "class" => "page-link",$page->before]) ?>
+          </li>
+          <?php endif; ?>
+          <li class="page-item disabled"><a class="page-link" href="#"><?=$page->current?></a></li>
+          <?php if ($page->next != $page->current && $page->next > 0 ): ?>
+          <li class="page-item">
+            <?php echo $this->tag->linkto(["?".(isset($s)?"s={$s}&":"")."page=".$page->next, "class" => "page-link",$page->next]) ?>
+          </li>
+          <?php endif; ?>
+          <li class="page-item">
+            <?php echo $this->tag->linkto(["?".(isset($s)?"s={$s}&":"")."page=".$page->last, "class" => "page-link","สุดท้าย >>"]) ?>
+          </li>
+        </ul>
+      </nav>
+    </div>
 </div>

@@ -346,7 +346,7 @@ class ManageController extends \Phalcon\Mvc\Controller
      $username = $this->request->getPost("username");
      $user = Users::findFirst(
        [
-          "username = '" . $username . "'"
+          "username = '" . $username . "' and id != ".$id.""
        ]
      );
      if ($user)
@@ -362,6 +362,7 @@ class ManageController extends \Phalcon\Mvc\Controller
      $user->Firstname = $this->request->getPost("Firstname");
      $user->Lastname = $this->request->getPost("Lastname");
      $user->email	= $this->request->getPost("email");
+     $user->isAdmin	= $this->request->getPost("isAdmin");
      if($user->save())
      {
        $this->flashSession->success("แก้ไขข้อมูล ".$name." เรียร้อยเเล้ว");

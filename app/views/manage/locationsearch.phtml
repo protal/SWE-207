@@ -33,5 +33,28 @@
         <?php endforeach; ?>
       </tbody>
     </table>
+    <div style="width:100%;">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <?php echo $this->tag->linkto(["manage/locationsearch".(isset($s)?"/?s={$s}":""), "class" => "page-link","< หน้าแรก"]) ?>
+          </li>
+          <?php if ($page->before != $page->current): ?>
+          <li class="page-item">
+            <?php echo $this->tag->linkto(["manage/locationsearch/?".(isset($s)?"s={$s}&":"")."page=".$page->before, "class" => "page-link",$page->before]) ?>
+          </li>
+          <?php endif; ?>
+          <li class="page-item disabled"><a class="page-link" href="#"><?=$page->current?></a></li>
+          <?php if ($page->next != $page->current && $page->next > 0 ): ?>
+          <li class="page-item">
+            <?php echo $this->tag->linkto(["manage/locationsearch/?".(isset($s)?"s={$s}&":"")."page=".$page->next, "class" => "page-link",$page->next]) ?>
+          </li>
+          <?php endif; ?>
+          <li class="page-item">
+            <?php echo $this->tag->linkto(["manage/locationsearch/?".(isset($s)?"s={$s}&":"")."page=".$page->last, "class" => "page-link","สุดท้าย >>"]) ?>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </div>
