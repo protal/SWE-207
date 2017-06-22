@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 22, 2017 at 04:58 AM
+-- Host: localhost
+-- Generation Time: Jun 22, 2017 at 05:32 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -28,6 +30,7 @@ USE `swe-207`;
 -- Table structure for table `activity`
 --
 
+DROP TABLE IF EXISTS `activity`;
 CREATE TABLE `activity` (
   `id` int(11) NOT NULL,
   `name` text COLLATE utf8_unicode_ci NOT NULL,
@@ -48,7 +51,6 @@ CREATE TABLE `activity` (
 --
 
 INSERT INTO `activity` (`id`, `name`, `Datail`, `StartDate`, `EndDate`, `teacher_id`, `image`, `yearofeducation_semester`, `yearofeducation_year`, `location_id`, `type_id`, `create_id`) VALUES
-(18, 'test', 'test', '2017-06-09 00:00:00', '2017-06-24 00:00:00', 1, NULL, 2, 1, 1, 1, 1),
 (19, 'บูมพี่บัณฑิต', 'ร่วมแสดงความยินดีกับพี่บัณฑิต หลักสูตรวิศวกรรมซอฟต์แวร์รุ่นที่1', '2016-10-04 00:00:00', '2016-10-04 00:00:00', 84, NULL, 1, 2558, 2, 3, 17),
 (20, 'Meeting', 'กิจกรรมตอนรับน้องปี1', '2016-08-28 00:00:00', '2016-08-28 00:00:00', 84, NULL, 1, 2558, 3, 3, 17),
 (21, 'การแข่งขันกีฬา ITM ครั้งที่18', 'กิจกรรมสานสัมพันธ์ระหว่างมหาวิทยาลัย', '2015-09-04 00:00:00', '2015-09-06 00:00:00', 87, NULL, 2, 2558, 4, 3, 17),
@@ -63,6 +65,7 @@ INSERT INTO `activity` (`id`, `name`, `Datail`, `StartDate`, `EndDate`, `teacher
 -- Table structure for table `detailactivity`
 --
 
+DROP TABLE IF EXISTS `detailactivity`;
 CREATE TABLE `detailactivity` (
   `user_id` int(11) NOT NULL,
   `activity_id` int(11) NOT NULL
@@ -74,6 +77,7 @@ CREATE TABLE `detailactivity` (
 -- Table structure for table `joinactivity`
 --
 
+DROP TABLE IF EXISTS `joinactivity`;
 CREATE TABLE `joinactivity` (
   `activity_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -85,46 +89,6 @@ CREATE TABLE `joinactivity` (
 --
 
 INSERT INTO `joinactivity` (`activity_id`, `user_id`, `joined`) VALUES
-(18, 1, 0),
-(18, 2, 0),
-(18, 3, 0),
-(18, 4, 0),
-(18, 5, 0),
-(18, 6, 0),
-(18, 7, 0),
-(18, 8, 0),
-(18, 9, 0),
-(18, 10, 0),
-(18, 11, 0),
-(18, 12, 0),
-(18, 13, 0),
-(18, 14, 0),
-(18, 15, 0),
-(18, 16, 0),
-(18, 17, 0),
-(18, 18, 0),
-(18, 19, 0),
-(18, 20, 0),
-(18, 21, 0),
-(18, 22, 0),
-(18, 23, 0),
-(18, 24, 0),
-(18, 25, 0),
-(18, 26, 0),
-(18, 27, 0),
-(18, 28, 0),
-(18, 29, 0),
-(18, 30, 0),
-(18, 31, 0),
-(18, 32, 0),
-(18, 33, 0),
-(18, 34, 0),
-(18, 35, 0),
-(18, 36, 0),
-(18, 37, 0),
-(18, 38, 0),
-(18, 39, 0),
-(18, 40, 0),
 (19, 1, 0),
 (19, 2, 0),
 (19, 3, 0),
@@ -533,6 +497,7 @@ INSERT INTO `joinactivity` (`activity_id`, `user_id`, `joined`) VALUES
 -- Table structure for table `location`
 --
 
+DROP TABLE IF EXISTS `location`;
 CREATE TABLE `location` (
   `id` int(11) NOT NULL,
   `name` text COLLATE utf8_unicode_ci NOT NULL,
@@ -544,7 +509,6 @@ CREATE TABLE `location` (
 --
 
 INSERT INTO `location` (`id`, `name`, `room`) VALUES
-(1, 'test name', 'test room'),
 (2, 'อาคารเรียนรวม7', 'บริเวณด้านหลังอาคารเรียนรวม7'),
 (3, 'โรงอาหาร4', 'บริเวณด้านในโรงอาหาร4'),
 (4, 'มหาวิทยาลัยสงขลานครินทร์', '15 ถนน กาญจนวนิช ซอย 7 ตำบล คอหงส์ อำเภอ หาดใหญ่ สงขลา 90110'),
@@ -559,6 +523,7 @@ INSERT INTO `location` (`id`, `name`, `room`) VALUES
 -- Table structure for table `type`
 --
 
+DROP TABLE IF EXISTS `type`;
 CREATE TABLE `type` (
   `id` int(11) NOT NULL,
   `name` text COLLATE utf8_unicode_ci NOT NULL
@@ -579,6 +544,7 @@ INSERT INTO `type` (`id`, `name`) VALUES
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `prefix` text COLLATE utf8_unicode_ci,
@@ -597,7 +563,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `prefix`, `username`, `password`, `isteacher`, `isadmin`, `Firstname`, `Lastname`, `email`, `Years`) VALUES
-(1, NULL, '58122516', '$2y$08$ZxsaOiUYkwaZFOwhQTRt0uWkyNDB0v6HGrz2Tm0MqQ.Y2MbAJvhLq', 0, 0, 'หฤษฎ์', 'คงทอง', NULL, 2558),
+(1, NULL, '58122516', '$2y$08$PZQnZfgorBljayY99TqaVuUBc3FGYy8hGvfji1m7wJ6wp/dAAZBqm', 0, 0, 'หฤษฎ์', 'คงทอง', NULL, NULL),
 (2, NULL, '58111410', '$2y$08$L2FYTnM1Mmlza0xNWmNodOfKDaFyFsdgERJLTupmAwe/EC4iXSBKS', 0, 0, 'โกเมศ', 'รักชุม', NULL, 2558),
 (3, NULL, '58112418', '$2y$08$T255c2tldnMzSEcycllpa.HD5kP9IjrQVlWYQNzU880HI1OcZW7Ya', 0, 0, 'ฉลองราช ', 'ประสิทธิวงศ์', NULL, 2558),
 (4, NULL, '58112970', '$2y$08$WEhHQ29IUkh1bnozdEZlRuXfGIN9mrk8TXm2hTgQeFZkZaKsxdALa', 0, 0, 'ชิดชนก', 'ยีสมัน', NULL, 2558),
@@ -671,7 +637,7 @@ INSERT INTO `users` (`id`, `prefix`, `username`, `password`, `isteacher`, `isadm
 (72, NULL, '56149214', '$2y$08$ZnFvZ0MxaGowYloxeHhZVeHKD21xCEvnvFMd3IE0qjKWYLv1/N2V.', 0, 0, 'สามารถ', 'นิลพงษ์', NULL, 2556),
 (73, NULL, '56161177', '$2y$08$SkpXSWpUOTZpclF5eXR6eecCc7J7sYrN8PFn0glSKIaBxoFu4k/sK', 0, 0, ' นายปรัชญา ยีขะเด', ' นายปรัชญา ยีขะเด', NULL, 2556),
 (74, NULL, '56162712', '$2y$08$VzV6VnE0cTZIRG13dkVuZ.YQAOjnqR10r5JHg8Bur3oRa3B9zrdGi', 0, 0, 'อัศม์เดช', 'โส้สมัน', NULL, 2556),
-(84, 'ผู้ช่วยศาสตราจารย์', 'admin1', '$2y$08$Z21OOGZmZVNlcklLdmVla.RT8lDMmZS/dtF8NwpeQNHOT05a8HUhq', 1, 1, 'ฐิมาพร', 'เพชรแก้ว', 'pthimapo@wu.ac.th', NULL),
+(84, 'ผู้ช่วยศาสตราจารย ดร.', 'admin1', '$2y$08$EcAXeyCFclungYYtOmSfOedJtYfYTK3FwKwHkz3Pk.i1wnZSaUmsW', 1, 1, 'ฐิมาพร', 'เพชรแก้ว', 'pthimapo@wu.ac.th', NULL),
 (85, 'ผู้ช่วยศาสตราจารย์', 'admin2', '$2y$08$MVhtbTBxN0tiOGlvYUNFKu5zKvj.Ac1NVJnMAKKt8FoeZZbKrpsKa', 1, 1, 'เยาวเรศ', 'ศิริสถิตย์กุล', 'syaowara@wu.ac.th', NULL),
 (86, 'ผู้ช่วยศาสตราจารย์', 'admin3', '$2y$08$VUdOb2VTK2FBb2RpS1hCaODxFo6Oyzegf2QSr/k9e6EB7t2WZDM2a', 1, 0, 'อุหมาด', 'หมัดอาด้ำ', 'muhamard@wu.ac.th', NULL),
 (87, 'อาจารย์ ดร.', 'admin4', '$2y$08$cVhHMzRUU3U1bGFKTTEra.Ap1dW2GaClnyjL089/J4oVt.Fh9nuvS', 1, 1, 'พุทธิพร', 'ธนธรรมเมธี', 'putthiporn.th@wu.ac.th', NULL),
@@ -685,6 +651,7 @@ INSERT INTO `users` (`id`, `prefix`, `username`, `password`, `isteacher`, `isadm
 -- Table structure for table `yearofeducation`
 --
 
+DROP TABLE IF EXISTS `yearofeducation`;
 CREATE TABLE `yearofeducation` (
   `semester` int(11) NOT NULL,
   `Year` int(11) NOT NULL,
@@ -813,6 +780,7 @@ ALTER TABLE `detailactivity`
 ALTER TABLE `joinactivity`
   ADD CONSTRAINT `joinactivity_ibfk_1` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`id`),
   ADD CONSTRAINT `joinactivity_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
