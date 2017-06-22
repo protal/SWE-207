@@ -78,7 +78,7 @@
                 <ul class="navbar-nav my-lg-0">
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      {{ session.get("auth")['Firstname']}} {{ session.get("auth")['Lastname']}}
+                      {{ session.get("auth")['prefix']}} {{ session.get("auth")['Firstname']}} {{ session.get("auth")['Lastname']}}
                     </a>
                     <div class="dropdown-menu" style="float:right;" aria-labelledby="navbarDropdownMenuLink">
                       {{ link_to('manage/profile','แก้ไขข้อมูลส่วนตัว' , "class": "dropdown-item") }}

@@ -1,7 +1,7 @@
   <div class="container">
         <div class="card mt-4">
             <div class="crop">
-              <img class="card-img-top " src="<?=$this->url->get('img/activity/dotnet.jpg') ?>">
+              <img class="card-img-top " src="<?=$this->url->get($activity->image) ?>">
             </div>
             <div class="card-block">
                 <figure class="profile">
@@ -39,8 +39,8 @@
                 </div>
             </div>
             <div class="card-footer">
-                <small>Last updated 3 mins ago</small>
-                <button type="button" class="btn btn-sm btn-outline-primary float-right" data-toggle="modal" data-target="#myModal">จำนวนผู้เข้าร่วม 13/21 คน</button>
+                <small><?=date("วันที่ d เดือน m  ปี Y",strtotime($activity->StartDate))?> ถึง <?=date("วันที่ d เดือน m  ปี Y",strtotime($activity->EndDate))?></small>
+                <button type="button" class="btn btn-sm btn-outline-primary float-right" data-toggle="modal" data-target="#myModal">จำนวนผู้เข้าร่วม <?=JoinActivity::find(["conditions"=>"activity_id = ".$activity->id." and joined = 1"])->count()?>/<?=$activity->JoinActivity->count()?> คน</button>
 
 
 

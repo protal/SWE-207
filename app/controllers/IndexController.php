@@ -9,8 +9,10 @@ class IndexController extends ControllerBase
       $s = $this->request->get("s");
       $activity = Activity::query()
                 ->where("name like '%".$s."%'")
-
+                ->order("id DESC")
                 ->execute();
+
+
       $paginator = new Paginator([
         'data' => $activity,
         'limit'=> 6,

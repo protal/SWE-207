@@ -78,7 +78,7 @@
                 <ul class="navbar-nav my-lg-0">
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <?= $this->session->get('auth')['Firstname'] ?> <?= $this->session->get('auth')['Lastname'] ?>
+                      <?= $this->session->get('auth')['prefix'] ?> <?= $this->session->get('auth')['Firstname'] ?> <?= $this->session->get('auth')['Lastname'] ?>
                     </a>
                     <div class="dropdown-menu" style="float:right;" aria-labelledby="navbarDropdownMenuLink">
                       <?= $this->tag->linkTo(['manage/profile', 'แก้ไขข้อมูลส่วนตัว', 'class' => 'dropdown-item']) ?>

@@ -14,7 +14,7 @@ class ManageController extends \Phalcon\Mvc\Controller
       $activity = Activity::query()
                 ->where("name like '%".$s."%'")
                 ->orwhere("Datail like '%".$s."%'")
-                ->order("id ASC")
+                ->order("id DESC")
                 ->execute();
       $paginator = new Paginator([
         'data' => $activity,
@@ -346,7 +346,7 @@ class ManageController extends \Phalcon\Mvc\Controller
      $username = $this->request->getPost("username");
      $user = Users::findFirst(
        [
-          "username = '" . $username . "'"
+          " id != ".$id." and username = '" . $username . "'"
        ]
      );
      if ($user)
@@ -355,13 +355,14 @@ class ManageController extends \Phalcon\Mvc\Controller
        return $this->response->redirect("manage/teachersearch");
      }
      else {
-     $user = new Users;
+     $user = Users::findFirst($id);
      $user->username = $this->request->getPost("username");
      $user->password = $this->security->hash($this->request->getPost("password"));
      $user->prefix = $this->request->getPost("prefix");
      $user->Firstname = $this->request->getPost("Firstname");
      $user->Lastname = $this->request->getPost("Lastname");
      $user->email	= $this->request->getPost("email");
+     $user->isAdmin	= $this->request->getPost("isAdmin");
      if($user->save())
      {
        $this->flashSession->success("แก้ไขข้อมูล ".$name." เรียร้อยเเล้ว");
