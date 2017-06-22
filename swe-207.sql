@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 22, 2017 at 05:32 PM
+-- Generation Time: Jun 22, 2017 at 07:31 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -51,13 +51,13 @@ CREATE TABLE `activity` (
 --
 
 INSERT INTO `activity` (`id`, `name`, `Datail`, `StartDate`, `EndDate`, `teacher_id`, `image`, `yearofeducation_semester`, `yearofeducation_year`, `location_id`, `type_id`, `create_id`) VALUES
-(19, 'บูมพี่บัณฑิต', 'ร่วมแสดงความยินดีกับพี่บัณฑิต หลักสูตรวิศวกรรมซอฟต์แวร์รุ่นที่1', '2016-10-04 00:00:00', '2016-10-04 00:00:00', 84, NULL, 1, 2558, 2, 3, 17),
-(20, 'Meeting', 'กิจกรรมตอนรับน้องปี1', '2016-08-28 00:00:00', '2016-08-28 00:00:00', 84, NULL, 1, 2558, 3, 3, 17),
-(21, 'การแข่งขันกีฬา ITM ครั้งที่18', 'กิจกรรมสานสัมพันธ์ระหว่างมหาวิทยาลัย', '2015-09-04 00:00:00', '2015-09-06 00:00:00', 87, NULL, 2, 2558, 4, 3, 17),
-(22, 'การแข่งขันกีฬา ITM ครั้งที่19', 'กิจกรรมสานสัมพันธ์ระหว่างมหาวิทยาลัย', '2016-06-22 00:00:00', '2016-06-24 00:00:00', 87, NULL, 2, 2559, 5, 3, 17),
-(23, 'รับน้องทะเล', 'กิจกรรมรับน้องปี1 หลักสูตรวิศวกรรมซอฟต์แวร์รุ่น5 ', '2017-04-01 00:00:00', '2017-04-02 00:00:00', 84, NULL, 3, 2559, 6, 1, 17),
-(24, 'รับน้องทะเล', 'กิจกรรมรับน้องทะเล หลักสูตรวิศวกรรมซอฟต์แวร์รุ่น4', '2015-06-25 00:00:00', '2015-06-25 00:00:00', 87, NULL, 3, 2558, 7, 3, 17),
-(25, 'ค่ายScrum', 'กิจกรรมเสริมทักษะการเรียนรู้', '2017-04-12 00:00:00', '2017-04-12 00:00:00', 84, NULL, 3, 2559, 8, 1, 17);
+(19, 'บูมพี่บัณฑิต', 'ร่วมแสดงความยินดีกับพี่บัณฑิต หลักสูตรวิศวกรรมซอฟต์แวร์รุ่นที่1', '2016-10-04 00:00:00', '2016-10-04 00:00:00', 84, 'img/activity/19.jpg', 1, 2558, 2, 3, 17),
+(20, 'Meeting', 'กิจกรรมตอนรับน้องปี1', '2016-08-28 00:00:00', '2016-08-28 00:00:00', 84, 'img/activity/20.jpg', 1, 2558, 3, 3, 17),
+(21, 'การแข่งขันกีฬา ITM ครั้งที่18', 'กิจกรรมสานสัมพันธ์ระหว่างมหาวิทยาลัย', '2015-09-04 00:00:00', '2015-09-06 00:00:00', 87, 'img/activity/21.jpg', 2, 2558, 4, 3, 17),
+(22, 'การแข่งขันกีฬา ITM ครั้งที่19', 'กิจกรรมสานสัมพันธ์ระหว่างมหาวิทยาลัย', '2016-06-22 00:00:00', '2016-06-24 00:00:00', 87, 'img/activity/22.jpg', 2, 2559, 5, 3, 17),
+(23, 'รับน้องทะเล', 'กิจกรรมรับน้องปี1 หลักสูตรวิศวกรรมซอฟต์แวร์รุ่น5 ', '2017-04-01 00:00:00', '2017-04-02 00:00:00', 84, 'img/activity/23.jpg', 3, 2559, 6, 1, 17),
+(24, 'รับน้องทะเล', 'กิจกรรมรับน้องทะเล หลักสูตรวิศวกรรมซอฟต์แวร์รุ่น4', '2015-06-25 00:00:00', '2015-06-25 00:00:00', 87, 'img/activity/24.jpg', 3, 2558, 7, 3, 17),
+(25, 'ค่ายScrum', 'กิจกรรมเสริมทักษะการเรียนรู้', '2017-04-12 00:00:00', '2017-04-12 00:00:00', 84, 'img/activity/25.jpg', 3, 2559, 8, 1, 17);
 
 -- --------------------------------------------------------
 
@@ -450,11 +450,11 @@ INSERT INTO `joinactivity` (`activity_id`, `user_id`, `joined`) VALUES
 (24, 72, 0),
 (24, 73, 0),
 (24, 74, 0),
-(25, 1, 0),
-(25, 2, 0),
-(25, 3, 0),
-(25, 4, 0),
-(25, 5, 0),
+(25, 1, 1),
+(25, 2, 1),
+(25, 3, 1),
+(25, 4, 1),
+(25, 5, 1),
 (25, 6, 0),
 (25, 7, 0),
 (25, 8, 0),
@@ -475,10 +475,10 @@ INSERT INTO `joinactivity` (`activity_id`, `user_id`, `joined`) VALUES
 (25, 23, 0),
 (25, 24, 0),
 (25, 25, 0),
-(25, 26, 0),
-(25, 27, 0),
-(25, 28, 0),
-(25, 29, 0),
+(25, 26, 1),
+(25, 27, 1),
+(25, 28, 1),
+(25, 29, 1),
 (25, 30, 0),
 (25, 31, 0),
 (25, 32, 0),
@@ -637,7 +637,7 @@ INSERT INTO `users` (`id`, `prefix`, `username`, `password`, `isteacher`, `isadm
 (72, NULL, '56149214', '$2y$08$ZnFvZ0MxaGowYloxeHhZVeHKD21xCEvnvFMd3IE0qjKWYLv1/N2V.', 0, 0, 'สามารถ', 'นิลพงษ์', NULL, 2556),
 (73, NULL, '56161177', '$2y$08$SkpXSWpUOTZpclF5eXR6eecCc7J7sYrN8PFn0glSKIaBxoFu4k/sK', 0, 0, ' นายปรัชญา ยีขะเด', ' นายปรัชญา ยีขะเด', NULL, 2556),
 (74, NULL, '56162712', '$2y$08$VzV6VnE0cTZIRG13dkVuZ.YQAOjnqR10r5JHg8Bur3oRa3B9zrdGi', 0, 0, 'อัศม์เดช', 'โส้สมัน', NULL, 2556),
-(84, 'ผู้ช่วยศาสตราจารย ดร.', 'admin1', '$2y$08$EcAXeyCFclungYYtOmSfOedJtYfYTK3FwKwHkz3Pk.i1wnZSaUmsW', 1, 1, 'ฐิมาพร', 'เพชรแก้ว', 'pthimapo@wu.ac.th', NULL),
+(84, 'ผู้ช่วยศาสตราจารย์ ดร.', 'admin1', '$2y$08$ojsKN7yY2kG6luPXyXw7t.5BWKwK/Ok5Gd601Bz5eBpjvIJtBeLJi', 1, 1, 'ฐิมาพร', 'เพชรแก้ว', 'pthimapo@wu.ac.th', NULL),
 (85, 'ผู้ช่วยศาสตราจารย์', 'admin2', '$2y$08$MVhtbTBxN0tiOGlvYUNFKu5zKvj.Ac1NVJnMAKKt8FoeZZbKrpsKa', 1, 1, 'เยาวเรศ', 'ศิริสถิตย์กุล', 'syaowara@wu.ac.th', NULL),
 (86, 'ผู้ช่วยศาสตราจารย์', 'admin3', '$2y$08$VUdOb2VTK2FBb2RpS1hCaODxFo6Oyzegf2QSr/k9e6EB7t2WZDM2a', 1, 0, 'อุหมาด', 'หมัดอาด้ำ', 'muhamard@wu.ac.th', NULL),
 (87, 'อาจารย์ ดร.', 'admin4', '$2y$08$cVhHMzRUU3U1bGFKTTEra.Ap1dW2GaClnyjL089/J4oVt.Fh9nuvS', 1, 1, 'พุทธิพร', 'ธนธรรมเมธี', 'putthiporn.th@wu.ac.th', NULL),
@@ -739,7 +739,7 @@ ALTER TABLE `yearofeducation`
 -- AUTO_INCREMENT for table `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `location`
 --
@@ -754,7 +754,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 --
 -- Constraints for dumped tables
 --
