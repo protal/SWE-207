@@ -55,12 +55,18 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <?php for ($i=0; $i < 10; $i++) {
-                          ?>
-                           <p> <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="" style="width:20px;"> หฤษฎ์ คงทอง <small class="text-success">เข้าร่วม</small></p>
-                          <?php
-                        } ?>
-                        <p>หฤษฎ์ คงทอง <small class="text-danger">ไม่เข่าร่วม</small></p>
+                        <?php foreach ( $activity->JoinActivity  as $j): ?>
+                          <p>
+                            <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="" style="width:20px;">
+                            <a href="<?=$this->url->get('user/profile/'.$j->Users->id)?>"><?=$j->Users->Firstname?> <?=$j->Users->Lastname?></a>
+                            <?php if ($j->joined): ?>
+                              <small class="text-success">เข้าร่วม</small>
+                            <?php else: ?>
+                              <small class="text-danger">ไม่เข่าร่วม</small>
+                            <?php endif; ?>
+                          </p>
+                        <?php endforeach; ?>
+
                       </div>
                     </div>
                   </div>
