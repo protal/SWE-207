@@ -34,7 +34,13 @@
                 </form>
                 <?php } ?>
                 &nbsp;
+                <?php if ($this->session->get('auth')) { ?>
+                <?= $this->tag->linkTo(['auth/login', 'จัดการระบบ', 'class' => 'btn btn-outline-primary btn-secondary pull-right']) ?>
+
+                <?php } else { ?>
                 <?= $this->tag->linkTo(['auth/login', 'เข้าสู่ระบบ', 'class' => 'btn btn-outline-success btn-secondary pull-right']) ?>
+
+                <?php } ?>
             </div>
           </div>
         </nav>
@@ -73,6 +79,9 @@
                     <?= $this->tag->linkTo(['manage/studentsearch', 'จัดการนักศึกษา', 'class' => 'nav-link']) ?>
                   </li>
                   <?php } ?>
+                  <li class="nav-item">
+                    <?= $this->tag->linkTo(['', 'หน้าแรก', 'class' => 'nav-link']) ?>
+                  </li>
 
                 </ul>
                 <ul class="navbar-nav my-lg-0">
