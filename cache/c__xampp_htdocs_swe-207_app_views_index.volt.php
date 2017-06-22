@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Phalcon PHP Framework</title>
+    <title>วิศวกรรมซอฟต์แวร์</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
@@ -22,7 +22,11 @@
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-            <?= $this->tag->linkTo(['index', 'SWE', 'class' => 'navbar-brand']) ?>
+            <a href="<?= $this->url->get('') ?>">
+              <img src="<?= $this->url->get('img/logo.png') ?>" height="55px">
+            </a>
+
+
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
@@ -34,7 +38,13 @@
                 </form>
                 <?php } ?>
                 &nbsp;
+                <?php if ($this->session->get('auth')) { ?>
+                <?= $this->tag->linkTo(['auth/login', 'จัดการระบบ', 'class' => 'btn btn-outline-primary btn-secondary pull-right']) ?>
+
+                <?php } else { ?>
                 <?= $this->tag->linkTo(['auth/login', 'เข้าสู่ระบบ', 'class' => 'btn btn-outline-success btn-secondary pull-right']) ?>
+
+                <?php } ?>
             </div>
           </div>
         </nav>
@@ -73,6 +83,9 @@
                     <?= $this->tag->linkTo(['manage/studentsearch', 'จัดการนักศึกษา', 'class' => 'nav-link']) ?>
                   </li>
                   <?php } ?>
+                  <li class="nav-item">
+                    <?= $this->tag->linkTo(['', 'หน้าแรก', 'class' => 'nav-link']) ?>
+                  </li>
 
                 </ul>
                 <ul class="navbar-nav my-lg-0">
