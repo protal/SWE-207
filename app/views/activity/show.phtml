@@ -55,18 +55,22 @@
                         </button>
                       </div>
                       <div class="modal-body">
+                        <div class="row">
                         <?php foreach ( $activity->JoinActivity  as $j): ?>
-                          <p>
-                            <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="" style="width:20px;">
-                            <a href="<?=$this->url->get('user/profile/'.$j->Users->id)?>"><?=$j->Users->Firstname?> <?=$j->Users->Lastname?></a>
+                          <?php if ($j->Users->image==null) {
+                            $j->Users->image = "img/unknown.gif";
+                          } ?>
+                          <div class="col-md-3 text-center mt-4">
+                            <img src="<?=$this->url->get($j->Users->image)?>" class="" style="width:100%;">
+                            <br><a href="<?=$this->url->get('user/profile/'.$j->Users->id)?>"><?=$j->Users->Firstname?> <?=$j->Users->Lastname?></a> <br>
                             <?php if ($j->joined): ?>
                               <small class="text-success">เข้าร่วม</small>
                             <?php else: ?>
                               <small class="text-danger">ไม่เข่าร่วม</small>
                             <?php endif; ?>
-                          </p>
+                          </div>
                         <?php endforeach; ?>
-
+                        </div>
                       </div>
                     </div>
                   </div>
