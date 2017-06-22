@@ -17,7 +17,7 @@
 
                     <h4 class="card-title mt-3"><?=$act->name; ?></h4>
                     <div class="meta">
-                        <a><?=$act->Teacher->prefix;?>&nbsp;&nbsp;<?=$act->Teacher->Firstname; ?>&nbsp;&nbsp;<?=$act->Teacher->Lastname; ?></a>
+                        <a href="<?=$this->url->get('user/profile/'.$act->Teacher->id)?>"><?=$act->Teacher->prefix;?>&nbsp;&nbsp;<?=$act->Teacher->Firstname; ?>&nbsp;&nbsp;<?=$act->Teacher->Lastname; ?></a>
                     </div>
                     <div class="card-text">
 
