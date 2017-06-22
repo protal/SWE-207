@@ -11,6 +11,13 @@ class ActivityController extends \Phalcon\Mvc\Controller
     public function showAction($id)
     {
       $activity = Activity::findFirst($id);
-      $this->view->activity = $activity;
+      if(!$activity)
+      {
+        $this->flashSession->error("ไม่พบหน้า");
+        return $this->response->redirect("");
+      }
+      else {
+        $this->view->activity = $activity;
+      }
     }
 }

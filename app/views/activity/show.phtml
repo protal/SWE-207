@@ -9,7 +9,7 @@
                 </figure>
                 <h4 class="card-title mt-3"><?=$activity->name; ?></h4>
                 <div class="meta">
-                  <a><?=$activity->Teacher->prefix;?>&nbsp;&nbsp;<?=$activity->Teacher->Firstname; ?>&nbsp;&nbsp;<?=$activity->Teacher->Lastname; ?></a>
+                  <a href="<?=$this->url->get('user/profile/'.$activity->Teacher->id)?>"><?=$activity->Teacher->prefix;?>&nbsp;&nbsp;<?=$activity->Teacher->Firstname; ?>&nbsp;&nbsp;<?=$activity->Teacher->Lastname; ?></a>
                 </div>
                 <div class="card-text">
                   <ul class="mbm_social">
