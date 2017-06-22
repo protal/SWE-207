@@ -5,6 +5,7 @@ class UserController extends \Phalcon\Mvc\Controller
 
     public function indexAction()
     {
+      $teacher = User::find([])
 
     }
 

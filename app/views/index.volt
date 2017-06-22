@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Mitr" rel="stylesheet">
     <link rel="stylesheet" href="<?=$this->url->get('css/style.css') ?>">
 </head>
 
@@ -25,18 +26,15 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        {{ link_to('','หน้าแรก', 'class': 'nav-link') }}
-                    </li>
-                    <li class="nav-item">
-                        {{ link_to('user','ผู้ใช้งาน', 'class': 'nav-link') }}
-                    </li>
                 </ul>
+                {% if router.getControllerName() == "index" or router.getControllerName() == ""  %}
                 <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="ค้นหา">
+                    <input class="form-control mr-sm-2" name="s" type="text" placeholder="ค้นหากิจกรรม" value="<?=($s)?$s:""?>">
                     <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">ค้นหา</button>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    {{ link_to('auth/login','เข้าสู่ระบบ', 'class': 'btn btn-outline-success btn-secondary pull-right') }}
+                </form>
+                {% endif %}
+                &nbsp;
+                {{ link_to('auth/login','เข้าสู่ระบบ', 'class': 'btn btn-outline-success btn-secondary pull-right') }}
             </div>
           </div>
         </nav>
