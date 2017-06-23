@@ -5,7 +5,7 @@ class AuthController extends \Phalcon\Mvc\Controller
 
     public function indexAction()
     {
-
+      return $this->response->redirect("auth/login");
     }
     public function loginAction()
     {

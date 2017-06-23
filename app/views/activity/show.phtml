@@ -35,7 +35,9 @@
                   		</a>
                   	</li>
                   </ul>
-                    <?=$activity->Datail; ?>
+                    <?=$activity->Datail; ?><br><br>
+                    <small>สถานที่ : <?=$activity->Location->name; ?> (<?=$activity->Location->room; ?>)</small>
+
                 </div>
             </div>
             <div class="card-footer">
