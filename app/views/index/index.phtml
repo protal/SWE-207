@@ -21,13 +21,13 @@
                     <div class="meta">
                         <a href="<?=$this->url->get('user/profile/'.$act->Teacher->id)?>"><?=$act->Teacher->prefix;?>&nbsp;&nbsp;<?=$act->Teacher->Firstname; ?>&nbsp;&nbsp;<?=$act->Teacher->Lastname; ?></a>
                     </div>
-                    <div class="card-text">
+                    <div class="card-text" >
 
                     </div>
                 </div>
                 <div class="card-footer">
-                    <small><?=date("d m Y",strtotime($act->StartDate))?> - <?=date("d m Y",strtotime($act->EndDate))?></small>
-                    <?= $this->tag->linkTo(["activity/show/".$act->id, "เพิ่มเติม", "class" => "btn btn-secondary float-right btn-sm"]) ?>
+                    <small><?=date("วันที่ d m Y เวลา H:s",strtotime($act->StartDate))?> - <?=date("วันที่ d m Y เวลา H:s",strtotime($act->EndDate))?></small>
+                    <?= $this->tag->linkTo(["activity/show/".$act->id, "เพิ่มเติม", "class" => "btn btn-secondary float-right btn-sm","style" => "margin-top:5px"]) ?>
                 </div>
             </div>
         </div>

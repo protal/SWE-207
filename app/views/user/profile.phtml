@@ -11,11 +11,10 @@
             <img src="<?=$this->url->get($user->image)?>" width="100%" class="rounded float-left" alt="">
           </div>
           <div class="col-sm-8">
+            <p class="card-title"><?=$user->prefix; ?> <?=$user->Firstname; ?> <?=$user->Lastname; ?></p>
             <?php if ($user->isteacher): ?>
-              <p class="card-title"><?=$user->prefix; ?><br><?=$user->Firstname; ?> <?=$user->Lastname; ?></p>
               <p class="card-text"><?=$user->email; ?></p>
             <?php else: ?>
-              <p class="card-title"><?=$user->Firstname; ?> <?=$user->Lastname; ?></p>
               <p class="card-text">ชั้นปีการศึกษา : <?=$user->Years;?></p>
                 <p class="card-text">รหัสนักศึกษา &nbsp;: <?=$user->username;?></p>
             <?php endif; ?>

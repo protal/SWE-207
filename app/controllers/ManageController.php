@@ -90,6 +90,10 @@ class ManageController extends \Phalcon\Mvc\Controller
 
    }
    public function activityaddpostAction(){
+     $years = explode("-",$this->request->get("Yearstart"));
+     $StartDate = $years[0];
+     $EndDate = $years[1];
+
      //create YOD
      $semester = $this->request->get("semester");
      $Year = $this->request->get("Year");
@@ -110,13 +114,15 @@ class ManageController extends \Phalcon\Mvc\Controller
      $activity = new Activity;
      $activity->name = $this->request->get("name");
      $activity->Datail = $this->request->get("activitydetail");
-     $activity->StartDate	= $this->request->get("Yearstart");
-     $activity->EndDate = $this->request->get("Yearend");
+     $activity->StartDate	= $StartDate;
+     $activity->EndDate = $EndDate;
+    //  var_dump($activity->StartDate);
+    //  exit();
      $activity->yearofeducation_semester = $this->request->get("semester");
      $activity->yearofeducation_year = $this->request->get("Year");
      $activity->teacher_id = $this->request->get("teacher_id");
      $activity->create_id	= $this->session->get('auth')["id"];
-     $activity->location_id = $this->request->get("location_id");;
+     $activity->location_id = $this->request->get("location_id");
      $activity->type_id = $this->request->get("type_id");
      if(!$activity->save())
      {
@@ -184,10 +190,14 @@ class ManageController extends \Phalcon\Mvc\Controller
 
           //create_activity
           $activity = Activity::findFirst($id);
+          $years = explode("-",$this->request->get("Yearstart"));
+          $StartDate = $years[0];
+          $EndDate = $years[1];
+
           $activity->name = $this->request->get("name");
           $activity->Datail = $this->request->get("activitydetail");
-          $activity->StartDate	= $this->request->get("Yearstart");
-          $activity->EndDate = $this->request->get("Yearend");
+          $activity->StartDate	= $StartDate;
+          $activity->EndDate = $EndDate;
           $activity->yearofeducation_semester = $this->request->get("semester");
           $activity->yearofeducation_year = $this->request->get("Year");
           $activity->teacher_id = $this->request->get("teacher_id");
@@ -225,7 +235,7 @@ class ManageController extends \Phalcon\Mvc\Controller
            $join->save();
          }
          $this->flashSession->success("แก้ไขกิจกรรมสำเร็จ");
-         return $this->response->redirect("manage/activityedit/".$id);
+         return $this->response->redirect("manage/activitysearch/".$id);
 
 
    }

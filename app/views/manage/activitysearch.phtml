@@ -15,19 +15,19 @@
     <table class="table table-striped" style="margin-top:20px">
       <thead>
         <tr>
-          <th class="text-center">ชื่อกิจกรรม</th>
-          <th class="text-center">ประเภทกิจกรรม</th>
-          <th class="text-center">อาจารย์ที่ปรึกษา</th>
-          <th class="text-center">ดำเนินการ</th>
+          <th class="text-center" style="padding-right:40px">ชื่อกิจกรรม</th>
+          <th class="text-center" style="padding-right:40px">ประเภทกิจกรรม</th>
+          <th class="text-center" style="padding-right:50px">อาจารย์ที่ปรึกษา</th>
+          <th class="text-center" style="padding-right:40px">ดำเนินการ</th>
         </tr>
       </thead>
       <tbody>
         <?php foreach ($page->items as $act): ?>
           <tr>
-            <td class="text-center"><?=$act->name?></td>
-            <td class="text-center"><?=$act->Type->name?></td>
-            <td class="text-center"><?=$act->Teacher->prefix?> <?=$act->Teacher->Firstname?> <?=$act->Teacher->Lastname?> </td>
-            <td class="text-center">
+            <td class="text-left"><?=$act->name?></td>
+            <td class="text-left"><?=$act->Type->name?></td>
+            <td class="text-left"><?=$act->Teacher->prefix?> <?=$act->Teacher->Firstname?> <?=$act->Teacher->Lastname?> </td>
+            <td class="text-left">
               <?php if ($this->session->get('auth')['isadmin']==1 || ($this->session->get('auth')['id']==$act->teacher_id||$this->session->get('auth')['id']==$act->create_id)): ?>
                 <?php echo $this->tag->linkto(["manage/activityedit/".$act->id, "class" => "btn btn-info btn-sm","แก้ไข"]) ?>
                 <?php echo $this->tag->linkto(["manage/activitydelete/".$act->id, "class" => "btn btn-danger btn-sm","ลบ"]) ?>
