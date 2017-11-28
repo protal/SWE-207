@@ -110,6 +110,21 @@ class ManageController extends \Phalcon\Mvc\Controller
        return $this->response->redirect("manage/activityadd");
      }
 
+     if ($_FILES['file']['size']>0) {
+       $files = $this->request->getUploadedFiles();
+       foreach ($files as $file) {
+           // Print file details
+           $name = $id.'-'. $file->getName() ;
+           $path = 'img/activity/'.$name;
+           echo $file->getName(), ' ', $file->getSize(), '\n';
+
+           // Move the file into the application
+           $file->moveTo(
+               $path
+           );
+       }
+     }
+
      //create_activity
      $activity = new Activity;
      $activity->name = $this->request->get("name");
@@ -124,6 +139,11 @@ class ManageController extends \Phalcon\Mvc\Controller
      $activity->create_id	= $this->session->get('auth')["id"];
      $activity->location_id = $this->request->get("location_id");
      $activity->type_id = $this->request->get("type_id");
+
+     if(isset($path))
+       $activity->image = $path;
+
+
      if(!$activity->save())
      {
        $ms = "";
@@ -173,19 +193,20 @@ class ManageController extends \Phalcon\Mvc\Controller
             return $this->response->redirect("manage/activityedit/".$id);
           }
 
-          if ($this->request->hasFiles()) {
-            foreach ($this->request->getUploadedFiles() as $file) {
-                if (!$this->imageCheck($file->getRealType())) {
-                    $this->flashSession->error(t('We don\'t accept that kind of file. Please upload an image.'));
-                    return $this->response->redirect("manage/activityedit/".$id);
-                }
-                else {
-                  var_dump($file->getName());exit();
-                }
+          if ($_FILES['file']['size']>0) {
+            $files = $this->request->getUploadedFiles();
+            foreach ($files as $file) {
+                // Print file details
+                $name = $id.'-'. $file->getName() ;
+                $path = 'img/activity/'.$name;
+                echo $file->getName(), ' ', $file->getSize(), '\n';
 
+                // Move the file into the application
+                $file->moveTo(
+                    $path
+                );
             }
           }
-
 
 
           //create_activity
@@ -203,6 +224,11 @@ class ManageController extends \Phalcon\Mvc\Controller
           $activity->teacher_id = $this->request->get("teacher_id");
           $activity->location_id = $this->request->get("location_id");;
           $activity->type_id = $this->request->get("type_id");
+
+          if(isset($path))
+            $activity->image = $path;
+
+
           if(!$activity->save())
           {
             $ms = "";
