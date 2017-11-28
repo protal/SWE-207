@@ -611,6 +611,20 @@ class ManageController extends \Phalcon\Mvc\Controller
           $this->flashSession->error("รหัสผ่านไม่ตรงกัน");
           return $this->response->redirect("manage/profile");
         }
+        if ($_FILES['file']['size']>0) {
+          $files = $this->request->getUploadedFiles();
+          foreach ($files as $file) {
+              // Print file details
+              $name = $this->session->get('auth')["id"]. $file->getName() ;
+              $path = 'img/user/'.$name;
+              echo $file->getName(), ' ', $file->getSize(), '\n';
+
+              // Move the file into the application
+              $file->moveTo(
+                  $path
+              );
+          }
+        }
 
        $user = Users::findFirst($this->session->get('auth')["id"]);
        $user->password = $this->security->hash($this->request->getPost("password"));
@@ -618,6 +632,8 @@ class ManageController extends \Phalcon\Mvc\Controller
        $user->Lastname = $this->request->getPost("Lastname");
        $user->prefix =  $this->request->getPost("prefix");
        $user->email =  $this->request->getPost("email");
+       if(isset($path))
+        $user->image = $path;
        if($user->save())
        {
          $this->flashSession->success("แก้ไขข้อมูลเรียร้อยเเล้ว");
